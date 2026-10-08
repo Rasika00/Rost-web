@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+:root {
+  --background: #080808;
+  --foreground: #fafafa;
+  --card: #121212;
+  --card-foreground: #fafafa;
+  --popover: #121212;
+  --popover-foreground: #fafafa;
+  --primary: #ff6b00;              /* ROST Glowing Laser Orange */
+  --primary-foreground: #080808;
+  --secondary: #242424;            /* Tactical Titanium Grey */
+  --secondary-foreground: #fafafa;
+  --muted: #1c1c1c;
+  --muted-foreground: #8e8e8e;
+  --accent: #ff7a1a;
+  --accent-foreground: #080808;
+  --destructive: #ef4444;
+  --border: #262626;               /* Clean structural hairline border */
+  --input: #171717;
+  --ring: #ff6b00;
+  --radius: 0.5rem;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-rost-orange: #ff6b00;
+  --color-rost-orange-glow: #ff7a1a;
+  --color-rost-orange-dark: #cc5500;
+  --color-rost-dark: #080808;
+  --color-rost-carbon: #0d0d0d;
+  --color-rost-surface: #141414;
+  --color-rost-panel: #181818;
+  --color-rost-border: #262626;
+  --color-rost-border-bright: #383838;
+  --color-rost-tactical: #a3a3a3;
+  --color-rost-grey: #8e8e8e;
+  --color-rost-emerald: #22c55e;
+  --color-rost-crimson: #ef4444;
+}
+
+/* Base Body Configuration */
+html {
+  background-color: #080808;
+  color: #fafafa;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #080808;
+  color: #fafafa;
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Custom Tactical Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6b00;
+}
+
+/* Glowing Accent Utilities */
+.glow-orange-sm {
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.25);
+}
+
+.glow-orange-md {
+  box-shadow: 0 0 25px rgba(255, 107, 0, 0.35);
+}
+
+.glow-orange-lg {
+  box-shadow: 0 0 45px rgba(255, 107, 0, 0.45);
+}
+
+.glow-orange-border {
+  border-color: #ff6b00;
+  box-shadow: 0 0 18px rgba(255, 107, 0, 0.25), inset 0 0 12px rgba(255, 107, 0, 0.08);
+}
+
+.text-glow-orange {
+  text-shadow: 0 0 12px rgba(255, 107, 0, 0.6), 0 0 24px rgba(255, 107, 0, 0.3);
+}
+
+.text-glow-white {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+/* Tactical Background Grid Patterns */
+.bg-grid-cyber {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 107, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 107, 0, 0.04) 1px, transparent 1px);
+}
+
+.bg-grid-dense {
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-dots-cyber {
+  background-image: radial-gradient(rgba(255, 107, 0, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* CRT / Sci-Fi Scanlines */
+.cyber-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.35) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.02),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.02)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Tactical Crosshairs & Corner HUD Bracket Accents */
+.hud-corner-bracket {
+  position: relative;
+}
+.hud-corner-bracket::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #ff6b00;
+  border-left: 2px solid #ff6b00;
+  pointer-events: none;
+}
+.hud-corner-bracket::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid #ff6b00;
+  border-right: 2px solid #ff6b00;
+  pointer-events: none;
+}
+
+/* Pulsing beacon keyframes */
+@keyframes beacon-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.4;
+  }
+}
+
+.animate-beacon {
+  animation: beacon-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Scan line sweep */
+@keyframes laser-sweep {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-laser-sweep {
+  animation: laser-sweep 3s ease-in-out infinite;
+}
+
+/* Rotating Radar / Calibration Rings */
+@keyframes orbit-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-ccw {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-orbit-cw {
+  animation: orbit-cw 18s linear infinite;
+}
+
+.animate-orbit-ccw {
+  animation: orbit-ccw 12s linear infinite;
+}
+
+/* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
