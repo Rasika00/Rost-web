@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { soundFx } from "@/lib/sound";
 
 export function PageLoader({ onComplete }: { onComplete?: () => void }) {
   const [progress, setProgress] = useState(0);
@@ -18,8 +17,6 @@ export function PageLoader({ onComplete }: { onComplete?: () => void }) {
       onComplete?.();
       return;
     }
-
-    soundFx.playBootHum();
 
     const hexPool = [
       "0x7FF_A09",
@@ -139,7 +136,6 @@ export function PageLoader({ onComplete }: { onComplete?: () => void }) {
         {/* Skip button if needed */}
         <button
           onClick={() => {
-            soundFx.playTelemetryClick();
             setIsFading(true);
             sessionStorage.setItem("rost_boot_complete", "true");
             setTimeout(() => {

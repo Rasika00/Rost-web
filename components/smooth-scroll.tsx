@@ -5,18 +5,21 @@ import Lenis from "lenis";
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Only enable Lenis on non-touch devices or when user hasn't requested reduced motion
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 1.25,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.9,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+      autoRaf: false,
     });
+
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
 
     let rafId: number;
     function raf(time: number) {
@@ -29,8 +32,10 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      delete (window as unknown as { lenis?: Lenis }).lenis;
     };
   }, []);
 
   return <>{children}</>;
 }
+

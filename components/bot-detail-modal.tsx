@@ -18,7 +18,6 @@ import {
   Radio,
 } from "lucide-react";
 import { Bot } from "@/data/bot-data";
-import { soundFx } from "@/lib/sound";
 
 interface BotDetailModalProps {
   bot: Bot | null;
@@ -70,7 +69,6 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
 
           <button
             onClick={() => {
-              soundFx.playTelemetryClick();
               onClose();
             }}
             className="p-2 rounded-lg bg-[#171717] border border-[#262626] text-[#a3a3a3] hover:text-[#fafafa] hover:border-[#ff6b00] transition-colors"
@@ -161,7 +159,6 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
                 href={bot.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => soundFx.playTelemetryClick()}
                 className="w-full py-2.5 px-4 rounded-xl bg-[#171717] hover:bg-[#202020] border border-[#ff6b00]/30 hover:border-[#ff6b00] text-xs font-mono text-[#fafafa] flex items-center justify-center gap-2 transition-all"
               >
                 <GitBranch className="w-4 h-4 text-[#ff6b00]" />

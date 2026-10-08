@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { SITE_CONFIG } from "@/data/site-data";
-import { soundFx } from "@/lib/sound";
 
 export function Footer() {
   const [email, setEmail] = useState("");
@@ -26,7 +25,6 @@ export function Footer() {
       return;
     }
 
-    soundFx.playTelemetryClick();
     setSubscribed(true);
     toast.success("DISPATCH_SUBSCRIBED // Telemetry feed locked to your frequency.", {
       description: `Updates dispatched to ${email}`,
@@ -124,7 +122,6 @@ export function Footer() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => soundFx.playTelemetryClick()}
                   className="px-2.5 py-1 rounded bg-[#171717] hover:bg-[#202020] border border-[#262626] hover:border-[#ff6b00]/50 text-[11px] font-mono text-[#a3a3a3] hover:text-[#fafafa] uppercase transition-colors flex items-center gap-1"
                 >
                   <span>{name}</span>
@@ -148,7 +145,6 @@ export function Footer() {
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => soundFx.playLaserBlip()}
                 className="text-[#a3a3a3] hover:text-[#ff7a1a] transition-colors"
               >
                 {item.name}

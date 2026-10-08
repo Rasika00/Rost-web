@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { ArenaEvent } from "@/data/events-data";
-import { soundFx } from "@/lib/sound";
 
 interface EventDetailModalProps {
   event: ArenaEvent | null;
@@ -53,7 +52,6 @@ export function EventDetailModal({ event, onClose }: EventDetailModalProps) {
     }
 
     setIsSubmitting(true);
-    soundFx.playTelemetryClick();
 
     setTimeout(() => {
       setIsSubmitting(false);
@@ -87,7 +85,6 @@ export function EventDetailModal({ event, onClose }: EventDetailModalProps) {
 
           <button
             onClick={() => {
-              soundFx.playTelemetryClick();
               onClose();
             }}
             className="p-2 rounded-lg bg-[#171717] border border-[#262626] text-[#a3a3a3] hover:text-[#fafafa] hover:border-[#ff6b00] transition-colors"

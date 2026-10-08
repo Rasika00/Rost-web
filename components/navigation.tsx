@@ -10,19 +10,15 @@ import {
   Radio,
   Menu,
   X,
-  Volume2,
-  VolumeX,
   ExternalLink,
   ChevronRight,
   ShieldAlert,
 } from "lucide-react";
 import { SITE_CONFIG } from "@/data/site-data";
-import { soundFx } from "@/lib/sound";
 
 export function Navigation() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -33,15 +29,7 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleSound = () => {
-    const next = !soundEnabled;
-    setSoundEnabled(next);
-    soundFx.enabled = next;
-    if (next) soundFx.playLaserBlip();
-  };
-
   const handleLinkClick = () => {
-    soundFx.playLaserBlip();
     setMobileOpen(false);
   };
 
@@ -96,7 +84,6 @@ export function Navigation() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    onClick={() => soundFx.playLaserBlip()}
                     className={`relative px-3 py-1.5 text-xs font-mono tracking-wider transition-all duration-200 rounded-lg flex items-center gap-1.5 group ${
                       isActive
                         ? "text-[#fafafa] font-bold bg-[#171717]"
@@ -121,27 +108,8 @@ export function Navigation() {
               })}
             </div>
 
-            {/* Right Action Cluster: Audio FX Toggle + Arena CTA + Mobile Trigger */}
+            {/* Right Action Cluster: Arena CTA + Mobile Trigger */}
             <div className="flex items-center gap-2 sm:gap-3">
-              {/* Sound Effects Toggle Button */}
-              <button
-                type="button"
-                onClick={toggleSound}
-                title={soundEnabled ? "Tactical Audio: Active" : "Tactical Audio: Muted"}
-                className={`p-2 rounded-lg border transition-colors ${
-                  soundEnabled
-                    ? "bg-[#171717] border-[#ff6b00]/40 text-[#ff7a1a] hover:border-[#ff6b00]"
-                    : "bg-[#121212] border-[#262626] text-[#737373] hover:text-[#a3a3a3]"
-                }`}
-                aria-label="Toggle Sound"
-              >
-                {soundEnabled ? (
-                  <Volume2 className="w-4 h-4" />
-                ) : (
-                  <VolumeX className="w-4 h-4" />
-                )}
-              </button>
-
               {/* Enter Arena CTA Button */}
               <Link
                 href="/events"
@@ -156,7 +124,6 @@ export function Navigation() {
               <button
                 type="button"
                 onClick={() => {
-                  soundFx.playTelemetryClick();
                   setMobileOpen(!mobileOpen);
                 }}
                 className="lg:hidden p-2 rounded-lg bg-[#141414] border border-[#262626] text-[#fafafa] hover:border-[#ff6b00] transition-colors"

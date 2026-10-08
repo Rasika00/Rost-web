@@ -17,7 +17,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { ARTICLES_DATA, Article } from "@/data/articles-data";
-import { soundFx } from "@/lib/sound";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export default function ArticlesPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -52,7 +52,6 @@ export default function ArticlesPage() {
   }, [selectedCategory, searchQuery]);
 
   const handleCopyCode = (filename: string, code: string) => {
-    soundFx.playTelemetryClick();
     navigator.clipboard.writeText(code);
     setCopiedSnippet(filename);
     setTimeout(() => setCopiedSnippet(null), 2000);
@@ -62,87 +61,94 @@ export default function ArticlesPage() {
     <div className="relative min-h-screen py-16 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto space-y-12">
         {/* Header */}
-        <div className="space-y-4 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#141414] border border-[#ff6b00]/40 text-xs font-mono text-[#ff7a1a]">
-            <span>// TECHNICAL KNOWLEDGE BASE & DEVLOGS</span>
+        <ScrollReveal direction="down" duration={0.6}>
+          <div className="space-y-4 text-center max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#141414] border border-[#ff6b00]/40 text-xs font-mono text-[#ff7a1a]">
+              <span>// TECHNICAL KNOWLEDGE BASE & DEVLOGS</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl font-mono font-black uppercase text-[#fafafa]">
+              Research & Engineering Devlogs
+            </h1>
+
+            <p className="text-sm sm:text-base text-[#a3a3a3] font-sans leading-relaxed">
+              In-depth engineering documentation authored by ROST leads: 50kHz FOC commutation math,
+              ROS 2 CycloneDDS tuning, KiCAD 4-layer PCB impedance routing, and factor-graph SLAM.
+            </p>
           </div>
-
-          <h1 className="text-3xl sm:text-5xl font-mono font-black uppercase text-[#fafafa]">
-            Research & Engineering Devlogs
-          </h1>
-
-          <p className="text-sm sm:text-base text-[#a3a3a3] font-sans leading-relaxed">
-            In-depth engineering documentation authored by ROST leads: 50kHz FOC commutation math,
-            ROS 2 CycloneDDS tuning, KiCAD 4-layer PCB impedance routing, and factor-graph SLAM.
-          </p>
-        </div>
+        </ScrollReveal>
 
         {/* Search & Filter Controls */}
-        <div className="p-4 sm:p-6 rounded-2xl bg-[#121212] border border-[#262626] space-y-4">
-          <div className="relative flex items-center">
-            <Search className="absolute left-4 w-4 h-4 text-[#737373]" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search research logs by topic, algorithm, author, or language..."
-              className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#0d0d0d] border border-[#262626] text-xs font-mono text-[#fafafa] placeholder:text-[#555555] focus:outline-none focus:border-[#ff6b00] focus:ring-1 focus:ring-[#ff6b00] transition-colors"
-            />
-          </div>
+        <ScrollReveal direction="up" duration={0.5}>
+          <div className="p-4 sm:p-6 rounded-2xl bg-[#121212] border border-[#262626] space-y-4">
+            <div className="relative flex items-center">
+              <Search className="absolute left-4 w-4 h-4 text-[#737373]" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search research logs by topic, algorithm, author, or language..."
+                className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#0d0d0d] border border-[#262626] text-xs font-mono text-[#fafafa] placeholder:text-[#555555] focus:outline-none focus:border-[#ff6b00] focus:ring-1 focus:ring-[#ff6b00] transition-colors"
+              />
+            </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[11px] font-mono text-[#737373] mr-2">CATEGORY:</span>
-            {categories.map((cat) => {
-              const isActive = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => {
-                    soundFx.playTelemetryClick();
-                    setSelectedCategory(cat);
-                  }}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono tracking-wider transition-all cursor-pointer ${
-                    isActive
-                      ? "bg-[#ff6b00] text-[#080808] font-bold shadow-[0_0_15px_rgba(255,107,0,0.35)]"
-                      : "bg-[#171717] text-[#a3a3a3] hover:text-[#fafafa] hover:bg-[#202020] border border-[#262626]"
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-[11px] font-mono text-[#737373] mr-2">CATEGORY:</span>
+              {categories.map((cat) => {
+                const isActive = selectedCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setSelectedCategory(cat);
+                    }}
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                      isActive
+                        ? "bg-[#ff6b00] text-[#080808] font-bold shadow-[0_0_15px_rgba(255,107,0,0.35)]"
+                        : "bg-[#171717] text-[#a3a3a3] hover:text-[#fafafa] hover:bg-[#202020] border border-[#262626]"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Articles List */}
         <div className="space-y-6">
-          {filteredArticles.map((article) => {
+          {filteredArticles.map((article, idx) => {
             const isExpanded = expandedArticle === article.id;
             return (
-              <article
+              <ScrollReveal
                 key={article.id}
-                className="rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/50 transition-all overflow-hidden shadow-[0_0_25px_rgba(0,0,0,0.4)]"
+                delay={idx * 70}
+                direction="up"
+                duration={0.55}
               >
-                {/* Article Top Bar */}
-                <div
-                  onClick={() => {
-                    soundFx.playTelemetryClick();
-                    setExpandedArticle(isExpanded ? null : article.id);
-                  }}
-                  className="p-6 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 select-none hover:bg-[#151515] transition-colors"
+                <article
+                  className="rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/50 transition-all overflow-hidden shadow-[0_0_25px_rgba(0,0,0,0.4)]"
                 >
-                  <div className="space-y-2 flex-1">
-                    <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff7a1a] border border-[#ff6b00]/30 font-bold uppercase">
-                        {article.category}
-                      </span>
-                      <span className="text-[#737373] flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-[#ff6b00]" />
-                        {article.readTime}
-                      </span>
-                      <span className="text-[#737373]">•</span>
-                      <span className="text-[#737373]">{article.publishedAt}</span>
-                    </div>
+                  {/* Article Top Bar */}
+                  <div
+                    onClick={() => {
+                      setExpandedArticle(isExpanded ? null : article.id);
+                    }}
+                    className="p-6 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 select-none hover:bg-[#151515] transition-colors"
+                  >
+                    <div className="space-y-2 flex-1">
+                      <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                        <span className="text-[10px] px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff7a1a] border border-[#ff6b00]/30 font-bold uppercase">
+                          {article.category}
+                        </span>
+                        <span className="text-[#737373] flex items-center gap-1">
+                          <Clock className="w-3 h-3 text-[#ff6b00]" />
+                          {article.readTime}
+                        </span>
+                        <span className="text-[#737373]">•</span>
+                        <span className="text-[#737373]">{article.publishedAt}</span>
+                      </div>
 
                     <h2 className="text-lg sm:text-xl font-mono font-bold text-[#fafafa] leading-snug">
                       {article.title}
@@ -237,6 +243,7 @@ export default function ArticlesPage() {
                   </div>
                 )}
               </article>
+              </ScrollReveal>
             );
           })}
         </div>
