@@ -260,10 +260,10 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="about"
-        className="relative py-24 px-4 sm:px-6 bg-[#0a0a0a] border-t border-[#262626]"
+        className="relative py-24 px-4 sm:px-6 bg-[#0a0a0a] border-t border-[#262626] cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-16">
-          <ScrollReveal direction="down" duration={0.65}>
+          <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
@@ -292,9 +292,10 @@ export default function HomePage() {
             {SITE_CONFIG.metrics.map((m, idx) => (
               <ScrollReveal
                 key={idx}
-                delay={idx * 60}
+                delay={idx * 110}
                 direction="up"
-                duration={0.55}
+                duration={0.75}
+                distance={56}
                 className="h-full flex"
               >
                 <div className="w-full relative p-6 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/50 transition-all group overflow-hidden hover:-translate-y-1 shadow-[0_0_20px_rgba(0,0,0,0.4)]">
@@ -320,9 +321,10 @@ export default function HomePage() {
             {SITE_CONFIG.pillars.map((pillar, idx) => (
               <ScrollReveal
                 key={pillar.number}
-                delay={idx * 75}
+                delay={idx * 120}
                 direction="up"
-                duration={0.6}
+                duration={0.8}
+                distance={56}
                 className="h-full flex"
               >
                 <div className="w-full p-6 rounded-2xl bg-[#111111] border border-[#262626] hover:border-[#ff6b00]/60 transition-all flex flex-col justify-between space-y-4 hover:-translate-y-1 group">
@@ -376,10 +378,10 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="events"
-        className="relative py-24 px-4 sm:px-6 bg-[#080808] border-t border-[#262626]"
+        className="relative py-24 px-4 sm:px-6 bg-[#080808] border-t border-[#262626] cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-12">
-          <ScrollReveal direction="down" duration={0.6}>
+          <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
@@ -408,9 +410,10 @@ export default function HomePage() {
             {previewEvents.map((event, idx) => (
               <ScrollReveal
                 key={event.id}
-                delay={idx * 85}
+                delay={idx * 130}
                 direction="up"
-                duration={0.6}
+                duration={0.8}
+                distance={56}
                 className="h-full flex"
               >
                 <div className="w-full p-6 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/50 transition-all flex flex-col justify-between space-y-6 hover:shadow-[0_0_25px_rgba(255,107,0,0.15)] hover:-translate-y-1">
@@ -466,10 +469,10 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="projects"
-        className="relative py-24 px-4 sm:px-6 bg-[#0a0a0a] border-t border-[#262626]"
+        className="relative py-24 px-4 sm:px-6 bg-[#0a0a0a] border-t border-[#262626] cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-14">
-          <ScrollReveal direction="down" duration={0.6}>
+          <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
@@ -494,7 +497,7 @@ export default function HomePage() {
           </ScrollReveal>
 
           {/* 3D Interactive Carousel Showcase */}
-          <ScrollReveal direction="scale" delay={80} duration={0.65}>
+          <ScrollReveal direction="scale" delay={80} duration={0.8} distance={40}>
             <div className="relative rounded-2xl border border-[#262626] bg-[#0e0e0e] overflow-hidden p-6 sm:p-8">
               <div className="flex items-center justify-between pb-6 border-b border-[#222222] mb-6">
                 <div className="flex items-center gap-2">
@@ -582,9 +585,10 @@ export default function HomePage() {
             {flagshipBots.map((bot, idx) => (
               <ScrollReveal
                 key={bot.id}
-                delay={idx * 80}
+                delay={idx * 130}
                 direction="up"
-                duration={0.6}
+                duration={0.8}
+                distance={56}
                 className="h-full flex"
               >
                 <div className="w-full group relative rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all duration-300 flex flex-col overflow-hidden hover:shadow-[0_0_30px_rgba(255,107,0,0.2)] hover:-translate-y-1">
@@ -658,10 +662,10 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="gallery"
-        className="relative py-24 px-4 sm:px-6 bg-[#080808] border-t border-[#262626]"
+        className="relative py-24 px-4 sm:px-6 bg-[#080808] border-t border-[#262626] cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-12">
-          <ScrollReveal direction="down" duration={0.6}>
+          <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
@@ -690,9 +694,10 @@ export default function HomePage() {
             {previewGallery.map((item, idx) => (
               <ScrollReveal
                 key={item.id}
-                delay={idx * 75}
+                delay={idx * 110}
                 direction="up"
-                duration={0.6}
+                duration={0.8}
+                distance={52}
                 className="h-full flex"
               >
                 <div
@@ -741,10 +746,10 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="board"
-        className="relative py-24 px-4 sm:px-6 bg-[#0a0a0a] border-t border-[#262626]"
+        className="relative py-24 px-4 sm:px-6 bg-[#0a0a0a] border-t border-[#262626] cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-12">
-          <ScrollReveal direction="down" duration={0.6}>
+          <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
@@ -773,9 +778,10 @@ export default function HomePage() {
             {previewBoard.map((member, idx) => (
               <ScrollReveal
                 key={member.id}
-                delay={idx * 75}
+                delay={idx * 120}
                 direction="up"
-                duration={0.6}
+                duration={0.8}
+                distance={56}
                 className="h-full flex"
               >
                 <div
@@ -837,10 +843,10 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="contact"
-        className="relative py-24 px-4 sm:px-6 bg-[#080808] border-t border-[#262626]"
+        className="relative py-24 px-4 sm:px-6 bg-[#080808] border-t border-[#262626] cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-12">
-          <ScrollReveal direction="down" duration={0.6}>
+          <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
@@ -867,7 +873,7 @@ export default function HomePage() {
           {/* Contact Main Grid: Interactive Form + Quick Comms Panels */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Quick Dispatch Form */}
-            <ScrollReveal direction="up" duration={0.6} className="lg:col-span-7">
+            <ScrollReveal direction="up" duration={0.8} distance={52} className="lg:col-span-7">
               <div className="rounded-2xl bg-[#121212] border border-[#262626] p-6 sm:p-8 space-y-6 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
                 <div className="space-y-1">
                   <h3 className="text-base font-mono font-bold text-[#fafafa] uppercase">
@@ -969,76 +975,82 @@ export default function HomePage() {
               </div>
             </ScrollReveal>
 
-            {/* Quick-Connect Side Panels */}
-            <ScrollReveal direction="up" delay={120} duration={0.6} className="lg:col-span-5 space-y-4">
+            {/* Quick-Connect Side Panels with Staggered Cascades */}
+            <div className="lg:col-span-5 space-y-4">
               {/* Discord Server */}
-              <a
-                href={SITE_CONFIG.socials.discord}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-5 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all flex items-start gap-4 group cursor-pointer block hover:-translate-y-0.5"
-              >
-                <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00] group-hover:scale-110 transition-transform">
-                  <MessageSquare className="w-5 h-5" />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-sm font-bold text-[#fafafa] group-hover:text-[#ff6b00] transition-colors">
-                      Discord Comms Server
-                    </span>
-                    <ExternalLink className="w-3.5 h-3.5 text-[#737373]" />
+              <ScrollReveal direction="up" delay={120} duration={0.8} distance={52}>
+                <a
+                  href={SITE_CONFIG.socials.discord}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-5 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all flex items-start gap-4 group cursor-pointer block hover:-translate-y-0.5"
+                >
+                  <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00] group-hover:scale-110 transition-transform">
+                    <MessageSquare className="w-5 h-5" />
                   </div>
-                  <p className="text-xs text-[#a3a3a3]">
-                    Join 1,200+ roboticists discussing FreeRTOS, CNC machining, and tournament battle footage.
-                  </p>
-                </div>
-              </a>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-sm font-bold text-[#fafafa] group-hover:text-[#ff6b00] transition-colors">
+                        Discord Comms Server
+                      </span>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#737373]" />
+                    </div>
+                    <p className="text-xs text-[#a3a3a3]">
+                      Join 1,200+ roboticists discussing FreeRTOS, CNC machining, and tournament battle footage.
+                    </p>
+                  </div>
+                </a>
+              </ScrollReveal>
 
               {/* Physical Lab Facility Coordinates */}
-              <div className="p-5 rounded-2xl bg-[#121212] border border-[#262626] space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00]">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-mono text-sm font-bold text-[#fafafa]">
-                      Physical Testing Cage & Lab
-                    </h4>
-                    <div className="text-[10px] font-mono text-[#ff7a1a]">
-                      SECTOR 9 // ROOM 104-B
+              <ScrollReveal direction="up" delay={240} duration={0.8} distance={52}>
+                <div className="p-5 rounded-2xl bg-[#121212] border border-[#262626] space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00]">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-mono text-sm font-bold text-[#fafafa]">
+                        Physical Testing Cage & Lab
+                      </h4>
+                      <div className="text-[10px] font-mono text-[#ff7a1a]">
+                        SECTOR 9 // ROOM 104-B
+                      </div>
                     </div>
                   </div>
-                </div>
-                <p className="text-xs text-[#a3a3a3] font-mono leading-relaxed">
-                  {SITE_CONFIG.affiliation.faculty} <br />
-                  {SITE_CONFIG.affiliation.lab} <br />
-                  {SITE_CONFIG.affiliation.university}
-                </p>
-              </div>
-
-              {/* GitHub Firmware Repositories */}
-              <a
-                href={SITE_CONFIG.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-5 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all flex items-start gap-4 group cursor-pointer block hover:-translate-y-0.5"
-              >
-                <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00] group-hover:scale-110 transition-transform">
-                  <GithubIcon className="w-5 h-5" />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-sm font-bold text-[#fafafa] group-hover:text-[#ff6b00] transition-colors">
-                      GitHub Open Source Firmware
-                    </span>
-                    <ExternalLink className="w-3.5 h-3.5 text-[#737373]" />
-                  </div>
-                  <p className="text-xs text-[#a3a3a3]">
-                    Fork our ROS2 Humble packages, STM32 FOC motor controllers, and KiCAD board layouts.
+                  <p className="text-xs text-[#a3a3a3] font-mono leading-relaxed">
+                    {SITE_CONFIG.affiliation.faculty} <br />
+                    {SITE_CONFIG.affiliation.lab} <br />
+                    {SITE_CONFIG.affiliation.university}
                   </p>
                 </div>
-              </a>
-            </ScrollReveal>
+              </ScrollReveal>
+
+              {/* GitHub Firmware Repositories */}
+              <ScrollReveal direction="up" delay={360} duration={0.8} distance={52}>
+                <a
+                  href={SITE_CONFIG.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-5 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all flex items-start gap-4 group cursor-pointer block hover:-translate-y-0.5"
+                >
+                  <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00] group-hover:scale-110 transition-transform">
+                    <GithubIcon className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-sm font-bold text-[#fafafa] group-hover:text-[#ff6b00] transition-colors">
+                        GitHub Open Source Firmware
+                      </span>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#737373]" />
+                    </div>
+                    <p className="text-xs text-[#a3a3a3]">
+                      Fork our ROS2 Humble packages, STM32 FOC motor controllers, and KiCAD board layouts.
+                    </p>
+                  </div>
+                </a>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>

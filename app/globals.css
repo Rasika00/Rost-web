@@ -136,6 +136,29 @@ html.lenis, html.lenis body {
   animation: appearFade 0.5s ease-out both;
 }
 
+/* Modern CSS Scroll-Driven View Animations (Progressive Enhancement) */
+@supports ((animation-timeline: view()) and (animation-range: entry)) {
+  .scroll-driven-reveal {
+    animation: scrollRevealUp auto cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 35%;
+  }
+
+  @keyframes scrollRevealUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 52px, 0) scale3d(0.96, 0.96, 1);
+      filter: blur(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+      filter: blur(0px);
+    }
+  }
+}
+
+
 
 /* Custom Tactical Scrollbar */
 ::-webkit-scrollbar {
@@ -156,6 +179,32 @@ html.lenis, html.lenis body {
 /* Glowing Accent Utilities */
 .glow-orange-sm {
   box-shadow: 0 0 15px rgba(255, 107, 0, 0.25);
+}
+
+/* Neon Cyber Scanline Section Divider */
+.cyber-scanline {
+  position: relative;
+}
+
+.cyber-scanline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ff6b00, #ffa040, transparent);
+  animation: scanlineSweep 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes scanlineSweep {
+  0% {
+    left: -50%;
+  }
+  50%, 100% {
+    left: 120%;
+  }
 }
 
 .glow-orange-md {
