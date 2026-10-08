@@ -14,23 +14,94 @@ import {
   ChevronRight,
   ShieldAlert,
 } from "lucide-react";
-import { SITE_CONFIG } from "@/data/site-data";
+import { SITE_CONFIG, NavItem } from "@/data/site-data";
 
 export function Navigation() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
-  const handleLinkClick = () => {
-    setMobileOpen(false);
+      // Only calculate active section when on the home page
+      if (pathname === "/") {
+        const sectionIds = SITE_CONFIG.navItems.map((item) => item.sectionId);
+        const scrollPosition = window.scrollY + 140;
+
+        for (let i = sectionIds.length - 1; i >= 0; i--) {
+          const section = document.getElementById(sectionIds[i]);
+          if (section && section.offsetTop <= scrollPosition) {
+            setActiveSection(sectionIds[i]);
+            return;
+          }
+        }
+        setActiveSection("home");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname]);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      setMobileOpen(false);
+      const targetId = item.sectionId;
+      setActiveSection(targetId);
+
+      const lenis = (
+        window as unknown as {
+          lenis?: { scrollTo: (target: string | HTMLElement | number, opts?: object) => void };
+        }
+      ).lenis;
+
+      if (targetId === "home") {
+        if (lenis) {
+          lenis.scrollTo(0, { duration: 1.2 });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        window.history.replaceState(null, "", "/");
+      } else {
+        const el = document.getElementById(targetId);
+        if (el) {
+          if (lenis) {
+            lenis.scrollTo(el, { offset: -70, duration: 1.2 });
+          } else {
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+          window.history.replaceState(null, "", `/#${targetId}`);
+        }
+      }
+    } else {
+      setMobileOpen(false);
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      setMobileOpen(false);
+      setActiveSection("home");
+      const lenis = (
+        window as unknown as {
+          lenis?: { scrollTo: (target: string | HTMLElement | number, opts?: object) => void };
+        }
+      ).lenis;
+      if (lenis) {
+        lenis.scrollTo(0, { duration: 1.2 });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      window.history.replaceState(null, "", "/");
+    } else {
+      setMobileOpen(false);
+    }
   };
 
   return (
@@ -47,7 +118,7 @@ export function Navigation() {
             {/* Brand Logo & Telemetry Status */}
             <Link
               href="/"
-              onClick={handleLinkClick}
+              onClick={handleLogoClick}
               className="group flex items-center gap-3 cursor-pointer"
             >
               <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-[#141414] border border-[#262626] group-hover:border-[#ff6b00] transition-colors overflow-hidden">
@@ -75,18 +146,23 @@ export function Navigation() {
               </div>
             </Link>
 
+            {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center gap-1 xl:gap-2">
               {SITE_CONFIG.navItems.map((item) => {
                 const isActive =
-                  pathname === item.href ||
-                  (item.href === "/projects" && pathname === "/project");
+                  pathname === "/"
+                    ? activeSection === item.sectionId
+                    : pathname === item.href ||
+                      (item.href === "/projects" && pathname === "/project");
+
                 return (
                   <Link
                     key={item.name}
-                    href={item.href}
-                    className={`relative px-3 py-1.5 text-xs font-mono tracking-wider transition-all duration-200 rounded-lg flex items-center gap-1.5 group ${
+                    href={pathname === "/" ? `/#${item.sectionId}` : item.href}
+                    onClick={(e) => handleNavClick(e, item)}
+                    className={`relative px-3 py-1.5 text-xs font-mono tracking-wider transition-all duration-200 rounded-lg flex items-center gap-1.5 group cursor-pointer ${
                       isActive
-                        ? "text-[#fafafa] font-bold bg-[#171717]"
+                        ? "text-[#fafafa] font-bold bg-[#171717] shadow-[0_0_15px_rgba(255,107,0,0.15)]"
                         : "text-[#a3a3a3] hover:text-[#fafafa] hover:bg-[#141414]"
                     }`}
                   >
@@ -99,7 +175,7 @@ export function Navigation() {
 
                     {/* Active Laser Underline Indicator */}
                     {isActive ? (
-                      <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#ff6b00] shadow-[0_0_10px_#ff6b00] rounded-full" />
+                      <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#ff6b00] shadow-[0_0_10px_#ff6b00] rounded-full transition-all" />
                     ) : (
                       <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-transparent group-hover:bg-[#ff6b00]/50 transition-colors rounded-full" />
                     )}
@@ -112,8 +188,11 @@ export function Navigation() {
             <div className="flex items-center gap-2 sm:gap-3">
               {/* Enter Arena CTA Button */}
               <Link
-                href="/events"
-                onClick={handleLinkClick}
+                href={pathname === "/" ? "/#events" : "/events"}
+                onClick={(e) => {
+                  const eventsItem = SITE_CONFIG.navItems.find((n) => n.sectionId === "events");
+                  if (eventsItem) handleNavClick(e, eventsItem);
+                }}
                 className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold tracking-wider uppercase text-[#080808] bg-[#ff6b00] hover:bg-[#ffa040] rounded-lg transition-all shadow-[0_0_15px_rgba(255,107,0,0.35)] hover:shadow-[0_0_25px_rgba(255,107,0,0.5)] cursor-pointer"
               >
                 <Zap className="w-3.5 h-3.5" />
@@ -126,7 +205,7 @@ export function Navigation() {
                 onClick={() => {
                   setMobileOpen(!mobileOpen);
                 }}
-                className="lg:hidden p-2 rounded-lg bg-[#141414] border border-[#262626] text-[#fafafa] hover:border-[#ff6b00] transition-colors"
+                className="lg:hidden p-2 rounded-lg bg-[#141414] border border-[#262626] text-[#fafafa] hover:border-[#ff6b00] transition-colors cursor-pointer"
                 aria-label="Open Navigation Menu"
               >
                 {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -149,13 +228,15 @@ export function Navigation() {
 
             {SITE_CONFIG.navItems.map((item, idx) => {
               const isActive =
-                pathname === item.href ||
-                (item.href === "/projects" && pathname === "/project");
+                pathname === "/"
+                  ? activeSection === item.sectionId
+                  : pathname === item.href ||
+                    (item.href === "/projects" && pathname === "/project");
               return (
                 <Link
                   key={item.name}
-                  href={item.href}
-                  onClick={handleLinkClick}
+                  href={pathname === "/" ? `/#${item.sectionId}` : item.href}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={`flex items-center justify-between p-3.5 rounded-xl border text-sm font-mono tracking-wider transition-all ${
                     isActive
                       ? "bg-[#141414] border-[#ff6b00] text-[#ff7a1a] shadow-[0_0_15px_rgba(255,107,0,0.15)]"
@@ -185,7 +266,7 @@ export function Navigation() {
             <div className="grid grid-cols-2 gap-3">
               <Link
                 href="/projects"
-                onClick={handleLinkClick}
+                onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#141414] border border-[#262626] text-xs font-mono text-[#fafafa] hover:border-[#ff6b00]"
               >
                 <Bot className="w-4 h-4 text-[#ff6b00]" />
@@ -193,7 +274,7 @@ export function Navigation() {
               </Link>
               <Link
                 href="/events"
-                onClick={handleLinkClick}
+                onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#ff6b00] text-[#080808] font-bold text-xs font-mono uppercase shadow-[0_0_20px_rgba(255,107,0,0.35)]"
               >
                 <Zap className="w-4 h-4" />

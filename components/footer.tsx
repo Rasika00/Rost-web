@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Cpu,
   Terminal,
@@ -15,6 +16,7 @@ import { toast } from "sonner";
 import { SITE_CONFIG } from "@/data/site-data";
 
 export function Footer() {
+  const pathname = usePathname();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -144,7 +146,7 @@ export function Footer() {
             {SITE_CONFIG.navItems.map((item) => (
               <Link
                 key={item.name}
-                href={item.href}
+                href={pathname === "/" ? `/#${item.sectionId}` : item.href}
                 className="text-[#a3a3a3] hover:text-[#ff7a1a] transition-colors"
               >
                 {item.name}

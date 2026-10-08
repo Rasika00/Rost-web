@@ -1,7 +1,9 @@
 export interface NavItem {
   name: string;
   href: string;
+  sectionId: string;
   badge?: string;
+  description?: string;
 }
 
 export interface MetricCounter {
@@ -39,13 +41,13 @@ export const SITE_CONFIG = {
     instagram: "https://instagram.com/rost_robotics",
   },
   navItems: [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Events", href: "/events", badge: "Live Soon" },
-    { name: "Projects", href: "/projects", badge: "6 Active" },
-    { name: "Gallery", href: "/gallery" },
-    { name: "Board", href: "/board" },
-    { name: "Contact", href: "/contact" },
+    { name: "Home", href: "/", sectionId: "home", description: "Telemetry Hero & Status" },
+    { name: "About", href: "/about", sectionId: "about", description: "Origin & 4 Pillars" },
+    { name: "Events", href: "/events", sectionId: "events", badge: "Live Soon", description: "Arena Tournament Schedule" },
+    { name: "Projects", href: "/projects", sectionId: "projects", badge: "6 Active", description: "Flagship Bot Fleet" },
+    { name: "Gallery", href: "/gallery", sectionId: "gallery", description: "Combat Media Archives" },
+    { name: "Board", href: "/board", sectionId: "board", description: "Executive Squadron Leads" },
+    { name: "Contact", href: "/contact", sectionId: "contact", description: "Transmission Beacon" },
   ] as NavItem[],
   metrics: [
     {

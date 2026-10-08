@@ -11,17 +11,19 @@ export interface ScrollRevealProps {
   distance?: number; // px
   threshold?: number;
   once?: boolean;
+  blur?: boolean;
 }
 
 export function ScrollReveal({
   children,
   className = "",
   delay = 0,
-  duration = 0.65,
+  duration = 0.7,
   direction = "up",
-  distance = 24,
-  threshold = 0.1,
+  distance = 28,
+  threshold = 0.08,
   once = true,
+  blur = true,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -77,7 +79,7 @@ export function ScrollReveal({
       case "right":
         return `translate3d(-${distance}px, 0, 0)`;
       case "scale":
-        return "scale3d(0.94, 0.94, 1)";
+        return "scale3d(0.92, 0.92, 1)";
       case "fade":
       default:
         return "translate3d(0, 0, 0)";
@@ -87,8 +89,9 @@ export function ScrollReveal({
   const style: React.CSSProperties = {
     opacity: isVisible ? 1 : 0,
     transform: isVisible ? "translate3d(0, 0, 0) scale3d(1, 1, 1)" : getInitialTransform(),
-    transition: `opacity ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-    willChange: "transform, opacity",
+    filter: isVisible ? "blur(0px)" : (blur ? "blur(6px)" : "none"),
+    transition: `opacity ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, filter ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+    willChange: "transform, opacity, filter",
   };
 
   return (
