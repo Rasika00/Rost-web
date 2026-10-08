@@ -191,12 +191,6 @@ export default function BoardPage() {
                     <div className="absolute top-2.5 right-2.5 text-[9px] font-mono px-2 py-0.5 rounded bg-[#171717]/90 text-[#fafafa] border border-[#333333]">
                       {member.tier}
                     </div>
-
-                    {/* Status Indicator */}
-                    <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 text-[10px] font-mono text-[#22c55e] bg-[#0d0d0d]/85 px-2 py-0.5 rounded border border-[#22c55e]/30">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse" />
-                      <span>SYS_ACTIVE</span>
-                    </div>
                   </div>
 
                   {/* Identity & Role */}

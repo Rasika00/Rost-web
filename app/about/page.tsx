@@ -238,10 +238,6 @@ export default function AboutPage() {
                       <div className="absolute top-2 left-2 text-[10px] font-mono px-2 py-0.5 rounded bg-[#080808]/90 text-[#ff6b00] border border-[#ff6b00]/30">
                         {member.callsign}
                       </div>
-
-                      <div className="absolute bottom-2 left-2 text-[10px] font-mono text-[#22c55e] bg-[#0d0d0d]/80 px-2 py-0.5 rounded border border-[#22c55e]/30">
-                        SYS_ACTIVE
-                      </div>
                     </div>
 
                     <div className="space-y-1">

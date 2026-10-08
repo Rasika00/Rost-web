@@ -17,6 +17,7 @@ export const SITE_CONFIG = {
   name: "ROST",
   fullName: "Robotic Society of Technology",
   tagline: "Engineered for Autonomy. Built to Dominate.",
+  heroVideo: "https://res.cloudinary.com/pasongqn/video/upload/v1791443991/gemini_generated_video_8d0b3172.mp4",
   description:
     "Where cutting-edge mechatronics, autonomous intelligence, and competitive robotics collide. Engineering the machines of tomorrow through elite hardware innovation, SLAM autonomy, and heavyweight combat mechatronics.",
   affiliation: {
@@ -43,8 +44,8 @@ export const SITE_CONFIG = {
   navItems: [
     { name: "Home", href: "/", sectionId: "home", description: "Telemetry Hero & Status" },
     { name: "About", href: "/about", sectionId: "about", description: "Origin & 4 Pillars" },
-    { name: "Events", href: "/events", sectionId: "events", badge: "Live Soon", description: "Arena Tournament Schedule" },
-    { name: "Projects", href: "/projects", sectionId: "projects", badge: "6 Active", description: "Flagship Bot Fleet" },
+    { name: "Events", href: "/events", sectionId: "events", description: "Arena Tournament Schedule" },
+    { name: "Projects", href: "/projects", sectionId: "projects", description: "Flagship Bot Fleet" },
     { name: "Gallery", href: "/gallery", sectionId: "gallery", description: "Combat Media Archives" },
     { name: "Board", href: "/board", sectionId: "board", description: "Executive Squadron Leads" },
     { name: "Contact", href: "/contact", sectionId: "contact", description: "Transmission Beacon" },

@@ -184,28 +184,14 @@ export function Navigation() {
               })}
             </div>
 
-            {/* Right Action Cluster: Arena CTA + Mobile Trigger */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              {/* Enter Arena CTA Button */}
-              <Link
-                href={pathname === "/" ? "/#events" : "/events"}
-                onClick={(e) => {
-                  const eventsItem = SITE_CONFIG.navItems.find((n) => n.sectionId === "events");
-                  if (eventsItem) handleNavClick(e, eventsItem);
-                }}
-                className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-bold tracking-wider uppercase text-[#080808] bg-[#ff6b00] hover:bg-[#ffa040] rounded-lg transition-all shadow-[0_0_15px_rgba(255,107,0,0.35)] hover:shadow-[0_0_25px_rgba(255,107,0,0.5)] cursor-pointer"
-              >
-                <Zap className="w-3.5 h-3.5" />
-                <span>Arena Access</span>
-              </Link>
-
-              {/* Mobile Drawer Hamburger Button */}
+            {/* Mobile Trigger */}
+            <div className="flex items-center lg:hidden">
               <button
                 type="button"
                 onClick={() => {
                   setMobileOpen(!mobileOpen);
                 }}
-                className="lg:hidden p-2 rounded-lg bg-[#141414] border border-[#262626] text-[#fafafa] hover:border-[#ff6b00] transition-colors cursor-pointer"
+                className="p-2 rounded-lg bg-[#141414] border border-[#262626] text-[#fafafa] hover:border-[#ff6b00] transition-colors cursor-pointer"
                 aria-label="Open Navigation Menu"
               >
                 {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -223,7 +209,6 @@ export function Navigation() {
               <span className="text-xs font-mono text-[#737373] tracking-widest uppercase">
                 // TELEMETRY_NAV_INDEX
               </span>
-              <span className="text-xs font-mono text-[#ff6b00]">SYS: ACTIVE</span>
             </div>
 
             {SITE_CONFIG.navItems.map((item, idx) => {
@@ -263,24 +248,14 @@ export function Navigation() {
 
           {/* Mobile Footer Quick Actions */}
           <div className="space-y-4 pt-6 border-t border-[#262626]">
-            <div className="grid grid-cols-2 gap-3">
-              <Link
-                href="/projects"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#141414] border border-[#262626] text-xs font-mono text-[#fafafa] hover:border-[#ff6b00]"
-              >
-                <Bot className="w-4 h-4 text-[#ff6b00]" />
-                <span>Bot Fleet</span>
-              </Link>
-              <Link
-                href="/events"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#ff6b00] text-[#080808] font-bold text-xs font-mono uppercase shadow-[0_0_20px_rgba(255,107,0,0.35)]"
-              >
-                <Zap className="w-4 h-4" />
-                <span>Arena</span>
-              </Link>
-            </div>
+            <Link
+              href="/projects"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#141414] border border-[#262626] text-xs font-mono text-[#fafafa] hover:border-[#ff6b00]"
+            >
+              <Bot className="w-4 h-4 text-[#ff6b00]" />
+              <span>Bot Fleet</span>
+            </Link>
 
             <div className="flex items-center justify-between text-[11px] font-mono text-[#737373] px-1">
               <span>{SITE_CONFIG.affiliation.faculty}</span>

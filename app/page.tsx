@@ -169,19 +169,36 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="home"
-        className="relative min-h-[92vh] flex flex-col justify-center items-center text-center px-4 sm:px-6 pt-16 pb-20 overflow-hidden"
+        className="relative min-h-[92vh] flex flex-col justify-center items-start text-left px-4 sm:px-8 lg:px-16 pt-16 pb-20 overflow-hidden"
       >
+        {/* Looping Hero Background Video with High Visibility */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover opacity-85 brightness-95 contrast-105"
+            src={SITE_CONFIG.heroVideo}
+          />
+          {/* Directional Contrast Gradient: Darkens left side for text readability while leaving the rest vivid */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/95 via-[#080808]/70 to-[#080808]/20" />
+          {/* Subtle Vertical Fade for Seamless Section Blending */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080808]/50 via-transparent to-[#080808]" />
+        </div>
+
         {/* Interactive Circuit Particle Canvas Background */}
-        <CanvasParticles className="z-0" />
+        <CanvasParticles className="z-[1]" />
 
         {/* Ambient Radial Glowing Orbs */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-b from-[#ff6b00]/15 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute inset-0 bg-grid-cyber opacity-30 pointer-events-none" />
+        <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-b from-[#ff6b00]/15 via-transparent to-transparent rounded-full blur-3xl pointer-events-none z-[1]" />
+        <div className="absolute inset-0 bg-grid-cyber opacity-20 pointer-events-none z-[1]" />
 
-        <div className="relative z-10 max-w-4xl mx-auto space-y-6">
+        <div className="relative z-10 max-w-4xl w-full space-y-6">
           <ScrollReveal direction="down" duration={0.7}>
             {/* Top Status Telemetry Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121212] border border-[#ff6b00]/40 text-xs font-mono tracking-wider shadow-[0_0_20px_rgba(255,107,0,0.2)]">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121212]/90 border border-[#ff6b00]/40 text-xs font-mono tracking-wider shadow-[0_0_20px_rgba(255,107,0,0.2)] backdrop-blur-md">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff6b00] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ff6b00]"></span>
@@ -202,31 +219,12 @@ export default function HomePage() {
             </div>
 
             {/* Subtitle Description */}
-            <p className="max-w-2xl mx-auto text-sm sm:text-base text-[#a3a3a3] font-sans leading-relaxed mt-4">
+            <p className="max-w-2xl text-sm sm:text-base text-[#d4d4d4] font-sans leading-relaxed mt-4">
               {SITE_CONFIG.description}
             </p>
 
-            {/* Dual Action CTAs with Smooth Scroll */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#ff6b00] hover:bg-[#ffa040] text-[#080808] font-mono font-bold text-sm tracking-wider uppercase transition-all shadow-[0_0_25px_rgba(255,107,0,0.4)] hover:shadow-[0_0_40px_rgba(255,107,0,0.6)] flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <BotIcon className="w-4 h-4" />
-                <span>Explore Bot Fleet</span>
-              </button>
-
-              <button
-                onClick={() => scrollToSection("events")}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#141414]/90 hover:bg-[#1a1a1a] border border-[#ff6b00]/40 hover:border-[#ff6b00] text-[#fafafa] font-mono font-bold text-sm tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)] flex items-center justify-center gap-2 cursor-pointer backdrop-blur-md"
-              >
-                <Zap className="w-4 h-4 text-[#ff6b00]" />
-                <span>Enter the Arena</span>
-              </button>
-            </div>
-
             {/* Quick Status Bar */}
-            <div className="pt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-8 font-mono text-xs text-[#737373]">
+            <div className="pt-6 flex flex-wrap items-center justify-start gap-4 sm:gap-8 font-mono text-xs text-[#a3a3a3]">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
                 <span>CORE: {SITE_CONFIG.status.coreClock}</span>
@@ -244,10 +242,10 @@ export default function HomePage() {
         </div>
 
         {/* Scroll To Initialize Trigger */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+        <div className="absolute bottom-6 left-4 sm:left-8 lg:left-16 flex flex-col items-start gap-2 z-10">
           <button
             onClick={() => scrollToSection("about")}
-            className="flex flex-col items-center gap-1.5 text-[10px] font-mono tracking-widest text-[#737373] hover:text-[#ff6b00] transition-colors uppercase group cursor-pointer"
+            className="flex items-center gap-2 text-[10px] font-mono tracking-widest text-[#a3a3a3] hover:text-[#ff6b00] transition-colors uppercase group cursor-pointer"
           >
             <span>SCROLL TO 02 // ABOUT</span>
             <ChevronDown className="w-4 h-4 text-[#ff6b00] group-hover:translate-y-1 transition-transform animate-bounce" />
@@ -801,10 +799,6 @@ export default function HomePage() {
 
                       <div className="absolute top-2 left-2 text-[9px] font-mono px-2 py-0.5 rounded bg-[#080808]/90 text-[#ff6b00] border border-[#ff6b00]/30 font-bold">
                         {member.callsign}
-                      </div>
-
-                      <div className="absolute bottom-2 left-2 text-[9px] font-mono text-[#22c55e] bg-[#0d0d0d]/85 px-2 py-0.5 rounded border border-[#22c55e]/30">
-                        ACTIVE
                       </div>
                     </div>
 
