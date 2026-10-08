@@ -182,6 +182,16 @@ export default function AboutPage() {
             <p className="text-xs sm:text-sm text-[#a3a3a3] max-w-xl">
               Meet the roboticists, firmware architects, and mechatronics engineers leading our research and tournament operations.
             </p>
+            <div className="pt-2">
+              <Link
+                href="/board"
+                onClick={() => soundFx.playLaserBlip()}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#171717] hover:bg-[#ff6b00] text-[#fafafa] hover:text-[#080808] border border-[#ff6b00]/30 hover:border-[#ff6b00] text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-sm"
+              >
+                <span>View Full Executive Board & Governance Charter</span>
+                <span>&rarr;</span>
+              </Link>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

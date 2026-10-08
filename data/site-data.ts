@@ -41,10 +41,10 @@ export const SITE_CONFIG = {
   navItems: [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Fleet", href: "/projects", badge: "6 Active" },
-    { name: "Arena", href: "/events", badge: "Live Soon" },
-    { name: "Lab Gallery", href: "/gallery" },
-    { name: "Research", href: "/articles" },
+    { name: "Events", href: "/events", badge: "Live Soon" },
+    { name: "Projects", href: "/projects", badge: "6 Active" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Board", href: "/board" },
     { name: "Contact", href: "/contact" },
   ] as NavItem[],
   metrics: [

@@ -135,6 +135,28 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Navigation Quick Directory */}
+        <div className="py-6 border-b border-[#222222] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Radio className="w-3.5 h-3.5 text-[#ff6b00]" />
+            <span className="text-[11px] font-mono text-[#737373] tracking-widest uppercase">
+              // SITEMAP INDEX:
+            </span>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-mono">
+            {SITE_CONFIG.navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => soundFx.playLaserBlip()}
+                className="text-[#a3a3a3] hover:text-[#ff7a1a] transition-colors"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+
         {/* Sponsor Tier Showcase */}
         <div className="py-8 border-b border-[#222222]">
           <div className="flex items-center justify-between mb-4">
@@ -180,7 +202,7 @@ export function Footer() {
           </div>
 
           <div>
-            © {new Date().getFullYear()} {SITE_CONFIG.fullName}. All Mechatronics Systems Reserved.
+            © 2026 {SITE_CONFIG.fullName}. All Mechatronics Systems Reserved.
           </div>
         </div>
       </div>

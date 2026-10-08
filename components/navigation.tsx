@@ -87,16 +87,17 @@ export function Navigation() {
               </div>
             </Link>
 
-            {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center gap-1 xl:gap-2">
               {SITE_CONFIG.navItems.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive =
+                  pathname === item.href ||
+                  (item.href === "/projects" && pathname === "/project");
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
                     onClick={() => soundFx.playLaserBlip()}
-                    className={`relative px-3.5 py-1.5 text-xs font-mono tracking-wider transition-all duration-200 rounded-lg flex items-center gap-1.5 group ${
+                    className={`relative px-3 py-1.5 text-xs font-mono tracking-wider transition-all duration-200 rounded-lg flex items-center gap-1.5 group ${
                       isActive
                         ? "text-[#fafafa] font-bold bg-[#171717]"
                         : "text-[#a3a3a3] hover:text-[#fafafa] hover:bg-[#141414]"
@@ -180,7 +181,9 @@ export function Navigation() {
             </div>
 
             {SITE_CONFIG.navItems.map((item, idx) => {
-              const isActive = pathname === item.href;
+              const isActive =
+                pathname === item.href ||
+                (item.href === "/projects" && pathname === "/project");
               return (
                 <Link
                   key={item.name}
