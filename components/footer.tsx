@@ -194,8 +194,7 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
             <span>
-              STATUS: {SITE_CONFIG.status.state} // {SITE_CONFIG.status.coreClock} //{" "}
-              {SITE_CONFIG.status.activeFirmware}
+              FOCUS: {SITE_CONFIG.status.focus} // HUB: {SITE_CONFIG.status.hub} // STATUS: {SITE_CONFIG.status.innovatorStatus}
             </span>
           </div>
 

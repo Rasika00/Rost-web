@@ -227,15 +227,15 @@ export default function HomePage() {
             <div className="pt-6 flex flex-wrap items-center justify-start gap-4 sm:gap-8 font-mono text-xs text-[#a3a3a3]">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
-                <span>CORE: {SITE_CONFIG.status.coreClock}</span>
+                <span>FOCUS: {SITE_CONFIG.status.focus}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b00]" />
-                <span>TELEMETRY: {SITE_CONFIG.status.telemetryStatus}</span>
+                <span>HUB: {SITE_CONFIG.status.hub}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
-                <span>FIRMWARE: {SITE_CONFIG.status.activeFirmware}</span>
+                <span>STATUS: {SITE_CONFIG.status.innovatorStatus}</span>
               </div>
             </div>
           </ScrollReveal>

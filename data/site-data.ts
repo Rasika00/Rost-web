@@ -16,10 +16,10 @@ export interface MetricCounter {
 export const SITE_CONFIG = {
   name: "ROST",
   fullName: "Robotic Society of Technology",
-  tagline: "Engineered for Autonomy. Built to Dominate.",
+  tagline: "“CONNECTING SENSORS. CODING LOGIC. POWERING INNOVATION.”",
   heroVideo: "https://res.cloudinary.com/pasongqn/video/upload/v1791443991/gemini_generated_video_8d0b3172.mp4",
   description:
-    "Where cutting-edge mechatronics, autonomous intelligence, and competitive robotics collide. Engineering the machines of tomorrow through elite hardware innovation, SLAM autonomy, and heavyweight combat mechatronics.",
+    "The central robotics and embedded systems platform of the Faculty of Technology, Rajarata University of Sri Lanka. We bridge theoretical knowledge and real-world implementation through hands-on Arduino & microcontroller sessions, applied IoT projects, hardware workshops, and competitive technology challenges.",
   affiliation: {
     faculty: "Faculty of Technology & Mechatronics",
     lab: "Advanced Autonomous Systems & Robotics Prototyping Facility",
@@ -30,6 +30,9 @@ export const SITE_CONFIG = {
     state: "SYS_ONLINE",
     season: "SEASON 2026",
     combatReady: true,
+    focus: "IOT & ROBOTICS",
+    hub: "FACULTY OF TECHNOLOGY",
+    innovatorStatus: "OPEN FOR INNOVATORS",
     telemetryStatus: "NOMINAL",
     coreClock: "400 MHz CAN-FD",
     activeFirmware: "ROST-RTOS v4.2.1-humble",
