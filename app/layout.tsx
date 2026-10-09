@@ -22,6 +22,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: `${SITE_CONFIG.name} // ${SITE_CONFIG.fullName}`,
   description: SITE_CONFIG.description,
+  icons: {
+    icon: SITE_CONFIG.logo,
+    shortcut: SITE_CONFIG.logo,
+    apple: SITE_CONFIG.logo,
+  },
   keywords: [
     "ROST",
     "Robotic Society of Technology",
@@ -38,6 +43,14 @@ export const metadata: Metadata = {
     title: `${SITE_CONFIG.name} — ${SITE_CONFIG.tagline}`,
     description: SITE_CONFIG.description,
     type: "website",
+    images: [
+      {
+        url: SITE_CONFIG.logo,
+        width: 512,
+        height: 512,
+        alt: `${SITE_CONFIG.name} Logo`,
+      },
+    ],
   },
 };
 
@@ -56,7 +69,7 @@ export default function RootLayout({
           <ScrollProgress />
           <PageLoader />
           <Navigation />
-          <main className="flex-1 pt-20 sm:pt-24">{children}</main>
+          <main className="flex-1">{children}</main>
           <Footer />
           <Toaster
             theme="dark"

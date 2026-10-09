@@ -52,13 +52,24 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="relative min-h-screen py-16 px-4 sm:px-6">
+    <div className="relative min-h-screen pt-24 sm:pt-28 pb-16 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto space-y-20">
         {/* =========================================================================
             HEADER & ORIGIN SECTION
             ========================================================================= */}
         <ScrollReveal direction="down" duration={0.6}>
-          <div className="space-y-6 text-center max-w-3xl mx-auto">
+          <div className="space-y-6 text-center max-w-3xl mx-auto flex flex-col items-center">
+            <div className="w-16 h-16 rounded-2xl bg-[#141414] border border-[#ff6b00]/40 p-2.5 shadow-[0_0_30px_rgba(255,107,0,0.25)] flex items-center justify-center">
+              <Image
+                src={SITE_CONFIG.logo}
+                alt={`${SITE_CONFIG.name} Logo`}
+                width={64}
+                height={64}
+                className="w-full h-full object-contain"
+                priority
+              />
+            </div>
+
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#141414] border border-[#ff6b00]/40 text-xs font-mono text-[#ff7a1a]">
               <span>// ORIGIN STORY & LAB CHARTER</span>
             </div>

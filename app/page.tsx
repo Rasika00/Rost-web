@@ -169,10 +169,10 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="home"
-        className="relative min-h-[92vh] flex flex-col justify-center items-start text-left px-4 sm:px-8 lg:px-16 pt-16 pb-20 overflow-hidden"
+        className="relative min-h-screen w-full flex flex-col justify-center items-start text-left px-4 sm:px-8 lg:px-16 pt-24 sm:pt-28 pb-20 overflow-hidden"
       >
-        {/* Looping Hero Background Video with High Visibility */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {/* Looping Hero Background Video with High Visibility extending full screen behind navbar */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <video
             autoPlay
             loop
@@ -197,19 +197,8 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-4xl w-full space-y-6">
           <ScrollReveal direction="down" duration={0.7}>
-            {/* Top Status Telemetry Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121212]/90 border border-[#ff6b00]/40 text-xs font-mono tracking-wider shadow-[0_0_20px_rgba(255,107,0,0.2)] backdrop-blur-md">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff6b00] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ff6b00]"></span>
-              </span>
-              <span className="text-[#ff7a1a] font-bold">
-                [ STATUS: READY FOR COMBAT // {SITE_CONFIG.status.season} ]
-              </span>
-            </div>
-
             {/* Giant Futuristic Headline */}
-            <div className="space-y-2 mt-6">
+            <div className="space-y-2">
               <h1 className="text-4xl sm:text-6xl md:text-7xl font-black font-mono tracking-tight text-[#fafafa] leading-[1.08] uppercase">
                 ROBOTIC SOCIETY OF <span className="text-[#ff6b00] text-glow-orange">TECHNOLOGY</span>
               </h1>

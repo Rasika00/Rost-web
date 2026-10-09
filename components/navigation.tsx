@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Cpu,
@@ -106,7 +107,7 @@ export function Navigation() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 flex justify-center px-4 pt-4 sm:pt-6 pointer-events-none">
+      <header className="fixed top-0 left-0 right-0 z-40 flex justify-center px-3 sm:px-4 pt-2 sm:pt-2.5 pointer-events-none">
         <nav
           className={`pointer-events-auto w-full max-w-6xl rounded-2xl border transition-all duration-300 backdrop-blur-xl ${
             scrolled
@@ -114,35 +115,22 @@ export function Navigation() {
               : "bg-[#0d0d0d]/75 border-[#262626] shadow-[0_4px_25px_rgba(0,0,0,0.5)]"
           }`}
         >
-          <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3">
-            {/* Brand Logo & Telemetry Status */}
+          <div className="flex items-center justify-between px-3 sm:px-5 py-1.5 sm:py-2">
+            {/* Brand Logo */}
             <Link
               href="/"
               onClick={handleLogoClick}
-              className="group flex items-center gap-3 cursor-pointer"
+              className="group flex items-center cursor-pointer"
             >
-              <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-[#141414] border border-[#262626] group-hover:border-[#ff6b00] transition-colors overflow-hidden">
-                <Cpu className="w-5 h-5 text-[#ff6b00] group-hover:scale-110 transition-transform" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#ff6b00]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-lg font-black tracking-widest text-[#fafafa] group-hover:text-glow-orange transition-all">
-                    ROST
-                  </span>
-                  <span className="hidden sm:inline-block text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#1c1c1c] text-[#ff7a1a] border border-[#ff6b00]/20">
-                    MK-26
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff6b00] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ff6b00]"></span>
-                  </span>
-                  <span className="text-[9px] font-mono tracking-wider text-[#a3a3a3] uppercase">
-                    {SITE_CONFIG.status.state}
-                  </span>
-                </div>
+              <div className="relative flex items-center justify-center">
+                <Image
+                  src={SITE_CONFIG.logo}
+                  alt={SITE_CONFIG.name}
+                  width={200}
+                  height={56}
+                  className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_0_16px_rgba(255,107,0,0.35)]"
+                  priority
+                />
               </div>
             </Link>
 
@@ -160,7 +148,7 @@ export function Navigation() {
                     key={item.name}
                     href={pathname === "/" ? `/#${item.sectionId}` : item.href}
                     onClick={(e) => handleNavClick(e, item)}
-                    className={`relative px-3 py-1.5 text-xs font-mono tracking-wider transition-all duration-200 rounded-lg flex items-center gap-1.5 group cursor-pointer ${
+                    className={`relative px-3.5 py-2 text-sm xl:text-base font-mono font-medium tracking-wide transition-all duration-200 rounded-lg flex items-center gap-1.5 group cursor-pointer ${
                       isActive
                         ? "text-[#fafafa] font-bold bg-[#171717] shadow-[0_0_15px_rgba(255,107,0,0.15)]"
                         : "text-[#a3a3a3] hover:text-[#fafafa] hover:bg-[#141414]"
@@ -168,7 +156,7 @@ export function Navigation() {
                   >
                     <span>{item.name}</span>
                     {item.badge && (
-                      <span className="text-[9px] px-1 py-0.2 rounded bg-[#ff6b00]/15 text-[#ff7a1a] border border-[#ff6b00]/30 font-semibold">
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#ff6b00]/15 text-[#ff7a1a] border border-[#ff6b00]/30 font-semibold">
                         {item.badge}
                       </span>
                     )}
@@ -206,8 +194,17 @@ export function Navigation() {
         <div className="fixed inset-0 z-30 bg-[#080808]/95 backdrop-blur-2xl lg:hidden flex flex-col pt-24 px-6 pb-8 justify-between animate-in fade-in duration-200">
           <div className="space-y-2">
             <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#262626]">
+              <div className="flex items-center">
+                <Image
+                  src={SITE_CONFIG.logo}
+                  alt={SITE_CONFIG.name}
+                  width={140}
+                  height={48}
+                  className="h-11 sm:h-12 w-auto object-contain"
+                />
+              </div>
               <span className="text-xs font-mono text-[#737373] tracking-widest uppercase">
-                // TELEMETRY_NAV_INDEX
+                // NAV_INDEX
               </span>
             </div>
 
@@ -222,7 +219,7 @@ export function Navigation() {
                   key={item.name}
                   href={pathname === "/" ? `/#${item.sectionId}` : item.href}
                   onClick={(e) => handleNavClick(e, item)}
-                  className={`flex items-center justify-between p-3.5 rounded-xl border text-sm font-mono tracking-wider transition-all ${
+                  className={`flex items-center justify-between p-4 rounded-xl border text-base font-mono tracking-wider transition-all ${
                     isActive
                       ? "bg-[#141414] border-[#ff6b00] text-[#ff7a1a] shadow-[0_0_15px_rgba(255,107,0,0.15)]"
                       : "bg-[#0d0d0d] border-[#222222] text-[#fafafa] hover:border-[#333333]"
@@ -230,8 +227,8 @@ export function Navigation() {
                   style={{ animationDelay: `${idx * 40}ms` }}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] text-[#737373]">0{idx + 1}</span>
-                    <span className="font-semibold">{item.name}</span>
+                    <span className="text-xs text-[#737373]">0{idx + 1}</span>
+                    <span className="font-semibold text-base">{item.name}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     {item.badge && (

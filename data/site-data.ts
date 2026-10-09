@@ -16,6 +16,7 @@ export interface MetricCounter {
 export const SITE_CONFIG = {
   name: "ROST",
   fullName: "Robotic Society of Technology",
+  logo: "https://res.cloudinary.com/dpdsdpmgg/image/upload/v1786991273/Logo_hufo64.png",
   tagline: "“CONNECTING SENSORS. CODING LOGIC. POWERING INNOVATION.”",
   heroVideo: "https://res.cloudinary.com/pasongqn/video/upload/v1791443991/gemini_generated_video_8d0b3172.mp4",
   description:

@@ -76,7 +76,7 @@ function ContactContent() {
   };
 
   return (
-    <div className="relative min-h-screen py-16 px-4 sm:px-6">
+    <div className="relative min-h-screen pt-24 sm:pt-28 pb-16 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto space-y-16">
         {/* Header */}
         <ScrollReveal direction="down" duration={0.6}>

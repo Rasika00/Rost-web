@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Cpu,
@@ -48,8 +49,14 @@ export function Footer() {
           {/* Brand & Lab Pillars */}
           <div className="lg:col-span-6 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#141414] border border-[#262626] text-[#ff6b00]">
-                <Cpu className="w-5 h-5" />
+              <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-[#141414] border border-[#262626] overflow-hidden p-1.5 shadow-[0_0_15px_rgba(255,107,0,0.2)]">
+                <Image
+                  src={SITE_CONFIG.logo}
+                  alt={`${SITE_CONFIG.name} Logo`}
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="font-mono text-xl font-black tracking-widest text-[#fafafa]">
                 {SITE_CONFIG.name}
