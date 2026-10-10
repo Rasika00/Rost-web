@@ -169,9 +169,9 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="home"
-        className="relative min-h-screen w-full flex flex-col justify-center items-start text-left px-4 sm:px-8 lg:px-16 pt-24 sm:pt-28 pb-20 overflow-hidden"
+        className="relative h-screen h-[100dvh] w-full flex flex-col justify-center items-start text-left px-4 sm:px-8 lg:px-16 pt-20 sm:pt-24 pb-16 overflow-hidden"
       >
-        {/* Looping Hero Background Video with High Visibility extending full screen behind navbar */}
+        {/* Looping Hero Background Video fixed to exact web screen size */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <video
             autoPlay
@@ -179,7 +179,7 @@ export default function HomePage() {
             muted
             playsInline
             preload="auto"
-            className="w-full h-full object-cover opacity-85 brightness-95 contrast-105"
+            className="w-full h-full min-w-full min-h-full object-cover object-center opacity-85 brightness-95 contrast-105"
             src={SITE_CONFIG.heroVideo}
           />
           {/* Directional Contrast Gradient: Darkens left side for text readability while leaving the rest vivid */}
@@ -251,26 +251,16 @@ export default function HomePage() {
       >
         <div className="max-w-6xl mx-auto space-y-16">
           <ScrollReveal direction="down" duration={0.75}>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <div>
-                <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                  // 02. ABOUT ROST
-                </span>
-                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
-                  Core Directive & 4 Pillars
-                </h2>
-                <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
-                  ROST was established by mechatronics pioneers to engineer machines capable of surviving extreme combat impacts and navigating subterranean caverns autonomously.
-                </p>
-              </div>
-
-              <Link
-                href="/about"
-                className="text-xs font-mono text-[#ff6b00] hover:underline flex items-center gap-1.5 self-start md:self-auto uppercase tracking-wider"
-              >
-                <span>Explore Full About & Facility Specifications</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+            <div>
+              <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
+                // 02. ABOUT ROST
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
+                WHAT IS ROST ?
+              </h2>
+              <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
+                ROST was established by mechatronics pioneers to engineer machines capable of surviving extreme combat impacts and navigating subterranean caverns autonomously.
+              </p>
             </div>
           </ScrollReveal>
 
@@ -500,11 +490,10 @@ export default function HomePage() {
                     <button
                       key={i}
                       onClick={() => setCarouselIndex(i)}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${
-                        carouselIndex === i
+                      className={`h-2 rounded-full transition-all cursor-pointer ${carouselIndex === i
                           ? "w-8 bg-[#ff6b00]"
                           : "w-2 bg-[#262626] hover:bg-[#555555]"
-                      }`}
+                        }`}
                       aria-label={`Slide ${i + 1}`}
                     />
                   ))}

@@ -47,7 +47,7 @@ export const SITE_CONFIG = {
   },
   navItems: [
     { name: "Home", href: "/", sectionId: "home", description: "Telemetry Hero & Status" },
-    { name: "About", href: "/about", sectionId: "about", description: "Origin & 4 Pillars" },
+    { name: "About", href: "/#about", sectionId: "about", description: "Origin & 4 Pillars" },
     { name: "Events", href: "/events", sectionId: "events", description: "Arena Tournament Schedule" },
     { name: "Projects", href: "/projects", sectionId: "projects", description: "Flagship Bot Fleet" },
     { name: "Gallery", href: "/gallery", sectionId: "gallery", description: "Combat Media Archives" },
