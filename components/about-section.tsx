@@ -128,11 +128,11 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
                   <span className="text-[10px] font-mono text-[#666666]">DIRECTIVE</span>
                 </div>
 
-                <div className="p-2.5 rounded-lg bg-[#161616] border-l-2 border-[#ff6b00] font-mono text-xs text-[#fafafa] italic">
+                <div className="p-2.5 rounded-lg bg-[#161616] border-l-2 border-[#ff6b00] font-mono text-xs text-[#fafafa] italic text-justify">
                   &ldquo;{CONSTITUTION_DATA.articles.article2.vision.verbatim}&rdquo;
                 </div>
 
-                <p className="text-xs text-[#a3a3a3] font-sans leading-relaxed">
+                <p className="text-xs text-[#a3a3a3] font-sans leading-relaxed text-justify">
                   {CONSTITUTION_DATA.articles.article2.vision.lead}
                 </p>
               </div>
@@ -166,11 +166,11 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
                   <span className="text-[10px] font-mono text-[#666666]">DIRECTIVE</span>
                 </div>
 
-                <div className="p-2.5 rounded-lg bg-[#161616] border-l-2 border-[#ff6b00] font-mono text-xs text-[#fafafa] italic">
+                <div className="p-2.5 rounded-lg bg-[#161616] border-l-2 border-[#ff6b00] font-mono text-xs text-[#fafafa] italic text-justify">
                   &ldquo;{CONSTITUTION_DATA.articles.article2.mission.verbatim}&rdquo;
                 </div>
 
-                <p className="text-xs text-[#a3a3a3] font-sans leading-relaxed">
+                <p className="text-xs text-[#a3a3a3] font-sans leading-relaxed text-justify">
                   {CONSTITUTION_DATA.articles.article2.mission.lead}
                 </p>
               </div>
@@ -309,36 +309,36 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
                   <div className="p-2.5 rounded-lg bg-[#161616] border border-[#242424] flex items-start gap-2.5">
                     <GraduationCap className="w-4 h-4 text-[#ff6b00] mt-0.5 shrink-0" />
                     <div>
-                      <span className="font-mono font-bold text-[#fafafa] uppercase">
-                        Faculty Eligibility:{" "}
-                      </span>
-                      <span className="text-[#a3a3a3]">
+                      <div className="font-mono font-bold text-[#fafafa] uppercase">
+                        Faculty Eligibility
+                      </div>
+                      <p className="text-[#a3a3a3] text-justify mt-0.5">
                         {CONSTITUTION_DATA.articles.article4.eligibility}
-                      </span>
+                      </p>
                     </div>
                   </div>
 
                   <div className="p-2.5 rounded-lg bg-[#161616] border border-[#242424] flex items-start gap-2.5">
                     <IdCard className="w-4 h-4 text-[#22c55e] mt-0.5 shrink-0" />
                     <div>
-                      <span className="font-mono font-bold text-[#fafafa] uppercase">
-                        Official Member ID Card:{" "}
-                      </span>
-                      <span className="text-[#a3a3a3]">
+                      <div className="font-mono font-bold text-[#fafafa] uppercase">
+                        Official Member ID Card
+                      </div>
+                      <p className="text-[#a3a3a3] text-justify mt-0.5">
                         {CONSTITUTION_DATA.articles.article4.activeMemberId}
-                      </span>
+                      </p>
                     </div>
                   </div>
 
                   <div className="p-2.5 rounded-lg bg-[#161616] border border-[#242424] flex items-start gap-2.5">
                     <CheckCircle2 className="w-4 h-4 text-[#38bdf8] mt-0.5 shrink-0" />
                     <div>
-                      <span className="font-mono font-bold text-[#fafafa] uppercase">
-                        Junior 1-Year Pass:{" "}
-                      </span>
-                      <span className="text-[#a3a3a3]">
+                      <div className="font-mono font-bold text-[#fafafa] uppercase">
+                        Junior 1-Year Pass
+                      </div>
+                      <p className="text-[#a3a3a3] text-justify mt-0.5">
                         {CONSTITUTION_DATA.articles.article4.juniorMemberId}
-                      </span>
+                      </p>
                     </div>
                   </div>
                 </div>

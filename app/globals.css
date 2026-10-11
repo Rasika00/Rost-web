@@ -71,6 +71,15 @@ body {
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
+/* Global text justification across all content */
+p,
+article,
+blockquote,
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 /* Lenis Momentum Smooth Scrolling */
 html.lenis, html.lenis body {
   height: auto;
