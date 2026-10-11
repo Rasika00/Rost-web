@@ -45,6 +45,7 @@ import { ARENA_EVENTS, ArenaEvent } from "@/data/events-data";
 import { GALLERY_ITEMS, GalleryItem } from "@/data/gallery-data";
 import { TEAM_MEMBERS, TeamMember } from "@/data/team-data";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { AboutSection } from "@/components/about-section";
 
 export default function HomePage() {
   const [selectedBot, setSelectedBot] = useState<Bot | null>(null);
@@ -243,112 +244,9 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          TOPIC 02: ABOUT (CORE DIRECTIVE & 4 PILLARS)
+          TOPIC 02: ABOUT (ROST CONSTITUTION, DIRECTIVES & 4 PILLARS)
           ========================================================================= */}
-      <section
-        id="about"
-        className="relative py-24 px-4 sm:px-6 bg-[#0a0a0a] border-t border-[#262626] cyber-scanline"
-      >
-        <div className="max-w-6xl mx-auto space-y-16">
-          <ScrollReveal direction="down" duration={0.75}>
-            <div>
-              <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                // 02. ABOUT ROST
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
-                WHAT IS ROST ?
-              </h2>
-              <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
-                ROST was established by mechatronics pioneers to engineer machines capable of surviving extreme combat impacts and navigating subterranean caverns autonomously.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          {/* 4 Metric Counters Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {SITE_CONFIG.metrics.map((m, idx) => (
-              <ScrollReveal
-                key={idx}
-                delay={idx * 110}
-                direction="up"
-                duration={0.75}
-                distance={56}
-                className="h-full flex"
-              >
-                <div className="w-full relative p-6 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/50 transition-all group overflow-hidden hover:-translate-y-1 shadow-[0_0_20px_rgba(0,0,0,0.4)]">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#ff6b00]/5 rounded-bl-full pointer-events-none group-hover:bg-[#ff6b00]/10 transition-colors" />
-                  <div className="relative z-10 space-y-1">
-                    <div className="text-3xl sm:text-4xl font-mono font-black text-[#fafafa] group-hover:text-[#ff6b00] transition-colors">
-                      {m.value}
-                    </div>
-                    <div className="text-xs font-mono font-bold text-[#ff7a1a] uppercase">
-                      {m.label}
-                    </div>
-                    <div className="text-[11px] font-mono text-[#737373] pt-1">
-                      {m.subtext}
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          {/* 4 Pillars of Mechatronics Preview Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {SITE_CONFIG.pillars.map((pillar, idx) => (
-              <ScrollReveal
-                key={pillar.number}
-                delay={idx * 120}
-                direction="up"
-                duration={0.8}
-                distance={56}
-                className="h-full flex"
-              >
-                <div className="w-full p-6 rounded-2xl bg-[#111111] border border-[#262626] hover:border-[#ff6b00]/60 transition-all flex flex-col justify-between space-y-4 hover:-translate-y-1 group">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="p-2.5 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00]">
-                        {pillarIcons[pillar.icon] || <Cpu className="w-5 h-5 text-[#ff6b00]" />}
-                      </div>
-                      <span className="text-xs font-mono text-[#ff6b00] font-bold">
-                        P-0{pillar.number}
-                      </span>
-                    </div>
-
-                    <h3 className="font-mono text-sm font-bold uppercase text-[#fafafa] group-hover:text-[#ff6b00] transition-colors">
-                      {pillar.title}
-                    </h3>
-
-                    <p className="text-xs text-[#a3a3a3] font-sans leading-relaxed">
-                      {pillar.lead}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-[#222222] text-[10px] font-mono text-[#ff7a1a]">
-                    METRIC: {pillar.stats}
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          {/* Lab Coordinates HUD Banner */}
-          <ScrollReveal direction="up" delay={100} duration={0.6}>
-            <div className="p-5 rounded-2xl bg-[#121212] border border-[#262626] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
-              <div className="flex items-center gap-3">
-                <Compass className="w-5 h-5 text-[#ff6b00]" />
-                <div>
-                  <span className="text-[#fafafa] font-bold">{SITE_CONFIG.affiliation.faculty}</span>
-                  <span className="text-[#737373]"> // {SITE_CONFIG.affiliation.lab}</span>
-                </div>
-              </div>
-              <div className="text-[#ff7a1a] text-[11px] bg-[#171717] px-3 py-1.5 rounded-lg border border-[#262626]">
-                COORDS: {SITE_CONFIG.affiliation.coordinates}
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <AboutSection />
 
       {/* =========================================================================
           TOPIC 03: EVENTS (ARENA TOURNAMENTS & CHALLENGES)
