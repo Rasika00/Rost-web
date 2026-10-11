@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { PageLoader } from "@/components/page-loader";
 import { SmoothScrollProvider } from "@/components/smooth-scroll";
-import { ScrollProgress } from "@/components/scroll-progress";
 import { Toaster } from "sonner";
 import { SITE_CONFIG } from "@/data/site-data";
 import "./globals.css";
@@ -66,8 +64,6 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#080808] text-[#fafafa] font-sans selection:bg-[#ff6b00]/30 selection:text-[#ff7a1a]">
         <SmoothScrollProvider>
-          <ScrollProgress />
-          <PageLoader />
           <Navigation />
           <main className="flex-1">{children}</main>
           <Footer />
