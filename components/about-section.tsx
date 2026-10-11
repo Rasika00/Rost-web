@@ -38,22 +38,22 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
         {/* =========================================================================
             VISION & MISSION (CLEAN DUAL CARDS)
             ========================================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* VISION */}
           <ScrollReveal direction="up" delay={40} duration={0.6} className="h-full flex">
-            <div className="w-full p-5 rounded-xl bg-[#111111] border border-[#222222] flex flex-col justify-between space-y-3">
-              <div className="space-y-2">
+            <div className="w-full p-5 sm:p-6 rounded-xl bg-[#111111] border border-[#222222] flex flex-col justify-between space-y-3">
+              <div className="space-y-2.5">
                 <div className="flex items-center gap-2 text-[#ff6b00]">
                   <Target className="w-4 h-4" />
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider">
+                  <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider">
                     Our Vision
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-[#fafafa] font-mono italic text-justify leading-relaxed">
+                <p className="text-sm sm:text-base text-[#fafafa] font-mono italic text-justify leading-relaxed">
                   &ldquo;{CONSTITUTION_DATA.articles.article2.vision.verbatim}&rdquo;
                 </p>
               </div>
-              <p className="text-xs text-[#a3a3a3] font-sans text-justify leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#a3a3a3] font-sans text-justify leading-relaxed">
                 {CONSTITUTION_DATA.articles.article2.vision.lead}
               </p>
             </div>
@@ -61,19 +61,19 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
 
           {/* MISSION */}
           <ScrollReveal direction="up" delay={80} duration={0.6} className="h-full flex">
-            <div className="w-full p-5 rounded-xl bg-[#111111] border border-[#222222] flex flex-col justify-between space-y-3">
-              <div className="space-y-2">
+            <div className="w-full p-5 sm:p-6 rounded-xl bg-[#111111] border border-[#222222] flex flex-col justify-between space-y-3">
+              <div className="space-y-2.5">
                 <div className="flex items-center gap-2 text-[#ff6b00]">
                   <Zap className="w-4 h-4" />
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider">
+                  <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider">
                     Our Mission
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-[#fafafa] font-mono italic text-justify leading-relaxed">
+                <p className="text-sm sm:text-base text-[#fafafa] font-mono italic text-justify leading-relaxed">
                   &ldquo;{CONSTITUTION_DATA.articles.article2.mission.verbatim}&rdquo;
                 </p>
               </div>
-              <p className="text-xs text-[#a3a3a3] font-sans text-justify leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#a3a3a3] font-sans text-justify leading-relaxed">
                 {CONSTITUTION_DATA.articles.article2.mission.lead}
               </p>
             </div>
@@ -85,21 +85,21 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
             ========================================================================= */}
         <ScrollReveal direction="up" delay={60} duration={0.6}>
           <div className="p-5 sm:p-6 rounded-xl bg-[#111111] border border-[#222222] space-y-4">
-            <h3 className="text-xs font-mono font-bold uppercase text-[#ff6b00] tracking-wider">
+            <h3 className="text-xs sm:text-sm font-mono font-bold uppercase text-[#ff6b00] tracking-wider">
               Key Objectives of the Society (Article 3)
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
               {CONSTITUTION_DATA.articles.article3.objectives.map((obj) => (
                 <div
                   key={obj.id}
-                  className="p-3.5 rounded-lg bg-[#141414] border border-[#222222] space-y-1.5"
+                  className="p-4 rounded-lg bg-[#141414] border border-[#222222] space-y-2"
                 >
-                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#fafafa]">
+                  <div className="flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold text-[#fafafa]">
                     <span className="text-[#ff6b00]">{obj.number}.</span>
                     <span>{obj.title}</span>
                   </div>
-                  <p className="text-[11px] text-[#a3a3a3] font-sans leading-relaxed text-justify">
+                  <p className="text-xs sm:text-sm text-[#a3a3a3] font-sans leading-relaxed text-justify">
                     {obj.description}
                   </p>
                 </div>
@@ -112,22 +112,22 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
             MEMBERSHIP (SIMPLE NOTICE BAR)
             ========================================================================= */}
         <ScrollReveal direction="up" delay={80} duration={0.6}>
-          <div className="p-4 sm:p-5 rounded-xl bg-[#111111] border border-[#222222] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-sans">
+          <div className="p-5 sm:p-6 rounded-xl bg-[#111111] border border-[#222222] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="space-y-1">
-              <div className="font-mono font-bold text-[#fafafa] uppercase">
+              <div className="font-mono font-bold text-xs sm:text-sm text-[#fafafa] uppercase">
                 Membership Eligibility & Identification (Article 4)
               </div>
-              <p className="text-[#a3a3a3] leading-relaxed text-justify">
+              <p className="text-xs sm:text-sm text-[#a3a3a3] leading-relaxed text-justify">
                 All undergraduate students enrolled in the Faculty of Technology are eligible to join. Active members receive an official Society ID card (valid for 1 year for junior members).
               </p>
             </div>
 
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#ff6b00] hover:bg-[#ff7a1a] text-[#080808] font-mono text-xs font-bold uppercase tracking-wider shrink-0 transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-[#ff6b00] hover:bg-[#ff7a1a] text-[#080808] font-mono text-xs sm:text-sm font-bold uppercase tracking-wider shrink-0 transition-colors"
             >
               <span>Join Society</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </ScrollReveal>

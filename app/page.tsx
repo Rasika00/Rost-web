@@ -200,10 +200,10 @@ export default function HomePage() {
           <ScrollReveal direction="down" duration={0.7}>
             {/* Giant Futuristic Headline */}
             <div className="space-y-2">
-              <h1 className="text-4xl sm:text-6xl md:text-7xl font-black font-mono tracking-tight text-[#fafafa] leading-[1.08] uppercase">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-mono tracking-tight text-[#fafafa] leading-[1.1] uppercase">
                 ROBOTIC SOCIETY OF <span className="text-[#ff6b00] text-glow-orange">TECHNOLOGY</span>
               </h1>
-              <p className="text-base sm:text-xl font-mono text-[#ff7a1a] tracking-widest uppercase font-semibold">
+              <p className="text-sm sm:text-lg font-mono text-[#ff7a1a] tracking-widest uppercase font-semibold">
                 &ldquo;{SITE_CONFIG.tagline}&rdquo;
               </p>
             </div>
@@ -214,7 +214,7 @@ export default function HomePage() {
             </p>
 
             {/* Quick Status Bar */}
-            <div className="pt-6 flex flex-wrap items-center justify-start gap-4 sm:gap-8 font-mono text-xs text-[#a3a3a3]">
+            <div className="pt-4 flex flex-wrap items-center justify-start gap-4 sm:gap-6 font-mono text-xs text-[#a3a3a3]">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
                 <span>FOCUS: {SITE_CONFIG.status.focus}</span>
@@ -235,7 +235,7 @@ export default function HomePage() {
         <div className="absolute bottom-6 left-4 sm:left-8 lg:left-16 flex flex-col items-start gap-2 z-10">
           <button
             onClick={() => scrollToSection("about")}
-            className="flex items-center gap-2 text-[10px] font-mono tracking-widest text-[#a3a3a3] hover:text-[#ff6b00] transition-colors uppercase group cursor-pointer"
+            className="flex items-center gap-2 text-xs sm:text-sm font-mono tracking-widest text-[#a3a3a3] hover:text-[#ff6b00] transition-colors uppercase group cursor-pointer"
           >
             <span>SCROLL TO 02 // ABOUT</span>
             <ChevronDown className="w-4 h-4 text-[#ff6b00] group-hover:translate-y-1 transition-transform animate-bounce" />
@@ -389,8 +389,8 @@ export default function HomePage() {
                       key={i}
                       onClick={() => setCarouselIndex(i)}
                       className={`h-2 rounded-full transition-all cursor-pointer ${carouselIndex === i
-                          ? "w-8 bg-[#ff6b00]"
-                          : "w-2 bg-[#262626] hover:bg-[#555555]"
+                        ? "w-8 bg-[#ff6b00]"
+                        : "w-2 bg-[#262626] hover:bg-[#555555]"
                         }`}
                       aria-label={`Slide ${i + 1}`}
                     />
