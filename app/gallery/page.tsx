@@ -84,7 +84,7 @@ export default function GalleryPage() {
 
         {/* Category Tabs */}
         <ScrollReveal direction="up" delay={100} duration={0.6}>
-          <div className="flex flex-wrap items-center justify-center gap-2 p-3 rounded-2xl bg-[#121212] border border-[#262626]">
+          <div className="flex flex-wrap items-center justify-center gap-2 p-3 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             {categories.map((cat) => {
               const isActive = selectedCategory === cat;
               return (
@@ -121,7 +121,7 @@ export default function GalleryPage() {
                 onClick={() => {
                   setActiveItemIndex(idx);
                 }}
-                className="w-full group relative rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all overflow-hidden cursor-pointer shadow-[0_0_20px_rgba(0,0,0,0.5)] flex flex-col hover:-translate-y-1"
+                className="w-full group relative rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all overflow-hidden cursor-pointer shadow-[0_0_20px_rgba(255,107,0,0.15)] flex flex-col hover:-translate-y-1"
               >
                 {/* Media Asset */}
                 <div className="relative aspect-video w-full overflow-hidden bg-[#0d0d0d]">

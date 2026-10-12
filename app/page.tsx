@@ -164,7 +164,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#080808]">
+    <div className="relative min-h-screen bg-transparent">
       {/* =========================================================================
           TOPIC 01: HOME (HERO SECTION)
           ========================================================================= */}
@@ -253,7 +253,7 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="events"
-        className="relative py-24 px-4 sm:px-6 bg-[#080808] border-t border-[#262626] cyber-scanline"
+        className="relative py-24 px-4 sm:px-6 bg-transparent border-t border-[#ff6b00]/25 cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-12">
           <ScrollReveal direction="down" duration={0.75}>
@@ -291,7 +291,7 @@ export default function HomePage() {
                 distance={56}
                 className="h-full flex"
               >
-                <div className="w-full p-6 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/50 transition-all flex flex-col justify-between space-y-6 hover:shadow-[0_0_25px_rgba(255,107,0,0.15)] hover:-translate-y-1">
+                <div className="w-full p-6 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all flex flex-col justify-between space-y-6 hover:shadow-[0_0_25px_rgba(255,107,0,0.25)] hover:-translate-y-1">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff7a1a] border border-[#ff6b00]/30 font-bold uppercase">
@@ -344,7 +344,7 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="projects"
-        className="relative py-24 px-4 sm:px-6 bg-[#0a0a0a] border-t border-[#262626] cyber-scanline"
+        className="relative py-24 px-4 sm:px-6 bg-transparent border-t border-[#ff6b00]/25 cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-14">
           <ScrollReveal direction="down" duration={0.75}>
@@ -373,7 +373,7 @@ export default function HomePage() {
 
           {/* 3D Interactive Carousel Showcase */}
           <ScrollReveal direction="scale" delay={80} duration={0.8} distance={40}>
-            <div className="relative rounded-2xl border border-[#262626] bg-[#0e0e0e] overflow-hidden p-6 sm:p-8">
+            <div className="relative rounded-2xl border border-white/10 bg-[#141414]/75 backdrop-blur-xl overflow-hidden p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
               <div className="flex items-center justify-between pb-6 border-b border-[#222222] mb-6">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#ff6b00] animate-pulse" />
@@ -465,7 +465,7 @@ export default function HomePage() {
                 distance={56}
                 className="h-full flex"
               >
-                <div className="w-full group relative rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all duration-300 flex flex-col overflow-hidden hover:shadow-[0_0_30px_rgba(255,107,0,0.2)] hover:-translate-y-1">
+                <div className="w-full group relative rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all duration-300 flex flex-col overflow-hidden hover:shadow-[0_0_30px_rgba(255,107,0,0.25)] hover:-translate-y-1">
                   {/* Bot Card Image */}
                   <div className="relative aspect-video w-full overflow-hidden bg-[#0d0d0d]">
                     <Image
@@ -536,7 +536,7 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="gallery"
-        className="relative py-24 px-4 sm:px-6 bg-[#080808] border-t border-[#262626] cyber-scanline"
+        className="relative py-24 px-4 sm:px-6 bg-transparent border-t border-[#ff6b00]/25 cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-12">
           <ScrollReveal direction="down" duration={0.75}>
@@ -576,7 +576,7 @@ export default function HomePage() {
               >
                 <div
                   onClick={() => setActiveGalleryIndex(idx)}
-                  className="w-full group relative rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all overflow-hidden flex flex-col justify-between hover:shadow-[0_0_25px_rgba(255,107,0,0.2)] hover:-translate-y-1 cursor-pointer"
+                  className="w-full group relative rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all overflow-hidden flex flex-col justify-between hover:shadow-[0_0_25px_rgba(255,107,0,0.25)] hover:-translate-y-1 cursor-pointer"
                 >
                   <div className="relative aspect-video w-full overflow-hidden bg-[#0d0d0d]">
                     <Image
@@ -620,7 +620,7 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="board"
-        className="relative py-24 px-4 sm:px-6 bg-[#0a0a0a] border-t border-[#262626] cyber-scanline"
+        className="relative py-24 px-4 sm:px-6 bg-transparent border-t border-[#ff6b00]/25 cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-12">
           <ScrollReveal direction="down" duration={0.75}>
@@ -660,7 +660,7 @@ export default function HomePage() {
               >
                 <div
                   onClick={() => setActiveDossier(member)}
-                  className="w-full group rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all p-5 space-y-4 flex flex-col justify-between hover:shadow-[0_0_25px_rgba(255,107,0,0.2)] hover:-translate-y-1 cursor-pointer"
+                  className="w-full group rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all p-5 space-y-4 flex flex-col justify-between hover:shadow-[0_0_25px_rgba(255,107,0,0.25)] hover:-translate-y-1 cursor-pointer"
                 >
                   <div className="space-y-3">
                     <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#0d0d0d] border border-[#222222]">
@@ -713,7 +713,7 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="contact"
-        className="relative py-24 px-4 sm:px-6 bg-[#080808] border-t border-[#262626] cyber-scanline"
+        className="relative py-24 px-4 sm:px-6 bg-transparent border-t border-[#ff6b00]/25 cyber-scanline"
       >
         <div className="max-w-6xl mx-auto space-y-12">
           <ScrollReveal direction="down" duration={0.75}>
@@ -744,7 +744,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Quick Dispatch Form */}
             <ScrollReveal direction="up" duration={0.8} distance={52} className="lg:col-span-7">
-              <div className="rounded-2xl bg-[#121212] border border-[#262626] p-6 sm:p-8 space-y-6 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+              <div className="rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 p-6 sm:p-8 space-y-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
                 <div className="space-y-1">
                   <h3 className="text-base font-mono font-bold text-[#fafafa] uppercase">
                     // TRANSMIT TELEMETRY DISPATCH
@@ -853,7 +853,7 @@ export default function HomePage() {
                   href={SITE_CONFIG.socials.discord}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-5 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all flex items-start gap-4 group cursor-pointer block hover:-translate-y-0.5"
+                  className="p-5 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all flex items-start gap-4 group cursor-pointer block hover:-translate-y-0.5"
                 >
                   <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00] group-hover:scale-110 transition-transform">
                     <MessageSquare className="w-5 h-5" />
@@ -874,7 +874,7 @@ export default function HomePage() {
 
               {/* Physical Lab Facility Coordinates */}
               <ScrollReveal direction="up" delay={240} duration={0.8} distance={52}>
-                <div className="p-5 rounded-2xl bg-[#121212] border border-[#262626] space-y-3">
+                <div className="p-5 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 space-y-3">
                   <div className="flex items-center gap-3">
                     <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00]">
                       <MapPin className="w-5 h-5" />

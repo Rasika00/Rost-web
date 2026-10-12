@@ -85,7 +85,7 @@ function ProjectsContent() {
 
         {/* Tactical Search & Filter Control Bar */}
         <ScrollReveal direction="up" delay={100} duration={0.6}>
-          <div className="space-y-4 p-4 sm:p-6 rounded-2xl bg-[#121212] border border-[#262626] backdrop-blur-md">
+          <div className="space-y-4 p-4 sm:p-6 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             {/* Search Input Bar */}
             <div className="relative flex items-center">
               <Search className="absolute left-4 w-4 h-4 text-[#737373]" />
@@ -145,7 +145,7 @@ function ProjectsContent() {
               duration={0.6}
               className="h-full flex"
             >
-              <div className="w-full group relative rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:shadow-[0_0_30px_rgba(255,107,0,0.2)] hover:-translate-y-1">
+              <div className="w-full group relative rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:shadow-[0_0_30px_rgba(255,107,0,0.25)] hover:-translate-y-1">
                 {/* Image Preview */}
                 <div className="relative aspect-video w-full overflow-hidden bg-[#0d0d0d]">
                   <Image

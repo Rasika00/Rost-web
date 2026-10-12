@@ -100,7 +100,7 @@ function ContactContent() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Inquiry Form */}
           <ScrollReveal direction="up" duration={0.6} className="lg:col-span-7">
-            <div className="rounded-2xl bg-[#121212] border border-[#262626] p-6 sm:p-8 space-y-6 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+            <div className="rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 p-6 sm:p-8 space-y-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
               <div className="space-y-1">
                 <h2 className="text-lg font-mono font-bold text-[#fafafa] uppercase">
                   // TRANSMIT TELEMETRY MESSAGE
@@ -223,7 +223,7 @@ function ContactContent() {
               href={SITE_CONFIG.socials.discord}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-5 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all flex items-start gap-4 group cursor-pointer block hover:-translate-y-0.5"
+              className="p-5 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all flex items-start gap-4 group cursor-pointer block hover:-translate-y-0.5"
             >
               <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00] group-hover:scale-110 transition-transform">
                 <MessageSquare className="w-5 h-5" />
@@ -242,7 +242,7 @@ function ContactContent() {
             </a>
 
             {/* Physical Lab Facility */}
-            <div className="p-5 rounded-2xl bg-[#121212] border border-[#262626] space-y-3">
+            <div className="p-5 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 space-y-3">
               <div className="flex items-center gap-3">
                 <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00]">
                   <MapPin className="w-5 h-5" />
@@ -268,7 +268,7 @@ function ContactContent() {
               href={SITE_CONFIG.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-5 rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all flex items-start gap-4 group cursor-pointer block hover:-translate-y-0.5"
+              className="p-5 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all flex items-start gap-4 group cursor-pointer block hover:-translate-y-0.5"
             >
               <div className="p-3 rounded-xl bg-[#171717] border border-[#262626] text-[#ff6b00] group-hover:scale-110 transition-transform">
                 <GithubIcon className="w-5 h-5" />
@@ -300,7 +300,7 @@ function ContactContent() {
               </h2>
             </div>
 
-            <div className="divide-y divide-[#222222] rounded-2xl border border-[#262626] bg-[#121212] overflow-hidden">
+            <div className="divide-y divide-[#222222] rounded-2xl border border-white/10 bg-[#141414]/75 backdrop-blur-xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
               {faqs.map((faq, idx) => {
                 const isOpen = openFaq === idx;
                 return (

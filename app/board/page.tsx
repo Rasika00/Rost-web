@@ -91,7 +91,7 @@ export default function BoardPage() {
             GOVERNANCE METRICS STRIP
             ========================================================================= */}
         <ScrollReveal direction="up" delay={50} duration={0.6}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-2xl bg-[#121212] border border-[#262626]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             <div className="p-4 rounded-xl bg-[#0e0e0e] border border-[#222222] space-y-1">
               <div className="text-[11px] font-mono text-[#737373] uppercase">MANDATE TERM</div>
               <div className="text-lg font-mono font-black text-[#fafafa]">2025 – 2026</div>
@@ -119,7 +119,7 @@ export default function BoardPage() {
             SEARCH & TIER FILTERS
             ========================================================================= */}
         <ScrollReveal direction="up" delay={100} duration={0.6}>
-          <div className="space-y-4 p-4 sm:p-6 rounded-2xl bg-[#121212] border border-[#262626] backdrop-blur-md">
+          <div className="space-y-4 p-4 sm:p-6 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             {/* Search bar */}
             <div className="relative flex items-center">
               <Search className="absolute left-4 w-4 h-4 text-[#737373]" />
@@ -169,7 +169,7 @@ export default function BoardPage() {
               duration={0.6}
               className="h-full flex"
             >
-              <div className="w-full rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/60 transition-all p-6 space-y-5 flex flex-col justify-between group shadow-[0_0_25px_rgba(0,0,0,0.4)] relative hover:-translate-y-1">
+              <div className="w-full rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all p-6 space-y-5 flex flex-col justify-between group shadow-[0_0_25px_rgba(255,107,0,0.2)] relative hover:-translate-y-1">
                 <div className="space-y-4">
                   {/* Photo & Callout Tag */}
                   <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#0d0d0d] border border-[#222222]">

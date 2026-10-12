@@ -36,12 +36,12 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#0a0a0a] border-t border-[#262626] pt-16 pb-12 overflow-hidden">
+    <footer className="relative bg-[#070707]/90 backdrop-blur-xl border-t border-[#262626] pt-16 pb-12 overflow-hidden">
       {/* Background Matrix Grid */}
-      <div className="absolute inset-0 bg-grid-dense opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-dense opacity-10 pointer-events-none" />
 
       {/* Ambient Orange Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-[#ff6b00]/5 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-[#ff6b00]/6 blur-3xl pointer-events-none rounded-full" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         {/* Top Grid: Brand & Affiliation + Dispatch Newsletter */}

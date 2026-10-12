@@ -68,7 +68,7 @@ function EventsContent() {
 
         {/* Category Filter Pills */}
         <ScrollReveal direction="up" delay={100} duration={0.6}>
-          <div className="flex flex-wrap items-center justify-center gap-2 p-3 rounded-2xl bg-[#121212] border border-[#262626]">
+          <div className="flex flex-wrap items-center justify-center gap-2 p-3 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             {categories.map((cat) => {
               const isActive = selectedCategory === cat;
               return (
@@ -100,7 +100,7 @@ function EventsContent() {
               duration={0.6}
               className="h-full flex"
             >
-              <div className="w-full rounded-2xl bg-[#121212] border border-[#262626] hover:border-[#ff6b00]/50 transition-all p-6 flex flex-col justify-between space-y-6 shadow-[0_0_25px_rgba(0,0,0,0.4)] hover:-translate-y-1 duration-300">
+              <div className="w-full rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all p-6 flex flex-col justify-between space-y-6 shadow-[0_8px_32px_rgba(255,107,0,0.15)] hover:-translate-y-1 duration-300">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff7a1a] border border-[#ff6b00]/30 font-bold uppercase">

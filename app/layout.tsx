@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SmoothScrollProvider } from "@/components/smooth-scroll";
+import { SubpageBackground } from "@/components/subpage-background";
 import { Toaster } from "sonner";
 import { SITE_CONFIG } from "@/data/site-data";
 import "./globals.css";
@@ -62,10 +63,11 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-[#080808] text-[#fafafa] font-sans selection:bg-[#ff6b00]/30 selection:text-[#ff7a1a]">
+      <body className="min-h-full flex flex-col bg-[#070707] text-[#fafafa] font-sans selection:bg-[#ff6b00]/30 selection:text-[#ff7a1a] relative">
         <SmoothScrollProvider>
+          <SubpageBackground />
           <Navigation />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 relative z-10">{children}</main>
           <Footer />
           <Toaster
             theme="dark"
