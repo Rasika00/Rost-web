@@ -8,11 +8,11 @@ import { CONSTITUTION_DATA } from "@/data/constitution-data";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
 const ABOUT_IMAGES = [
-  "/images/gallery/team-celebration.png",
-  "/images/gallery/cnc-machining.png",
-  "/images/gallery/rover-trial.png",
-  "/images/gallery/electronics-soldering.png",
-  "/images/gallery/combat-impact.png",
+  "https://res.cloudinary.com/fqizrdtg/image/upload/v1791805983/WhatsApp_Image_2026-10-12_at_5.21.26_PM_1.jpg",
+  "https://res.cloudinary.com/fqizrdtg/image/upload/v1791805981/WhatsApp_Image_2026-10-12_at_5.21.26_PM.jpg",
+  "https://res.cloudinary.com/fqizrdtg/image/upload/v1791805981/WhatsApp_Image_2026-10-12_at_5.21.28_PM.jpg",
+  "https://res.cloudinary.com/fqizrdtg/image/upload/v1791805981/WhatsApp_Image_2026-10-12_at_5.21.28_PM_2.jpg",
+  "https://res.cloudinary.com/fqizrdtg/image/upload/v1791805981/WhatsApp_Image_2026-10-12_at_5.21.28_PM_1.jpg",
 ];
 
 interface AboutSectionProps {
@@ -91,17 +91,17 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
                   return (
                     <div
                       key={src}
-                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                        isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-                      }`}
+                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                        }`}
                     >
                       <Image
                         src={src}
-                        alt="ROST Society showcase"
+                        alt={`ROST Society showcase ${idx + 1}`}
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 420px"
                         priority={idx === 0}
+                        unoptimized
                       />
                     </div>
                   );
@@ -134,11 +134,10 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
                       type="button"
                       onClick={() => setCurrentSlide(idx)}
                       aria-label={`Image ${idx + 1}`}
-                      className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                        idx === currentSlide
-                          ? "w-4 bg-[#ff6b00]"
-                          : "w-1.5 bg-white/40 hover:bg-white/70"
-                      }`}
+                      className={`h-1.5 rounded-full transition-all cursor-pointer ${idx === currentSlide
+                        ? "w-4 bg-[#ff6b00]"
+                        : "w-1.5 bg-white/40 hover:bg-white/70"
+                        }`}
                     />
                   ))}
                 </div>
@@ -229,11 +228,10 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
                   {showObjectives ? "Hide Details" : "View Details"}
                 </span>
                 <div
-                  className={`w-9 h-9 rounded-lg flex items-center justify-center border transition-all duration-300 ${
-                    showObjectives
-                      ? "bg-[#ff6b00]/15 border-[#ff6b00]/50 text-[#ff6b00] rotate-180"
-                      : "bg-[#181818] border-[#2a2a2a] text-[#a3a3a3] group-hover:text-[#fafafa] group-hover:border-[#383838]"
-                  }`}
+                  className={`w-9 h-9 rounded-lg flex items-center justify-center border transition-all duration-300 ${showObjectives
+                    ? "bg-[#ff6b00]/15 border-[#ff6b00]/50 text-[#ff6b00] rotate-180"
+                    : "bg-[#181818] border-[#2a2a2a] text-[#a3a3a3] group-hover:text-[#fafafa] group-hover:border-[#383838]"
+                    }`}
                 >
                   <ChevronDown className="w-4 h-4 transition-transform" />
                 </div>
@@ -242,9 +240,8 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
 
             {/* Collapsible Details */}
             <div
-              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
-                showObjectives ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-              }`}
+              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${showObjectives ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                }`}
             >
               <div className="overflow-hidden">
                 <div className="p-5 sm:p-6 pt-3 border-t border-[#222222] space-y-4 bg-[#0d0d0d]/40">
