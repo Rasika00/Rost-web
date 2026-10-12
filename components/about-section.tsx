@@ -1,10 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronDown, Target, Zap } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Target, Zap } from "lucide-react";
 import { CONSTITUTION_DATA } from "@/data/constitution-data";
 import { ScrollReveal } from "@/components/scroll-reveal";
+
+const ABOUT_IMAGES = [
+  "/images/gallery/team-celebration.png",
+  "/images/gallery/cnc-machining.png",
+  "/images/gallery/rover-trial.png",
+  "/images/gallery/electronics-soldering.png",
+  "/images/gallery/combat-impact.png",
+];
 
 interface AboutSectionProps {
   showFullNavigationLink?: boolean;
@@ -12,6 +21,25 @@ interface AboutSectionProps {
 
 export function AboutSection({ showFullNavigationLink = true }: AboutSectionProps) {
   const [showObjectives, setShowObjectives] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % ABOUT_IMAGES.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % ABOUT_IMAGES.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + ABOUT_IMAGES.length) % ABOUT_IMAGES.length);
+  };
+
   return (
     <section
       id="about"
@@ -19,21 +47,103 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
     >
       <div className="max-w-5xl mx-auto space-y-8">
         {/* =========================================================================
-            HEADER (CLEAN & SIMPLE)
+            HEADER (SIDE-BY-SIDE WITH COMPACT AUTO-CHANGING SHOWCASE)
             ========================================================================= */}
         <ScrollReveal direction="down" duration={0.6}>
-          <div className="space-y-2">
-            <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-              // 02. WHAT IS ROST?
-            </span>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            {/* Left: Text & Info */}
+            <div className="md:col-span-7 space-y-3">
+              <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
+                // 02. WHAT IS ROST?
+              </span>
 
-            <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] tracking-tight">
-              ABOUT <span className="text-[#ff6b00]">{CONSTITUTION_DATA.shortForm}</span>
-            </h2>
+              <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] tracking-tight">
+                ABOUT <span className="text-[#ff6b00]">{CONSTITUTION_DATA.shortForm}</span>
+              </h2>
 
-            <p className="w-full text-xs sm:text-sm font-sans text-[#a3a3a3] leading-relaxed text-justify">
-              The <strong className="text-[#fafafa] font-mono">{CONSTITUTION_DATA.officialName}</strong> (ROST), known within its constitution as &apos;The Society&apos;, is the official student robotics platform under the <span className="text-[#fafafa]">Faculty of Technology</span>. We provide mentor guided learning, hands-on robotics engineering, ansd competitive artificial intelligence development.
-            </p>
+              <p className="text-xs sm:text-sm font-sans text-[#a3a3a3] leading-relaxed text-justify">
+                The <strong className="text-[#fafafa] font-mono">{CONSTITUTION_DATA.officialName}</strong> (ROST), known within its constitution as &apos;The Society&apos;, is the official student robotics platform under the <span className="text-[#fafafa]">Faculty of Technology</span>. We provide mentor guided learning, hands-on robotics engineering, and competitive artificial intelligence development.
+              </p>
+
+              {/* Quick Society Badges */}
+              <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-[11px]">
+                <span className="px-2.5 py-1 rounded-md bg-[#141414] border border-[#222222] text-[#fafafa]">
+                  🤖 <span className="text-[#ff6b00]">ROBOTICS</span> PLATFORM
+                </span>
+                <span className="px-2.5 py-1 rounded-md bg-[#141414] border border-[#222222] text-[#fafafa]">
+                  🏛️ <span className="text-[#ff6b00]">FACULTY OF TECH</span>
+                </span>
+                <span className="px-2.5 py-1 rounded-md bg-[#141414] border border-[#222222] text-[#fafafa]">
+                  ⚡ <span className="text-[#ff6b00]">RATIFIED</span> CHARTER
+                </span>
+              </div>
+            </div>
+
+            {/* Right: Small Auto-Changing Image Card (Pure Image, No Text) */}
+            <div className="md:col-span-5">
+              <div
+                className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[4/3] max-h-[260px] rounded-xl overflow-hidden border border-[#222222] hover:border-[#ff6b00]/40 transition-colors shadow-xl bg-[#111111] group/side-slider"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+              >
+                {ABOUT_IMAGES.map((src, idx) => {
+                  const isActive = idx === currentSlide;
+                  return (
+                    <div
+                      key={src}
+                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                        isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                      }`}
+                    >
+                      <Image
+                        src={src}
+                        alt="ROST Society showcase"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 420px"
+                        priority={idx === 0}
+                      />
+                    </div>
+                  );
+                })}
+
+                {/* Subtle Prev / Next Buttons */}
+                <button
+                  type="button"
+                  onClick={prevSlide}
+                  aria-label="Previous image"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-black/60 hover:bg-[#ff6b00] border border-white/10 hover:border-[#ff6b00] text-white hover:text-black flex items-center justify-center transition-all opacity-0 group-hover/side-slider:opacity-100 cursor-pointer backdrop-blur-xs"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={nextSlide}
+                  aria-label="Next image"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-black/60 hover:bg-[#ff6b00] border border-white/10 hover:border-[#ff6b00] text-white hover:text-black flex items-center justify-center transition-all opacity-0 group-hover/side-slider:opacity-100 cursor-pointer backdrop-blur-xs"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+
+                {/* Subtle Indicator Dots */}
+                <div className="absolute bottom-2.5 left-0 right-0 z-20 flex items-center justify-center gap-1.5">
+                  {ABOUT_IMAGES.map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setCurrentSlide(idx)}
+                      aria-label={`Image ${idx + 1}`}
+                      className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                        idx === currentSlide
+                          ? "w-4 bg-[#ff6b00]"
+                          : "w-1.5 bg-white/40 hover:bg-white/70"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </ScrollReveal>
 
