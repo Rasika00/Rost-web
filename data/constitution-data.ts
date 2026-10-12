@@ -80,7 +80,7 @@ export const CONSTITUTION_DATA: ConstitutionData = {
       mission: {
         verbatim:
           "To inspire minds to be engaging with mentor based programs that develop creativity, technical skills including self-confidence, communication and leadership to interfere with real world.",
-        lead: "Inspiring and cultivating future engineers through intensive mentor-led initiatives that nurture creativity, practical technical depth, leadership, and proactive real-world engineering impact.",
+        lead: "Inspiring and cultivating future engineers through intensive mentor-led initiatives that nurture creativity, practical technical depth, leadership, and proactive real world engineering impact.",
         pillars: [
           "Mentor-Based Technical Tracks",
           "Applied Creativity & Engineering",

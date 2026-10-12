@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Target, Zap } from "lucide-react";
+import { ArrowRight, ChevronDown, Target, Zap } from "lucide-react";
 import { CONSTITUTION_DATA } from "@/data/constitution-data";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
@@ -10,6 +11,7 @@ interface AboutSectionProps {
 }
 
 export function AboutSection({ showFullNavigationLink = true }: AboutSectionProps) {
+  const [showObjectives, setShowObjectives] = useState(false);
   return (
     <section
       id="about"
@@ -30,7 +32,7 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
             </h2>
 
             <p className="w-full text-xs sm:text-sm font-sans text-[#a3a3a3] leading-relaxed text-justify">
-              The <strong className="text-[#fafafa] font-mono">{CONSTITUTION_DATA.officialName}</strong> (ROST), known within its constitution as &apos;The Society&apos;, is the official student robotics platform under the <span className="text-[#fafafa]">Faculty of Technology</span>. We provide mentor-guided learning, hands-on robotics engineering, and competitive artificial intelligence development.
+              The <strong className="text-[#fafafa] font-mono">{CONSTITUTION_DATA.officialName}</strong> (ROST), known within its constitution as &apos;The Society&apos;, is the official student robotics platform under the <span className="text-[#fafafa]">Faculty of Technology</span>. We provide mentor guided learning, hands-on robotics engineering, ansd competitive artificial intelligence development.
             </p>
           </div>
         </ScrollReveal>
@@ -81,29 +83,106 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
         </div>
 
         {/* =========================================================================
-            KEY OBJECTIVES (CLEAN GRID)
+            KEY OBJECTIVES (INTERACTIVE BUTTON & DETAILS)
             ========================================================================= */}
         <ScrollReveal direction="up" delay={60} duration={0.6}>
-          <div className="p-5 sm:p-6 rounded-xl bg-[#111111] border border-[#222222] space-y-4">
-            <h3 className="text-xs sm:text-sm font-mono font-bold uppercase text-[#ff6b00] tracking-wider">
-              Key Objectives of the Society (Article 3)
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-              {CONSTITUTION_DATA.articles.article3.objectives.map((obj) => (
-                <div
-                  key={obj.id}
-                  className="p-4 rounded-lg bg-[#141414] border border-[#222222] space-y-2"
-                >
-                  <div className="flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold text-[#fafafa]">
-                    <span className="text-[#ff6b00]">{obj.number}.</span>
-                    <span>{obj.title}</span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-[#a3a3a3] font-sans leading-relaxed text-justify">
-                    {obj.description}
-                  </p>
+          <div className="rounded-xl bg-[#111111] border border-[#222222] transition-colors hover:border-[#333333] overflow-hidden">
+            {/* Interactive Button */}
+            <button
+              type="button"
+              id="key-objectives-toggle-btn"
+              onClick={() => setShowObjectives((prev) => !prev)}
+              aria-expanded={showObjectives}
+              className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#ff6b00]/50 transition-colors bg-[#111111] hover:bg-[#151515] group"
+            >
+              <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
+                <div className="w-10 h-10 rounded-lg bg-[#ff6b00]/10 border border-[#ff6b00]/30 flex items-center justify-center shrink-0 text-[#ff6b00] group-hover:scale-105 group-hover:border-[#ff6b00]/60 transition-all">
+                  <Target className="w-5 h-5" />
                 </div>
-              ))}
+                <div className="space-y-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-[11px] sm:text-xs font-mono text-[#ff6b00] tracking-wider uppercase font-semibold">
+                      Article 3 // Constitution
+                    </span>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#1c1c1c] border border-[#2d2d2d] text-[#a3a3a3]">
+                      {CONSTITUTION_DATA.articles.article3.objectives.length} Objectives
+                    </span>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-mono font-bold uppercase text-[#fafafa] tracking-wider group-hover:text-[#ff6b00] transition-colors">
+                    Key Objectives of the Society
+                  </h3>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+                <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md font-mono text-xs font-semibold uppercase tracking-wider transition-colors bg-[#181818] border border-[#2a2a2a] group-hover:border-[#ff6b00]/40 group-hover:text-[#fafafa] text-[#a3a3a3]">
+                  {showObjectives ? "Hide Details" : "View Details"}
+                </span>
+                <div
+                  className={`w-9 h-9 rounded-lg flex items-center justify-center border transition-all duration-300 ${
+                    showObjectives
+                      ? "bg-[#ff6b00]/15 border-[#ff6b00]/50 text-[#ff6b00] rotate-180"
+                      : "bg-[#181818] border-[#2a2a2a] text-[#a3a3a3] group-hover:text-[#fafafa] group-hover:border-[#383838]"
+                  }`}
+                >
+                  <ChevronDown className="w-4 h-4 transition-transform" />
+                </div>
+              </div>
+            </button>
+
+            {/* Collapsible Details */}
+            <div
+              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+                showObjectives ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="p-5 sm:p-6 pt-3 border-t border-[#222222] space-y-4 bg-[#0d0d0d]/40">
+                  {/* Lead text */}
+                  {CONSTITUTION_DATA.articles.article3.lead && (
+                    <p className="text-xs sm:text-sm text-[#a3a3a3] font-sans leading-relaxed text-justify">
+                      {CONSTITUTION_DATA.articles.article3.lead}
+                    </p>
+                  )}
+
+                  {/* Objectives Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                    {CONSTITUTION_DATA.articles.article3.objectives.map((obj) => (
+                      <div
+                        key={obj.id}
+                        className="p-4 rounded-lg bg-[#141414] border border-[#222222] hover:border-[#ff6b00]/40 transition-colors space-y-2 group/card"
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold text-[#fafafa]">
+                            <span className="text-[#ff6b00]">{obj.number}.</span>
+                            <span className="group-hover/card:text-[#ff6b00] transition-colors">{obj.title}</span>
+                          </div>
+                          {obj.tag && (
+                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#ff6b00]/10 text-[#ff6b00] border border-[#ff6b00]/20 uppercase shrink-0">
+                              {obj.tag}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#a3a3a3] font-sans leading-relaxed text-justify">
+                          {obj.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Quick Collapse Footer */}
+                  <div className="flex justify-end pt-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowObjectives(false)}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-[#737373] hover:text-[#ff6b00] transition-colors cursor-pointer py-1 px-2.5 rounded bg-[#141414] border border-[#222222] hover:border-[#ff6b00]/30"
+                    >
+                      <span>Close Objectives</span>
+                      <ChevronDown className="w-3.5 h-3.5 rotate-180" />
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </ScrollReveal>
