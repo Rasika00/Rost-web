@@ -52,18 +52,19 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
 
       <div className="max-w-5xl mx-auto space-y-8 relative z-10">
         {/* =========================================================================
-            HEADER (SIDE-BY-SIDE WITH GLASS TEXT PANEL & COMPACT SHOWCASE)
+            ABOUT, VISION & MISSION (UNIFIED GLASS CARD)
             ========================================================================= */}
         <ScrollReveal direction="down" duration={0.6}>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-            {/* Left: Text & Info (Glassmorphic Container for Maximum Visibility) */}
-            <div className="md:col-span-7 relative rounded-2xl p-6 sm:p-7 bg-[#141414]/75 backdrop-blur-xl border border-white/[0.12] shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] overflow-hidden flex flex-col justify-between space-y-4 group">
-              {/* Subtle ambient glass glow */}
-              <div className="absolute -top-24 -left-24 w-56 h-56 bg-[#ff6b00]/15 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent pointer-events-none" />
+          <div className="relative rounded-2xl p-6 sm:p-8 bg-[#141414]/75 backdrop-blur-xl border border-white/[0.12] shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] overflow-hidden space-y-6 sm:space-y-8 group">
+            {/* Subtle ambient glass glow */}
+            <div className="absolute -top-24 -left-24 w-56 h-56 bg-[#ff6b00]/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-transparent to-transparent pointer-events-none" />
 
-              <div className="relative z-10 space-y-3">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#ff6b00]/10 border border-[#ff6b00]/30 text-xs font-mono text-[#ff6b00] tracking-widest uppercase font-semibold">
+            {/* Top Section: About Info & Image Slider */}
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+              {/* Left: Text & Info */}
+              <div className="md:col-span-7 flex flex-col justify-center space-y-3">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#ff6b00]/10 border border-[#ff6b00]/30 text-xs font-mono text-[#ff6b00] tracking-widest uppercase font-semibold w-fit">
                   // 02. WHAT IS ROST?
                 </span>
 
@@ -76,134 +77,117 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
                 </p>
               </div>
 
-              {/* Quick Society Badges (Frosted Glass Chips) */}
-              <div className="relative z-10 flex flex-wrap items-center gap-2 pt-2 font-mono text-xs">
-                <span className="px-3 py-1.5 rounded-lg bg-white/[0.05] backdrop-blur-md border border-white/10 text-[#ffffff] flex items-center gap-1.5 shadow-sm hover:border-[#ff6b00]/40 transition-colors">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b00]" />
-                  <span>ROBOTICS PLATFORM</span>
-                </span>
-                <span className="px-3 py-1.5 rounded-lg bg-white/[0.05] backdrop-blur-md border border-white/10 text-[#ffffff] flex items-center gap-1.5 shadow-sm hover:border-[#ff6b00]/40 transition-colors">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]" />
-                  <span>FACULTY OF TECH</span>
-                </span>
-                <span className="px-3 py-1.5 rounded-lg bg-white/[0.05] backdrop-blur-md border border-white/10 text-[#ffffff] flex items-center gap-1.5 shadow-sm hover:border-[#ff6b00]/40 transition-colors">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
-                  <span>RATIFIED CHARTER</span>
-                </span>
+              {/* Right: Small Auto-Changing Image Card */}
+              <div className="md:col-span-5 flex">
+                <div
+                  className="relative w-full h-[220px] sm:h-[240px] md:h-full min-h-[220px] max-h-[300px] rounded-xl overflow-hidden border border-white/[0.12] hover:border-[#ff6b00]/50 transition-all duration-300 shadow-md bg-black/40 group/side-slider"
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
+                >
+                  {ABOUT_IMAGES.map((src, idx) => {
+                    const isActive = idx === currentSlide;
+                    return (
+                      <div
+                        key={src}
+                        className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                          isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                        }`}
+                      >
+                        <Image
+                          src={src}
+                          alt={`ROST Society showcase ${idx + 1}`}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 420px"
+                          priority={idx === 0}
+                          unoptimized
+                        />
+                      </div>
+                    );
+                  })}
+
+                  {/* Subtle Prev / Next Buttons */}
+                  <button
+                    type="button"
+                    onClick={prevSlide}
+                    aria-label="Previous image"
+                    className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-[#ff6b00] border border-white/10 hover:border-[#ff6b00] text-white hover:text-black flex items-center justify-center transition-all opacity-0 group-hover/side-slider:opacity-100 cursor-pointer backdrop-blur-md"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={nextSlide}
+                    aria-label="Next image"
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-[#ff6b00] border border-white/10 hover:border-[#ff6b00] text-white hover:text-black flex items-center justify-center transition-all opacity-0 group-hover/side-slider:opacity-100 cursor-pointer backdrop-blur-md"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+
+                  {/* Subtle Indicator Dots */}
+                  <div className="absolute bottom-3 left-0 right-0 z-20 flex items-center justify-center gap-1.5">
+                    {ABOUT_IMAGES.map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setCurrentSlide(idx)}
+                        aria-label={`Image ${idx + 1}`}
+                        className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                          idx === currentSlide
+                            ? "w-5 bg-[#ff6b00]"
+                            : "w-1.5 bg-white/40 hover:bg-white/70"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right: Small Auto-Changing Image Card (Glass Frame, Pure Image) */}
-            <div className="md:col-span-5 flex">
-              <div
-                className="relative w-full h-full min-h-[240px] max-h-[320px] rounded-2xl overflow-hidden border border-white/[0.12] hover:border-[#ff6b00]/50 transition-all duration-300 shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] bg-[#141414]/75 backdrop-blur-xl group/side-slider"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-              >
-                {ABOUT_IMAGES.map((src, idx) => {
-                  const isActive = idx === currentSlide;
-                  return (
-                    <div
-                      key={src}
-                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-                        }`}
-                    >
-                      <Image
-                        src={src}
-                        alt={`ROST Society showcase ${idx + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 420px"
-                        priority={idx === 0}
-                        unoptimized
-                      />
-                    </div>
-                  );
-                })}
+            {/* Subtle Divider */}
+            <div className="relative z-10 border-t border-white/[0.08]" />
 
-                {/* Subtle Prev / Next Buttons */}
-                <button
-                  type="button"
-                  onClick={prevSlide}
-                  aria-label="Previous image"
-                  className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-[#ff6b00] border border-white/10 hover:border-[#ff6b00] text-white hover:text-black flex items-center justify-center transition-all opacity-0 group-hover/side-slider:opacity-100 cursor-pointer backdrop-blur-md"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={nextSlide}
-                  aria-label="Next image"
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-[#ff6b00] border border-white/10 hover:border-[#ff6b00] text-white hover:text-black flex items-center justify-center transition-all opacity-0 group-hover/side-slider:opacity-100 cursor-pointer backdrop-blur-md"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-
-                {/* Subtle Indicator Dots */}
-                <div className="absolute bottom-3 left-0 right-0 z-20 flex items-center justify-center gap-1.5">
-                  {ABOUT_IMAGES.map((_, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => setCurrentSlide(idx)}
-                      aria-label={`Image ${idx + 1}`}
-                      className={`h-1.5 rounded-full transition-all cursor-pointer ${idx === currentSlide
-                        ? "w-5 bg-[#ff6b00]"
-                        : "w-1.5 bg-white/40 hover:bg-white/70"
-                        }`}
-                    />
-                  ))}
+            {/* Bottom Section: Vision & Mission */}
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* VISION */}
+              <div className="p-5 sm:p-6 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#ff6b00]/30 transition-all flex flex-col justify-between space-y-3">
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2 text-[#ff6b00]">
+                    <Target className="w-4 h-4" />
+                    <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider">
+                      Our Vision
+                    </span>
+                  </div>
+                  <p className="text-sm sm:text-base text-[#ffffff] font-mono italic text-justify leading-relaxed">
+                    &ldquo;{CONSTITUTION_DATA.articles.article2.vision.verbatim}&rdquo;
+                  </p>
                 </div>
+                <p className="text-xs sm:text-sm text-[#e0e0e0] font-sans text-justify leading-relaxed">
+                  {CONSTITUTION_DATA.articles.article2.vision.lead}
+                </p>
+              </div>
+
+              {/* MISSION */}
+              <div className="p-5 sm:p-6 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:border-[#ff6b00]/30 transition-all flex flex-col justify-between space-y-3">
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2 text-[#ff6b00]">
+                    <Zap className="w-4 h-4" />
+                    <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider">
+                      Our Mission
+                    </span>
+                  </div>
+                  <p className="text-sm sm:text-base text-[#ffffff] font-mono italic text-justify leading-relaxed">
+                    &ldquo;{CONSTITUTION_DATA.articles.article2.mission.verbatim}&rdquo;
+                  </p>
+                </div>
+                <p className="text-xs sm:text-sm text-[#e0e0e0] font-sans text-justify leading-relaxed">
+                  {CONSTITUTION_DATA.articles.article2.mission.lead}
+                </p>
               </div>
             </div>
           </div>
         </ScrollReveal>
-
-        {/* =========================================================================
-            VISION & MISSION (CLEAN DUAL GLASS CARDS)
-            ========================================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* VISION */}
-          <ScrollReveal direction="up" delay={40} duration={0.6} className="h-full flex">
-            <div className="w-full p-5 sm:p-6 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/[0.1] hover:border-white/[0.2] transition-all flex flex-col justify-between space-y-3 shadow-lg">
-              <div className="space-y-2.5">
-                <div className="flex items-center gap-2 text-[#ff6b00]">
-                  <Target className="w-4 h-4" />
-                  <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider">
-                    Our Vision
-                  </span>
-                </div>
-                <p className="text-sm sm:text-base text-[#ffffff] font-mono italic text-justify leading-relaxed">
-                  &ldquo;{CONSTITUTION_DATA.articles.article2.vision.verbatim}&rdquo;
-                </p>
-              </div>
-              <p className="text-xs sm:text-sm text-[#e0e0e0] font-sans text-justify leading-relaxed">
-                {CONSTITUTION_DATA.articles.article2.vision.lead}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          {/* MISSION */}
-          <ScrollReveal direction="up" delay={80} duration={0.6} className="h-full flex">
-            <div className="w-full p-5 sm:p-6 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/[0.1] hover:border-white/[0.2] transition-all flex flex-col justify-between space-y-3 shadow-lg">
-              <div className="space-y-2.5">
-                <div className="flex items-center gap-2 text-[#ff6b00]">
-                  <Zap className="w-4 h-4" />
-                  <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider">
-                    Our Mission
-                  </span>
-                </div>
-                <p className="text-sm sm:text-base text-[#ffffff] font-mono italic text-justify leading-relaxed">
-                  &ldquo;{CONSTITUTION_DATA.articles.article2.mission.verbatim}&rdquo;
-                </p>
-              </div>
-              <p className="text-xs sm:text-sm text-[#e0e0e0] font-sans text-justify leading-relaxed">
-                {CONSTITUTION_DATA.articles.article2.mission.lead}
-              </p>
-            </div>
-          </ScrollReveal>
-        </div>
 
         {/* =========================================================================
             KEY OBJECTIVES (INTERACTIVE BUTTON & DETAILS)
@@ -222,15 +206,7 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
                 <div className="w-10 h-10 rounded-lg bg-[#ff6b00]/10 border border-[#ff6b00]/30 flex items-center justify-center shrink-0 text-[#ff6b00] group-hover:scale-105 group-hover:border-[#ff6b00]/60 transition-all">
                   <Target className="w-5 h-5" />
                 </div>
-                <div className="space-y-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[11px] sm:text-xs font-mono text-[#ff6b00] tracking-wider uppercase font-semibold">
-                      Article 3 // Constitution
-                    </span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.06] border border-white/10 text-[#d4d4d4]">
-                      {CONSTITUTION_DATA.articles.article3.objectives.length} Objectives
-                    </span>
-                  </div>
+                <div className="min-w-0">
                   <h3 className="text-sm sm:text-base font-mono font-bold uppercase text-[#ffffff] tracking-wider group-hover:text-[#ff6b00] transition-colors">
                     Key Objectives of the Society
                   </h3>
