@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { PageLoader } from "@/components/page-loader";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SmoothScrollProvider } from "@/components/smooth-scroll";
@@ -64,6 +65,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-[#070707] text-[#fafafa] font-sans selection:bg-[#ff6b00]/30 selection:text-[#ff7a1a] relative">
+        <PageLoader />
         <SmoothScrollProvider>
           <SubpageBackground />
           <Navigation />
