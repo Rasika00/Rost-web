@@ -8,8 +8,6 @@ import {
   MapPin,
   ExternalLink,
   CheckCircle2,
-  ChevronDown,
-  ChevronUp,
 } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 import { toast } from "sonner";
@@ -29,26 +27,6 @@ function ContactContent() {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
-
-  const faqs = [
-    {
-      q: "Who is eligible to join the ROST engineering team?",
-      a: "ROST recruits actively each semester across all disciplines: mechatronics, electrical, computer science, software, robotics, and physical sciences. No prior advanced robotics experience is required—we run onboarding bootcamps covering CAD, microcontroller programming, and circuit design.",
-    },
-    {
-      q: "How can corporate sponsors partner with ROST?",
-      a: "Sponsors receive prominent branding on our engineering platforms and society events, direct access to our top graduating technical talent, and opportunities for joint research and technology development.",
-    },
-    {
-      q: "Where is the physical robotics prototyping lab located?",
-      a: "Our machine shop and test lab is located in the Faculty of Technology, Rajarata University of Sri Lanka, Room 104-B.",
-    },
-    {
-      q: "Can school or external teams participate in ROST workshops and events?",
-      a: "Yes! We regularly conduct open outreach workshops, hackathons, and technology exhibitions welcoming school students and external collegiate teams.",
-    },
-  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -280,48 +258,6 @@ function ContactContent() {
             </a>
           </ScrollReveal>
         </div>
-
-        {/* FAQ Accordion Section */}
-        <ScrollReveal direction="up" duration={0.6}>
-          <div className="space-y-6 pt-8">
-            <div className="text-center space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-mono font-black uppercase text-[#fafafa]">
-                Recruitment & Sponsorship FAQ
-              </h2>
-            </div>
-
-            <div className="divide-y divide-[#222222] rounded-2xl border border-white/10 bg-[#141414]/75 backdrop-blur-xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-              {faqs.map((faq, idx) => {
-                const isOpen = openFaq === idx;
-                return (
-                  <div
-                    key={idx}
-                    className="p-5 select-none cursor-pointer transition-colors hover:bg-[#161616]"
-                    onClick={() => {
-                      setOpenFaq(isOpen ? null : idx);
-                    }}
-                  >
-                    <div className="flex items-center justify-between text-sm font-mono font-bold text-[#fafafa]">
-                      <span className="flex items-center gap-3">
-                        <span className="text-[#ff6b00]">0{idx + 1}.</span>
-                        <span>{faq.q}</span>
-                      </span>
-                      <span className="text-[#ff6b00] ml-2">
-                        {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                      </span>
-                    </div>
-
-                    {isOpen && (
-                      <p className="mt-3 text-xs text-[#a3a3a3] font-sans leading-relaxed pl-7">
-                        {faq.a}
-                      </p>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </ScrollReveal>
       </div>
     </div>
   );

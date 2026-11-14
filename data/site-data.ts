@@ -52,7 +52,7 @@ export const SITE_CONFIG = {
     { name: "Projects", href: "/projects", sectionId: "projects", description: "Engineering & Robotics Projects" },
     { name: "Gallery", href: "/gallery", sectionId: "gallery", description: "Event Albums & Memorable Moments" },
     { name: "Board", href: "/board", sectionId: "board", description: "Executive Board Members" },
-    { name: "Contact", href: "/contact", sectionId: "contact", description: "Transmission Beacon" },
+    { name: "Contact", href: "/#contact", sectionId: "contact", description: "Get in Touch" },
   ] as NavItem[],
   metrics: [
     {
@@ -117,13 +117,5 @@ export const SITE_CONFIG = {
       icon: "Radio",
       stats: "IP65 Enclosure / Industrial Sensors / LoRaWAN & MQTT",
     },
-  ],
-  sponsors: [
-    { name: "Titan Robotics Corp", tier: "Platinum Tier", perk: "Chassis & CNC Machining Partner" },
-    { name: "NexSilicon Dynamics", tier: "Platinum Tier", perk: "Microcontroller & Compute Hardware" },
-    { name: "Apex LiPo Systems", tier: "Gold Tier", perk: "High-Discharge Power Cells" },
-    { name: "Vector Motor Inverters", tier: "Gold Tier", perk: "Brushless ESCs & Dyno Testing" },
-    { name: "Quantum LiDAR Sensors", tier: "Silver Tier", perk: "Autonomous Perception Suite" },
-    { name: "RoboTech Components", tier: "Silver Tier", perk: "Sensors & Actuator Components" },
   ],
 };

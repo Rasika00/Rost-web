@@ -542,14 +542,6 @@ export default function HomePage() {
                   Apply for student membership, propose technical collaborations, or partner on upcoming society workshops.
                 </p>
               </div>
-
-              <Link
-                href="/contact"
-                className="text-xs font-mono text-[#ff6b00] hover:underline flex items-center gap-1.5 self-start md:self-auto uppercase tracking-wider"
-              >
-                <span>View Full Contact Directory & FAQ</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
             </div>
           </ScrollReveal>
 
