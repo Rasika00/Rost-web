@@ -18,7 +18,7 @@ export const SITE_CONFIG = {
   fullName: "Robotic Society of Technology",
   logo: "https://res.cloudinary.com/dpdsdpmgg/image/upload/v1786991273/Logo_hufo64.png",
   tagline: "“CONNECTING SENSORS. CODING LOGIC. POWERING INNOVATION.”",
-  heroVideo: "https://res.cloudinary.com/pasongqn/video/upload/v1791443991/gemini_generated_video_8d0b3172.mp4",
+  heroVideo: "https://res.cloudinary.com/pasongqn/video/upload/q_auto,f_auto,w_1280,vc_auto/v1791443991/gemini_generated_video_8d0b3172.mp4",
   description:
     "The central robotics and embedded systems platform of the Faculty of Technology, Rajarata University of Sri Lanka. We bridge theoretical knowledge and real-world implementation through hands-on Arduino & microcontroller sessions, applied IoT projects, hardware workshops, and competitive technology challenges.",
   affiliation: {

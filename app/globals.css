@@ -199,20 +199,21 @@ html.lenis, html.lenis body {
   content: '';
   position: absolute;
   top: 0;
-  left: -50%;
+  left: 0;
   width: 50%;
   height: 1px;
   background: linear-gradient(90deg, transparent, #ff6b00, #ffa040, transparent);
   animation: scanlineSweep 4.5s ease-in-out infinite;
   pointer-events: none;
+  will-change: transform;
 }
 
 @keyframes scanlineSweep {
   0% {
-    left: -50%;
+    transform: translateX(-100%);
   }
   50%, 100% {
-    left: 120%;
+    transform: translateX(250%);
   }
 }
 

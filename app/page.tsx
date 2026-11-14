@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -50,6 +50,36 @@ import { AboutSection } from "@/components/about-section";
 import { AlbumDetailModal } from "@/components/album-detail-modal";
 
 export default function HomePage() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const heroSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = 1.25;
+    }
+
+    const hero = heroSectionRef.current;
+    if (!hero || !video) return;
+
+    // Pause video when scrolled out of view to save battery and GPU/CPU decoding power
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
   const [selectedBot, setSelectedBot] = useState<Bot | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<ArenaEvent | null>(null);
   const [selectedAlbum, setSelectedAlbum] = useState<RostAlbum | null>(null);
@@ -120,16 +150,19 @@ export default function HomePage() {
           ========================================================================= */}
       <section
         id="home"
+        ref={heroSectionRef}
         className="relative h-screen h-[100dvh] w-full flex flex-col justify-center items-start text-left px-4 sm:px-8 lg:px-16 pt-20 sm:pt-24 pb-16 overflow-hidden"
       >
         {/* Looping Hero Background Video fixed to exact web screen size */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
+            style={{ transform: "translateZ(0)", willChange: "transform" }}
             className="w-full h-full min-w-full min-h-full object-cover object-center opacity-85 brightness-95 contrast-105"
             src={SITE_CONFIG.heroVideo}
           />
