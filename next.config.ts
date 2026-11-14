@@ -15,14 +15,6 @@ const nextConfig: NextConfig = {
   experimental: {
     agentUpgrade: "security",
   } as any,
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
 };
 
 export default nextConfig;
