@@ -22,13 +22,13 @@ export default function AboutPage() {
             className="inline-flex items-center gap-1.5 text-[#a3a3a3] hover:text-[#ff6b00] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>RETURN TO FLIGHT DECK</span>
+            <span>RETURN TO HOME</span>
           </Link>
 
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#22c55e]" />
             <span className="text-[#fafafa]">CONSTITUTION RATIFIED</span>
-            <span className="text-[#444444]">//</span>
+            <span className="text-[#444444]">•</span>
             <span className="text-[#ff7a1a]">FACULTY OF TECHNOLOGY</span>
           </div>
         </div>

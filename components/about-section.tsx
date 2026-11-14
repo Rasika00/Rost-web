@@ -64,10 +64,6 @@ export function AboutSection({ showFullNavigationLink = true }: AboutSectionProp
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
               {/* Left: Text & Info */}
               <div className="md:col-span-7 flex flex-col justify-center space-y-3">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#ff6b00]/10 border border-[#ff6b00]/30 text-xs font-mono text-[#ff6b00] tracking-widest uppercase font-semibold w-fit">
-                  // 02. WHAT IS ROST?
-                </span>
-
                 <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#ffffff] tracking-tight drop-shadow-sm">
                   ABOUT <span className="text-[#ff6b00]">{CONSTITUTION_DATA.shortForm}</span>
                 </h2>

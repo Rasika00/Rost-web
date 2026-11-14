@@ -29,7 +29,7 @@ export function Footer() {
     }
 
     setSubscribed(true);
-    toast.success("DISPATCH_SUBSCRIBED // Telemetry feed locked to your frequency.", {
+    toast.success("Subscribed successfully to updates.", {
       description: `Updates dispatched to ${email}`,
     });
     setEmail("");
@@ -90,7 +90,7 @@ export function Footer() {
             <div className="flex items-center gap-2">
               <Terminal className="w-4 h-4 text-[#ff6b00]" />
               <h3 className="font-mono text-sm uppercase tracking-wider text-[#fafafa] font-bold">
-                // JOIN THE FIRMWARE DISPATCH
+                NEWSLETTER & UPDATES
               </h3>
             </div>
             <p className="text-xs text-[#a3a3a3] leading-relaxed">
@@ -146,7 +146,7 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <Radio className="w-3.5 h-3.5 text-[#ff6b00]" />
             <span className="text-[11px] font-mono text-[#737373] tracking-widest uppercase">
-              // SITEMAP INDEX:
+              SITEMAP
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-mono">
@@ -166,7 +166,7 @@ export function Footer() {
         <div className="py-8 border-b border-[#222222]">
           <div className="flex items-center justify-between mb-4">
             <span className="text-[11px] font-mono text-[#737373] tracking-widest uppercase">
-              // INDUSTRY SPONSORS & HARDWARE PARTNERS
+              INDUSTRY SPONSORS & PARTNERS
             </span>
             <Link
               href="/contact"
@@ -201,7 +201,7 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
             <span>
-              FOCUS: {SITE_CONFIG.status.focus} // HUB: {SITE_CONFIG.status.hub} // STATUS: {SITE_CONFIG.status.innovatorStatus}
+              FOCUS: {SITE_CONFIG.status.focus} • HUB: {SITE_CONFIG.status.hub} • STATUS: {SITE_CONFIG.status.innovatorStatus}
             </span>
           </div>
 

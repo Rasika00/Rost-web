@@ -37,10 +37,6 @@ function EventsContent() {
         {/* Header */}
         <ScrollReveal direction="down" duration={0.65}>
           <div className="space-y-4 text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#141414] border border-[#ff6b00]/40 text-xs font-mono text-[#ff7a1a]">
-              <span>// ROST EVENTS & INITIATIVES</span>
-            </div>
-
             <h1 className="text-3xl sm:text-5xl font-mono font-black uppercase text-[#fafafa]">
               Society Events & Workshops
             </h1>

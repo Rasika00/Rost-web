@@ -229,7 +229,7 @@ export function Navigation() {
                 />
               </div>
               <span className="text-xs font-mono text-[#737373] tracking-widest uppercase">
-                // NAV_INDEX
+                NAVIGATION
               </span>
             </div>
 

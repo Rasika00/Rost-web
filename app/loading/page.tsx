@@ -24,7 +24,7 @@ export default function LoadingPreviewPage() {
       <div className="z-10 flex flex-col items-center space-y-6 max-w-sm text-center">
         <div className="space-y-2">
           <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-            // BOOT COMPLETE
+            READY
           </span>
           <h1 className="text-xl font-mono font-bold text-white uppercase tracking-wider">
             ROST Loading Interface

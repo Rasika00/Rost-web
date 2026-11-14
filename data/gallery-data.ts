@@ -32,7 +32,7 @@ export const ROST_ALBUMS: RostAlbum[] = [
     album: "ROST AGM",
     category: "ROST AGM",
     caption:
-      "Official proceedings, executive committee appointments, and visionary directives at the ROST Annual General Meeting, Faculty of Technology.",
+      "Official proceedings, executive committee appointments, and memorable moments from the ROST Annual General Meeting at the Faculty of Technology.",
     telemetry: "ALBUM: ROST_AGM // VENUE: FACULTY_OF_TECHNOLOGY",
     date: "2026",
     aspectRatio: "landscape",
@@ -112,7 +112,7 @@ export const ROST_ALBUMS: RostAlbum[] = [
     album: "Career Awareness",
     category: "Career Awareness",
     caption:
-      "Industry mentorship, career guidance journeys, and professional tech insights shared with Faculty of Technology undergraduates.",
+      "Memorable moments, mentorship discussions, and professional career guidance shared with Faculty of Technology undergraduates.",
     telemetry: "ALBUM: CAREER_AWARENESS // DATE: AUGUST_15_2026",
     date: "AUGUST 15, 2026",
     aspectRatio: "landscape",
@@ -191,7 +191,7 @@ export const ROST_ALBUMS: RostAlbum[] = [
     album: "ESP32 Workshop",
     category: "ESP32 Workshop",
     caption:
-      "Hands-on embedded programming, sensor interfacing, and physical IoT project development with ESP32 microcontrollers.",
+      "Memorable hands-on moments, embedded programming, and live IoT sensor interfacing during the ESP32 technical workshop.",
     telemetry: "ALBUM: ESP32_WORKSHOP // DATE: AUGUST_14_2026",
     date: "AUGUST 14, 2026",
     aspectRatio: "landscape",
@@ -276,7 +276,7 @@ export const ROST_ALBUMS: RostAlbum[] = [
     album: "Arduino Workshop",
     category: "Arduino Workshop",
     caption:
-      "Foundational microcontroller engineering, real-time problem solving, and circuit logic with Arduino platforms.",
+      "Memorable interactive moments, beginner robotics logic, and hardware circuit assembly at the ROST Arduino workshop.",
     telemetry: "ALBUM: ARDUINO_WORKSHOP // DATE: FEBRUARY_22_2026",
     date: "FEBRUARY 22, 2026",
     aspectRatio: "landscape",
@@ -361,7 +361,7 @@ export const ROST_ALBUMS: RostAlbum[] = [
     album: "Introduction to Robotics",
     category: "Introduction to Robotics",
     caption:
-      "Introduction to Robotics and IoT for newcomers featuring interactive activities and guest lecture by Mr. Husni Mohomad.",
+      "Memorable moments from the introductory robotics session, guest lecture, and hands-on demonstrations.",
     telemetry: "ALBUM: ROBOTICS_IOT_INTRO // DATE: JANUARY_25_2026",
     date: "JANUARY 25, 2026",
     aspectRatio: "landscape",

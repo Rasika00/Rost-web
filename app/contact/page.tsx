@@ -5,14 +5,11 @@ import { useSearchParams } from "next/navigation";
 import {
   Send,
   MessageSquare,
-  Mail,
   MapPin,
   ExternalLink,
   CheckCircle2,
   ChevronDown,
   ChevronUp,
-  Radio,
-  Sparkles,
 } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 import { toast } from "sonner";
@@ -45,7 +42,7 @@ function ContactContent() {
     },
     {
       q: "Where is the physical robotics prototyping lab located?",
-      a: "Our machine shop and subterranean test lab is located in the Faculty of Technology, Advanced Autonomous Systems Complex, Sector 9.",
+      a: "Our machine shop and test lab is located in the Faculty of Technology, Rajarata University of Sri Lanka, Room 104-B.",
     },
     {
       q: "Can school or external teams participate in ROST workshops and events?",
@@ -56,7 +53,7 @@ function ContactContent() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName || !email || !message) {
-      toast.error("TELEMETRY_INCOMPLETE: Please fill in all required fields.");
+      toast.error("Please fill in all required fields.");
       return;
     }
 
@@ -65,8 +62,8 @@ function ContactContent() {
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSent(true);
-      toast.success("DISPATCH_TRANSMITTED // Squad leadership notified.", {
-        description: `Confirmation telemetry sent to ${email}`,
+      toast.success("Message sent successfully.", {
+        description: `Confirmation sent to ${email}`,
       });
       setFullName("");
       setEmail("");
@@ -81,17 +78,13 @@ function ContactContent() {
         {/* Header */}
         <ScrollReveal direction="down" duration={0.6}>
           <div className="space-y-4 text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#141414] border border-[#ff6b00]/40 text-xs font-mono text-[#ff7a1a]">
-              <span>// TRANSMISSION BEACON & RECRUITMENT</span>
-            </div>
-
             <h1 className="text-3xl sm:text-5xl font-mono font-black uppercase text-[#fafafa]">
-              Connect With ROST Command
+              Connect With ROST
             </h1>
 
             <p className="text-sm sm:text-base text-[#a3a3a3] font-sans leading-relaxed">
               Apply to join our hardware engineering squad, propose corporate component sponsorships,
-              or inquire about competitive tournament match schedules.
+              or collaborate on upcoming robotics workshops.
             </p>
           </div>
         </ScrollReveal>
@@ -103,10 +96,10 @@ function ContactContent() {
             <div className="rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 p-6 sm:p-8 space-y-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
               <div className="space-y-1">
                 <h2 className="text-lg font-mono font-bold text-[#fafafa] uppercase">
-                  // TRANSMIT TELEMETRY MESSAGE
+                  Send a Message
                 </h2>
                 <p className="text-xs text-[#a3a3a3]">
-                  Our executive squadron typically responds within 24 operational hours.
+                  Our executive team typically responds within 24 operational hours.
                 </p>
               </div>
 
@@ -114,10 +107,10 @@ function ContactContent() {
                 <div className="p-6 rounded-xl bg-[#0e2a14] border border-[#22c55e]/40 text-xs font-mono text-[#22c55e] space-y-3">
                   <div className="flex items-center gap-2 text-base font-bold">
                     <CheckCircle2 className="w-5 h-5" />
-                    <span>TRANSMISSION CONFIRMED</span>
+                    <span>MESSAGE TRANSMITTED</span>
                   </div>
                   <p className="text-xs text-[#86efac]">
-                    Your dossier has been securely routed to our recruitment and sponsorship marshals.
+                    Your message has been securely delivered to our executive board.
                   </p>
                   <button
                     onClick={() => setIsSent(false)}
@@ -131,7 +124,7 @@ function ContactContent() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[10px] text-[#737373] mb-1">
-                        OPERATIVE FULL NAME *
+                        FULL NAME *
                       </label>
                       <input
                         type="text"
@@ -145,7 +138,7 @@ function ContactContent() {
 
                     <div>
                       <label className="block text-[10px] text-[#737373] mb-1">
-                        DISPATCH EMAIL ADDRESS *
+                        EMAIL ADDRESS *
                       </label>
                       <input
                         type="email"
@@ -161,14 +154,14 @@ function ContactContent() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[10px] text-[#737373] mb-1">
-                        TRANSMISSION CATEGORY
+                        CATEGORY
                       </label>
                       <select
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-[#0d0d0d] border border-[#262626] text-[#fafafa] focus:outline-none focus:border-[#ff6b00]"
                       >
-                        <option value="Recruitment">Student Recruitment & Squad Tryouts</option>
+                        <option value="Recruitment">Student Membership & Tryouts</option>
                         <option value="Sponsorship">Corporate / Hardware Sponsorship</option>
                         <option value="Competition Inquiry">Competitions, Hackathons & Workshops</option>
                         <option value="Research Collaboration">Academic Research Collaboration</option>
@@ -177,11 +170,11 @@ function ContactContent() {
 
                     <div>
                       <label className="block text-[10px] text-[#737373] mb-1">
-                        SUBJECT DIRECTIVE
+                        SUBJECT
                       </label>
                       <input
                         type="text"
-                        placeholder="e.g. Mechatronics Lab Application"
+                        placeholder="e.g. Robotics Lab Collaboration"
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-[#0d0d0d] border border-[#262626] text-[#fafafa] placeholder:text-[#555555] focus:outline-none focus:border-[#ff6b00]"
@@ -191,12 +184,12 @@ function ContactContent() {
 
                   <div>
                     <label className="block text-[10px] text-[#737373] mb-1">
-                      MESSAGE / DOSSIER BRIEFING *
+                      MESSAGE *
                     </label>
                     <textarea
                       rows={5}
                       required
-                      placeholder="Provide details about your engineering background, project ideas, or partnership objectives..."
+                      placeholder="Provide details about your inquiry, background, or partnership objectives..."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-[#0d0d0d] border border-[#262626] text-[#fafafa] placeholder:text-[#555555] focus:outline-none focus:border-[#ff6b00]"
@@ -209,7 +202,7 @@ function ContactContent() {
                     className="w-full py-3 px-4 rounded-xl bg-[#ff6b00] hover:bg-[#ffa040] text-[#080808] font-bold text-xs uppercase flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(255,107,0,0.35)] cursor-pointer disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
-                    <span>{isSubmitting ? "Transmitting..." : "Send Secure Transmission"}</span>
+                    <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
                   </button>
                 </form>
               )}
@@ -231,7 +224,7 @@ function ContactContent() {
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-sm font-bold text-[#fafafa] group-hover:text-[#ff6b00] transition-colors">
-                    Discord Comms Server
+                    Discord Community Server
                   </span>
                   <ExternalLink className="w-3.5 h-3.5 text-[#737373]" />
                 </div>
@@ -252,7 +245,7 @@ function ContactContent() {
                     Physical Robotics & IoT Prototyping Lab
                   </h3>
                   <div className="text-[10px] font-mono text-[#ff7a1a]">
-                    SECTOR 9 // ROOM 104-B
+                    FACULTY OF TECHNOLOGY • ROOM 104-B
                   </div>
                 </div>
               </div>
@@ -281,7 +274,7 @@ function ContactContent() {
                   <ExternalLink className="w-3.5 h-3.5 text-[#737373]" />
                 </div>
                 <p className="text-xs text-[#a3a3a3]">
-                  Fork our ROS2 Humble packages, STM32 FOC motor controllers, and KiCAD board layouts.
+                  Explore our ROS2 Humble packages, STM32 FOC motor controllers, and KiCAD board layouts.
                 </p>
               </div>
             </a>
@@ -292,9 +285,6 @@ function ContactContent() {
         <ScrollReveal direction="up" duration={0.6}>
           <div className="space-y-6 pt-8">
             <div className="text-center space-y-2">
-              <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                // FREQUENTLY ASKED TELEMETRY
-              </span>
               <h2 className="text-2xl sm:text-3xl font-mono font-black uppercase text-[#fafafa]">
                 Recruitment & Sponsorship FAQ
               </h2>
@@ -339,7 +329,7 @@ function ContactContent() {
 
 export default function ContactPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center font-mono text-[#ff6b00]">INITIALIZING_BEACON...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center font-mono text-[#ff6b00]">LOADING...</div>}>
       <ContactContent />
     </Suspense>
   );

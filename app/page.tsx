@@ -103,7 +103,7 @@ export default function HomePage() {
     setTimeout(() => {
       setIsSubmittingContact(false);
       setContactSent(true);
-      toast.success("DISPATCH_TRANSMITTED // Squad leadership notified.", {
+      toast.success("Message transmitted successfully.", {
         description: `Confirmation telemetry sent to ${contactEmail}`,
       });
       setContactName("");
@@ -186,7 +186,7 @@ export default function HomePage() {
             onClick={() => scrollToSection("about")}
             className="flex items-center gap-2 text-xs sm:text-sm font-mono tracking-widest text-[#a3a3a3] hover:text-[#ff6b00] transition-colors uppercase group cursor-pointer"
           >
-            <span>SCROLL TO 02 // ABOUT</span>
+            <span>SCROLL TO ABOUT</span>
             <ChevronDown className="w-4 h-4 text-[#ff6b00] group-hover:translate-y-1 transition-transform animate-bounce" />
           </button>
         </div>
@@ -208,10 +208,7 @@ export default function HomePage() {
           <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
-                <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                  // 03. ROST EVENTS & PROGRAMMES
-                </span>
-                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
+                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa]">
                   Events & Technical Programmes
                 </h2>
                 <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
@@ -280,10 +277,7 @@ export default function HomePage() {
           <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
-                <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                  // 04. ENGINEERING PROJECTS & INNOVATIONS
-                </span>
-                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
+                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa]">
                   Robotics & Technology Projects
                 </h2>
                 <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
@@ -389,14 +383,11 @@ export default function HomePage() {
           <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
-                <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                  // 05. VISUAL ARCHIVES & ALBUMS
-                </span>
-                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
-                  Society Media & Project Archives
+                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa]">
+                  Event Albums & Memorable Moments
                 </h2>
                 <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
-                  Photographic archives from ROST annual general meetings, technical workshops, robotics prototyping, and engineering initiatives.
+                  Capturing unforgettable memories from ROST workshops, technical sessions, annual general meetings, and university robotics initiatives.
                 </p>
               </div>
 
@@ -404,7 +395,7 @@ export default function HomePage() {
                 href="/gallery"
                 className="text-xs font-mono text-[#ff6b00] hover:underline flex items-center gap-1.5 self-start md:self-auto uppercase tracking-wider"
               >
-                <span>Explore Full Gallery & High-Res Archives</span>
+                <span>View All Event Albums & Moments</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -459,10 +450,7 @@ export default function HomePage() {
           <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
-                <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                  // 06. LEADERSHIP COMMAND & BOARD
-                </span>
-                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
+                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa]">
                   Executive Directorate & Squadron Leads
                 </h2>
                 <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
@@ -547,10 +535,7 @@ export default function HomePage() {
           <ScrollReveal direction="down" duration={0.75}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
-                <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                  // 07. TRANSMISSION BEACON & COMMS
-                </span>
-                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
+                <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa]">
                   Connect With ROST Command
                 </h2>
                 <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
@@ -575,7 +560,7 @@ export default function HomePage() {
               <div className="rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 p-6 sm:p-8 space-y-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
                 <div className="space-y-1">
                   <h3 className="text-base font-mono font-bold text-[#fafafa] uppercase">
-                    // TRANSMIT TELEMETRY DISPATCH
+                    Send a Message
                   </h3>
                   <p className="text-xs text-[#a3a3a3]">
                     Squad leadership reviews all incoming recruit dossiers and sponsorship proposals daily.
@@ -586,7 +571,7 @@ export default function HomePage() {
                   <div className="p-6 rounded-xl bg-[#0e2a14] border border-[#22c55e]/40 text-xs font-mono text-[#22c55e] space-y-3">
                     <div className="flex items-center gap-2 text-base font-bold">
                       <CheckCircle2 className="w-5 h-5" />
-                      <span>DISPATCH TRANSMITTED // ACKNOWLEDGED</span>
+                      <span>MESSAGE SENT SUCCESSFULLY</span>
                     </div>
                     <p className="text-xs text-[#86efac]">
                       Your message has been securely routed to our recruitment marshals and executive leads.
@@ -712,7 +697,7 @@ export default function HomePage() {
                         Robotics & Embedded Systems Lab
                       </h4>
                       <div className="text-[10px] font-mono text-[#ff7a1a]">
-                        SECTOR 9 // ROOM 104-B
+                        FACULTY OF TECHNOLOGY • ROOM 104-B
                       </div>
                     </div>
                   </div>

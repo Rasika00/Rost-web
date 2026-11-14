@@ -50,7 +50,7 @@ export const SITE_CONFIG = {
     { name: "About", href: "/#about", sectionId: "about", description: "Origin & 4 Pillars" },
     { name: "Events", href: "/events", sectionId: "events", description: "Society Events & Workshops" },
     { name: "Projects", href: "/projects", sectionId: "projects", description: "Engineering & Robotics Projects" },
-    { name: "Gallery", href: "/gallery", sectionId: "gallery", description: "Society Event Media Archives" },
+    { name: "Gallery", href: "/gallery", sectionId: "gallery", description: "Event Albums & Memorable Moments" },
     { name: "Board", href: "/board", sectionId: "board", description: "Executive Board Members" },
     { name: "Contact", href: "/contact", sectionId: "contact", description: "Transmission Beacon" },
   ] as NavItem[],

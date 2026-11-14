@@ -43,11 +43,6 @@ export default function BoardPage() {
             ========================================================================= */}
         <ScrollReveal direction="down" duration={0.65}>
           <div className="space-y-4 text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#141414] border border-[#ff6b00]/40 text-xs font-mono text-[#ff7a1a] shadow-[0_0_20px_rgba(255,107,0,0.15)]">
-              <Users className="w-3.5 h-3.5 text-[#ff6b00]" />
-              <span>// EXECUTIVE BOARD & LEADERSHIP SQUAD</span>
-            </div>
-
             <h1 className="text-3xl sm:text-5xl font-mono font-black uppercase text-[#fafafa] tracking-tight">
               Executive Board
             </h1>

@@ -93,7 +93,7 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-60" />
 
               <div className="absolute top-2 left-2 text-[10px] font-mono text-[#ff6b00] bg-[#080808]/80 px-2 py-0.5 rounded border border-[#ff6b00]/30 backdrop-blur-sm">
-                HARDWARE_SPECS // {bot.specs.weight}
+                SYSTEM SPECS • {bot.specs.weight}
               </div>
 
               <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono text-[#fafafa] bg-[#0d0d0d]/85 p-2 rounded-lg border border-[#262626] backdrop-blur-md">
@@ -170,7 +170,7 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
           {/* Full Narrative Overview */}
           <div className="space-y-2">
             <h4 className="text-xs font-mono uppercase tracking-wider text-[#737373]">
-              // ARCHITECTURAL OVERVIEW
+              ARCHITECTURAL OVERVIEW
             </h4>
             <p className="text-sm font-sans text-[#a3a3a3] leading-relaxed">
               {bot.fullOverview}
@@ -180,7 +180,7 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
           {/* Detailed Engineering Specifications Table */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono uppercase tracking-wider text-[#737373]">
-              // HARDWARE SUBSYSTEM SPECIFICATIONS
+              HARDWARE SUBSYSTEM SPECIFICATIONS
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
               <div className="p-3 rounded-lg bg-[#0d0d0d] border border-[#222222] space-y-1">
@@ -216,7 +216,7 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
           {/* Sensor Layout Tags */}
           <div className="space-y-2">
             <h4 className="text-xs font-mono uppercase tracking-wider text-[#737373]">
-              // SENSOR INTEGRATION
+              SENSOR INTEGRATION
             </h4>
             <div className="flex flex-wrap gap-2">
               {bot.specs.sensors.map((sensor, idx) => (

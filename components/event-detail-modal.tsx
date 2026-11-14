@@ -173,7 +173,7 @@ export function EventDetailModal({ event, onClose }: EventDetailModalProps) {
             {/* Full Narrative Overview */}
             <div className="space-y-2">
               <h4 className="text-xs font-mono uppercase tracking-wider text-[#737373]">
-                {"// EVENT DETAILS & OVERVIEW"}
+                {"EVENT DETAILS & OVERVIEW"}
               </h4>
               <p className="text-sm font-sans text-[#a3a3a3] leading-relaxed whitespace-pre-line">
                 {event.fullOverview}
@@ -186,7 +186,7 @@ export function EventDetailModal({ event, onClose }: EventDetailModalProps) {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 text-xs font-mono text-[#fafafa] font-bold">
                     <Users className="w-4 h-4 text-[#ff6b00]" />
-                    <span>EVENT REGISTRATION // RESERVE PARTICIPATION</span>
+                    <span>EVENT REGISTRATION</span>
                   </div>
                   {event.slotsRemaining ? (
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1c1c1c] text-[#22c55e] border border-[#22c55e]/30">
