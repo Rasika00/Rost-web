@@ -41,15 +41,16 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { SITE_CONFIG } from "@/data/site-data";
 import { BOT_FLEET, Bot } from "@/data/bot-data";
 import { ARENA_EVENTS, ArenaEvent } from "@/data/events-data";
-import { GALLERY_ITEMS, GalleryItem } from "@/data/gallery-data";
+import { ROST_ALBUMS, RostAlbum } from "@/data/gallery-data";
 import { TEAM_MEMBERS, TeamMember } from "@/data/team-data";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AboutSection } from "@/components/about-section";
+import { AlbumDetailModal } from "@/components/album-detail-modal";
 
 export default function HomePage() {
   const [selectedBot, setSelectedBot] = useState<Bot | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<ArenaEvent | null>(null);
-  const [activeGalleryIndex, setActiveGalleryIndex] = useState<number | null>(null);
+  const [selectedAlbum, setSelectedAlbum] = useState<RostAlbum | null>(null);
   const [activeDossier, setActiveDossier] = useState<TeamMember | null>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
 
@@ -87,7 +88,7 @@ export default function HomePage() {
 
   const flagshipBots = BOT_FLEET.slice(0, 3);
   const previewEvents = ARENA_EVENTS;
-  const previewGallery = GALLERY_ITEMS.slice(0, 4);
+  const previewAlbums = ROST_ALBUMS.slice(0, 4);
   const previewBoard = TEAM_MEMBERS.slice(0, 4);
 
   const pillarIcons: Record<string, React.ReactNode> = {
@@ -114,37 +115,6 @@ export default function HomePage() {
       window.history.replaceState(null, "", `/#${id}`);
     }
   };
-
-  // Keyboard navigation for Lightbox
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (activeGalleryIndex === null) return;
-      if (e.key === "Escape") {
-        setActiveGalleryIndex(null);
-      } else if (e.key === "ArrowRight") {
-        setActiveGalleryIndex((prev) =>
-          prev !== null ? (prev + 1) % previewGallery.length : null
-        );
-      } else if (e.key === "ArrowLeft") {
-        setActiveGalleryIndex((prev) =>
-          prev !== null ? (prev - 1 + previewGallery.length) % previewGallery.length : null
-        );
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    if (activeGalleryIndex !== null) {
-      document.body.style.overflow = "hidden";
-      document.body.classList.add("event-modal-open");
-      window.dispatchEvent(new CustomEvent("event-modal-change", { detail: { open: true } }));
-    }
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "auto";
-      document.body.classList.remove("event-modal-open");
-      window.dispatchEvent(new CustomEvent("event-modal-change", { detail: { open: false } }));
-    };
-  }, [activeGalleryIndex, previewGallery.length]);
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -549,9 +519,9 @@ export default function HomePage() {
 
           {/* 4-Item Gallery Highlights Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {previewGallery.map((item, idx) => (
+            {previewAlbums.map((album, idx) => (
               <ScrollReveal
-                key={item.id}
+                key={album.id}
                 delay={idx * 110}
                 direction="up"
                 duration={0.8}
@@ -559,38 +529,24 @@ export default function HomePage() {
                 className="h-full flex"
               >
                 <div
-                  onClick={() => setActiveGalleryIndex(idx)}
+                  onClick={() => setSelectedAlbum(album)}
                   className="w-full group relative rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all overflow-hidden flex flex-col justify-between hover:shadow-[0_0_25px_rgba(255,107,0,0.25)] hover:-translate-y-1 cursor-pointer"
                 >
+                  <div className="p-4 pb-3">
+                    <h3 className="font-mono text-sm font-bold text-[#fafafa] group-hover:text-[#ff6b00] transition-colors leading-snug line-clamp-1">
+                      {album.name}
+                    </h3>
+                  </div>
+
                   <div className="relative aspect-video w-full overflow-hidden bg-[#0d0d0d]">
                     <Image
-                      src={item.image}
-                      alt={item.title}
+                      src={album.coverImage || album.image}
+                      alt={album.name}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 100vw, 300px"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-75" />
-
-                    <div className="absolute top-2.5 left-2.5 text-[9px] font-mono px-2 py-0.5 rounded bg-[#080808]/90 text-[#ff6b00] border border-[#ff6b00]/30 font-semibold backdrop-blur-sm">
-                      {item.album ? `ALBUM // ${item.album}` : item.category}
-                    </div>
-
-                    <div className="absolute bottom-2.5 right-2.5 p-1.5 rounded-lg bg-[#080808]/80 text-[#fafafa] border border-[#262626] opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Maximize2 className="w-3.5 h-3.5 text-[#ff6b00]" />
-                    </div>
-                  </div>
-
-                  <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
-                    <h3 className="font-mono text-sm font-bold text-[#fafafa] group-hover:text-[#ff6b00] transition-colors leading-snug line-clamp-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-[11px] text-[#a3a3a3] line-clamp-2 leading-relaxed">
-                      {item.caption}
-                    </p>
-                    <div className="pt-2 border-t border-[#222222] text-[9px] font-mono text-[#ff7a1a] truncate">
-                      {item.telemetry}
-                    </div>
                   </div>
                 </div>
               </ScrollReveal>
@@ -918,83 +874,8 @@ export default function HomePage() {
       {/* Arena Event Registration Deep-Link Modal */}
       <EventDetailModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
 
-      {/* Gallery Lightbox Modal */}
-      {activeGalleryIndex !== null && previewGallery[activeGalleryIndex] && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/95 backdrop-blur-2xl animate-in fade-in duration-200">
-          <button
-            onClick={() => setActiveGalleryIndex(null)}
-            className="absolute top-4 right-4 z-50 p-2.5 rounded-xl bg-[#141414] border border-[#262626] text-[#fafafa] hover:border-[#ff6b00] transition-colors cursor-pointer"
-            aria-label="Close Lightbox"
-          >
-            <X className="w-5 h-5" />
-          </button>
-
-          <button
-            onClick={() =>
-              setActiveGalleryIndex((prev) =>
-                prev !== null ? (prev - 1 + previewGallery.length) % previewGallery.length : null
-              )
-            }
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-xl bg-[#141414]/90 border border-[#262626] text-[#fafafa] hover:border-[#ff6b00] transition-colors cursor-pointer"
-            aria-label="Previous Image"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          <button
-            onClick={() =>
-              setActiveGalleryIndex((prev) =>
-                prev !== null ? (prev + 1) % previewGallery.length : null
-              )
-            }
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-xl bg-[#141414]/90 border border-[#262626] text-[#fafafa] hover:border-[#ff6b00] transition-colors cursor-pointer"
-            aria-label="Next Image"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          <div className="relative max-w-5xl w-full flex flex-col items-center space-y-4">
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-[#ff6b00]/40 shadow-[0_0_50px_rgba(255,107,0,0.25)] bg-[#0d0d0d]">
-              <Image
-                src={previewGallery[activeGalleryIndex].image}
-                alt={previewGallery[activeGalleryIndex].title}
-                fill
-                className="object-contain"
-                sizes="(max-width: 1200px) 100vw, 1200px"
-              />
-            </div>
-
-            <div className="w-full bg-[#121212] border border-[#262626] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff7a1a] border border-[#ff6b00]/30 font-bold uppercase">
-                    {previewGallery[activeGalleryIndex].album ? `ALBUM // ${previewGallery[activeGalleryIndex].album}` : previewGallery[activeGalleryIndex].category}
-                  </span>
-                  <span className="font-bold text-[#fafafa]">
-                    {previewGallery[activeGalleryIndex].title}
-                  </span>
-                  {previewGallery[activeGalleryIndex].collectionUrl && (
-                    <a
-                      href={previewGallery[activeGalleryIndex].collectionUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[11px] font-mono text-[#ff7a1a] hover:text-[#ffa040] hover:underline"
-                    >
-                      <span>Open Cloudinary Album ↗</span>
-                    </a>
-                  )}
-                </div>
-                <p className="text-[11px] text-[#a3a3a3] font-sans">
-                  {previewGallery[activeGalleryIndex].caption}
-                </p>
-              </div>
-              <div className="text-[10px] text-[#ff6b00] bg-[#0d0d0d] px-3 py-1.5 rounded border border-[#262626]">
-                {previewGallery[activeGalleryIndex].telemetry}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Album Detail & Photo Collection Modal */}
+      <AlbumDetailModal album={selectedAlbum} onClose={() => setSelectedAlbum(null)} />
 
       {/* Board Director Dossier Modal */}
       {activeDossier && (
