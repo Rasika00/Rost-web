@@ -366,17 +366,76 @@ export const ROST_ALBUMS: RostAlbum[] = [
     date: "JANUARY 25, 2026",
     aspectRatio: "landscape",
     image:
-      "https://res.cloudinary.com/pasongqn/image/upload/v1794657414/624524630_899576653033974_6667067312148271890_n.jpg",
+      "https://res.cloudinary.com/pasongqn/image/upload/v1794660962/623379564_899571453034494_2494946350635183441_n.jpg",
     coverImage:
-      "https://res.cloudinary.com/pasongqn/image/upload/v1794657414/624524630_899576653033974_6667067312148271890_n.jpg",
+      "https://res.cloudinary.com/pasongqn/image/upload/v1794660962/623379564_899571453034494_2494946350635183441_n.jpg",
     tags: ["Introduction to Robotics", "IoT", "Newcomer Session", "Faculty of Technology"],
     photos: [
       {
         id: "intro-01",
-        title: "Exploring the World of Robotics and IoT",
+        title: "Exploring Robotics & IoT",
+        image:
+          "https://res.cloudinary.com/pasongqn/image/upload/v1794660962/623379564_899571453034494_2494946350635183441_n.jpg",
+      },
+      {
+        id: "intro-02",
+        title: "Exploring Robotics & IoT",
+        image:
+          "https://res.cloudinary.com/pasongqn/image/upload/v1794660960/623373879_899571443034495_4285811683751754511_n.jpg",
+      },
+      {
+        id: "intro-03",
+        title: "Exploring Robotics & IoT",
+        image:
+          "https://res.cloudinary.com/pasongqn/image/upload/v1794660958/622833747_899575223034117_561525602004257370_n.jpg",
+      },
+      {
+        id: "intro-04",
+        title: "Exploring Robotics & IoT",
+        image:
+          "https://res.cloudinary.com/pasongqn/image/upload/v1794660957/624910596_899577859700520_7208425962422423240_n.jpg",
+      },
+      {
+        id: "intro-05",
+        title: "Exploring Robotics & IoT",
+        image:
+          "https://res.cloudinary.com/pasongqn/image/upload/v1794660955/622343369_899578149700491_1715515880866946032_n.jpg",
+      },
+      {
+        id: "intro-06",
+        title: "Exploring Robotics & IoT",
+        image:
+          "https://res.cloudinary.com/pasongqn/image/upload/v1794660954/622377130_899575249700781_2895607451482790599_n.jpg",
+      },
+      {
+        id: "intro-07",
+        title: "Exploring Robotics & IoT",
+        image:
+          "https://res.cloudinary.com/pasongqn/image/upload/v1794660952/622402733_899576076367365_5459128992869314813_n.jpg",
+      },
+      {
+        id: "intro-08",
+        title: "Exploring Robotics & IoT",
+        image:
+          "https://res.cloudinary.com/pasongqn/image/upload/v1794660950/623372793_899574789700827_5680151708093289374_n.jpg",
+      },
+      {
+        id: "intro-09",
+        title: "Exploring Robotics & IoT",
+        image:
+          "https://res.cloudinary.com/pasongqn/image/upload/v1794660950/622805056_899575289700777_4399095726716307042_n.jpg",
+      },
+      {
+        id: "intro-10",
+        title: "Exploring Robotics & IoT",
+        image:
+          "https://res.cloudinary.com/pasongqn/image/upload/v1794660948/623858392_899574476367525_8256200671948163615_n.jpg",
+      },
+      {
+        id: "intro-11",
+        title: "Exploring Robotics & IoT",
         image:
           "https://res.cloudinary.com/pasongqn/image/upload/v1794657414/624524630_899576653033974_6667067312148271890_n.jpg",
-        caption: "Interactive robotics session for technology undergraduates at the faculty premises.",
       },
     ],
   },
