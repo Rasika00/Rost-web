@@ -22,6 +22,27 @@ export function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("home");
+  const [isEventOpen, setIsEventOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof document !== "undefined" && document.body.classList.contains("event-modal-open")) {
+      setIsEventOpen(true);
+    }
+
+    const handleModalChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ open: boolean }>;
+      const open = Boolean(customEvent.detail?.open);
+      setIsEventOpen(open);
+      if (open) {
+        setMobileOpen(false);
+      }
+    };
+
+    window.addEventListener("event-modal-change", handleModalChange);
+    return () => {
+      window.removeEventListener("event-modal-change", handleModalChange);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,6 +125,10 @@ export function Navigation() {
       setMobileOpen(false);
     }
   };
+
+  if (isEventOpen) {
+    return null;
+  }
 
   return (
     <>

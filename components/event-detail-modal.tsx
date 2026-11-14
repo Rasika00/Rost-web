@@ -1,16 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import {
   X,
   Calendar,
   Trophy,
-  ShieldCheck,
   Send,
   CheckCircle2,
-  Sparkles,
   Users,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -32,13 +29,22 @@ export function EventDetailModal({ event, onClose }: EventDetailModalProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
+
+    const lenis = (window as unknown as { lenis?: { stop: () => void; start: () => void } }).lenis;
+
     if (event) {
       window.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
+      document.body.classList.add("event-modal-open");
+      window.dispatchEvent(new CustomEvent("event-modal-change", { detail: { open: true } }));
+      lenis?.stop();
     }
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "auto";
+      document.body.classList.remove("event-modal-open");
+      window.dispatchEvent(new CustomEvent("event-modal-change", { detail: { open: false } }));
+      lenis?.start();
     };
   }, [event, onClose]);
 
@@ -66,10 +72,14 @@ export function EventDetailModal({ event, onClose }: EventDetailModalProps) {
     <div
       onClick={onClose}
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/90 backdrop-blur-xl animate-in fade-in duration-200 cursor-pointer"
+      data-lenis-prevent="true"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-3xl max-h-[92vh] flex flex-col bg-[#121212] border border-[#ff6b00]/40 rounded-2xl shadow-[0_0_50px_rgba(255,107,0,0.25)] overflow-hidden cursor-default"
+        onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
+        data-lenis-prevent="true"
+        className="relative w-full max-w-3xl max-h-[90vh] flex flex-col bg-[#121212] border border-[#ff6b00]/40 rounded-2xl shadow-[0_0_50px_rgba(255,107,0,0.25)] overflow-hidden cursor-default overscroll-contain"
       >
         {/* Header HUD Bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-[#262626] bg-[#0d0d0d] shrink-0">
@@ -82,9 +92,6 @@ export function EventDetailModal({ event, onClose }: EventDetailModalProps) {
                 <span className="font-mono text-base sm:text-lg font-black tracking-wider text-[#fafafa]">
                   {event.title}
                 </span>
-              </div>
-              <div className="text-[11px] font-mono text-[#ff7a1a]">
-                {event.category} • {event.targetAudience || event.weightClass}
               </div>
             </div>
           </div>
@@ -101,7 +108,10 @@ export function EventDetailModal({ event, onClose }: EventDetailModalProps) {
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="overflow-y-auto">
+        <div
+          data-lenis-prevent="true"
+          className="overflow-y-auto flex-1 min-h-0 overscroll-contain"
+        >
           {/* Event Hero Banner with Image */}
           <div className="relative w-full h-56 sm:h-72 overflow-hidden bg-[#0a0a0a]">
             <Image
@@ -114,48 +124,48 @@ export function EventDetailModal({ event, onClose }: EventDetailModalProps) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/40 to-transparent" />
             <div className="absolute bottom-4 left-6 right-6 space-y-1.5 pointer-events-none">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-[#0a0a0a]/90 text-[#ff7a1a] border border-[#ff6b00]/40 font-bold uppercase tracking-wider backdrop-blur-md">
-                  {event.category}
-                </span>
-                <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-[#0a0a0a]/90 text-[#22c55e] border border-[#22c55e]/40 font-bold uppercase tracking-wider backdrop-blur-md flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] inline-block" />
-                  {event.status}
-                </span>
-              </div>
-              <h3 className="font-mono text-xl sm:text-2xl font-black text-[#fafafa] leading-snug drop-shadow-md">
+              <h3 className="font-mono text-xl sm:text-2xl font-black text-[#fafafa] leading-snug drop-shadow-md break-words">
                 {event.title}
               </h3>
-              <p className="text-xs font-mono text-[#ff9944] drop-shadow-md">
-                {event.targetAudience || event.weightClass}
-              </p>
             </div>
           </div>
 
           <div className="p-6 space-y-6">
-            {/* Key Event Badges (Date, Target Audience & Focus) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
-              <div className="p-3 rounded-xl bg-[#141414] border border-[#262626] flex items-center gap-2.5">
-                <Calendar className="w-4 h-4 text-[#ff6b00]" />
-                <div>
-                  <div className="text-[10px] text-[#737373]">DATE</div>
-                  <div className="text-[#fafafa] font-bold">{event.date}</div>
+            {/* Key Event Badges */}
+            <div
+              className={`grid grid-cols-1 ${
+                event.targetAudience ? "sm:grid-cols-3" : "sm:grid-cols-2"
+              } gap-3 font-mono text-xs`}
+            >
+              <div className="p-4 rounded-xl bg-[#141414] border border-[#262626] flex items-start gap-3.5 min-w-0 overflow-hidden">
+                <Calendar className="w-5 h-5 text-[#ff6b00] shrink-0 mt-0.5" />
+                <div className="min-w-0 flex-1">
+                  <div className="text-[10px] sm:text-[11px] text-[#737373] uppercase tracking-wider mb-1">DATE</div>
+                  <div className="text-sm sm:text-base text-[#fafafa] font-bold tracking-wide break-words leading-snug">
+                    {event.date}
+                  </div>
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-[#141414] border border-[#262626] flex items-center gap-2.5">
-                <Users className="w-4 h-4 text-[#ff6b00]" />
-                <div>
-                  <div className="text-[10px] text-[#737373]">TARGET AUDIENCE</div>
-                  <div className="text-[#fafafa] font-bold truncate">{event.targetAudience || event.weightClass}</div>
+              {event.targetAudience ? (
+                <div className="p-4 rounded-xl bg-[#141414] border border-[#262626] flex items-start gap-3.5 min-w-0 overflow-hidden">
+                  <Users className="w-5 h-5 text-[#ff6b00] shrink-0 mt-0.5" />
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[10px] sm:text-[11px] text-[#737373] uppercase tracking-wider mb-1">TARGET AUDIENCE</div>
+                    <div className="text-xs sm:text-sm text-[#fafafa] font-bold break-words leading-snug">
+                      {event.targetAudience}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ) : null}
 
-              <div className="p-3 rounded-xl bg-[#141414] border border-[#262626] flex items-center gap-2.5">
-                <Trophy className="w-4 h-4 text-[#22c55e]" />
-                <div>
-                  <div className="text-[10px] text-[#737373]">FOCUS & RECOGNITION</div>
-                  <div className="text-[#22c55e] font-bold truncate">{event.prizePool}</div>
+              <div className="p-4 rounded-xl bg-[#141414] border border-[#262626] flex items-start gap-3.5 min-w-0 overflow-hidden">
+                <Trophy className="w-5 h-5 text-[#22c55e] shrink-0 mt-0.5" />
+                <div className="min-w-0 flex-1">
+                  <div className="text-[10px] sm:text-[11px] text-[#737373] uppercase tracking-wider mb-1">FOCUS & RECOGNITION</div>
+                  <div className="text-xs sm:text-sm text-[#22c55e] font-bold break-words leading-snug">
+                    {event.prizePool}
+                  </div>
                 </div>
               </div>
             </div>
@@ -170,50 +180,8 @@ export function EventDetailModal({ event, onClose }: EventDetailModalProps) {
               </p>
             </div>
 
-            {/* Key Event Highlights & Core Takeaways */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-xs font-mono text-[#ff7a1a] font-bold">
-                <Sparkles className="w-4 h-4 text-[#ff6b00]" />
-                <span>{"// KEY HIGHLIGHTS & CORE TAKEAWAYS"}</span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {event.safetyRegulations.map((highlight, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-start gap-3 p-3.5 rounded-xl bg-[#141414] border border-[#262626] hover:border-[#ff6b00]/40 transition-colors text-xs font-mono text-[#d4d4d4]"
-                  >
-                    <CheckCircle2 className="w-4 h-4 text-[#22c55e] shrink-0 mt-0.5" />
-                    <span className="leading-relaxed">{highlight}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Status / Archive Section */}
-            {event.status === "Concluded" ? (
-              <div className="p-5 rounded-xl bg-[#141414] border border-[#22c55e]/30 space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-mono text-[#fafafa] font-bold">
-                    <CheckCircle2 className="w-4 h-4 text-[#22c55e]" />
-                    <span>EVENT STATUS // COMPLETED & CONCLUDED</span>
-                  </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#181818] text-[#22c55e] border border-[#22c55e]/30 font-bold">
-                    CONCLUDED
-                  </span>
-                </div>
-                <p className="text-xs font-sans text-[#a3a3a3] leading-relaxed">
-                  This event was successfully conducted by the Robotic Society of Technology (ROST). All project demonstrations, technical sessions, and award presentations have concluded.
-                </p>
-                <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
-                  <Link
-                    href="/contact"
-                    className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-[#1c1c1c] hover:bg-[#252525] border border-[#333333] text-xs font-mono text-[#fafafa] flex items-center justify-center gap-2 transition-colors cursor-pointer"
-                  >
-                    <span>Inquire with Organizing Committee</span>
-                  </Link>
-                </div>
-              </div>
-            ) : (
+            {/* Registration Form (Upcoming Events) */}
+            {event.status !== "Concluded" && (
               <div className="p-5 rounded-xl bg-[#141414] border border-[#ff6b00]/30 space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 text-xs font-mono text-[#fafafa] font-bold">

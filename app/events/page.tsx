@@ -21,13 +21,10 @@ function EventsContent() {
     }
   }, [initialEventId]);
 
-  const categories = [
-    "All",
-    "Workshops",
-    "Competitions",
-    "Hackathons",
-    "Exhibitions",
-  ];
+  const categories = useMemo(() => {
+    const cats = Array.from(new Set(ROST_EVENTS.map((e) => e.category)));
+    return ["All", ...cats];
+  }, []);
 
   const filteredEvents = useMemo(() => {
     if (selectedCategory === "All") return ROST_EVENTS;

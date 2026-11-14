@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import {
   X,
@@ -11,6 +11,7 @@ import {
   Camera,
   Activity,
   Layers,
+  ExternalLink,
 } from "lucide-react";
 import { GALLERY_ITEMS, GalleryItem } from "@/data/gallery-data";
 import { ScrollReveal } from "@/components/scroll-reveal";
@@ -19,18 +20,17 @@ export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
 
-  const categories = [
-    "All",
-    "Tournament Matches",
-    "Lab Fabrication",
-    "Pit Crew & Arena",
-    "Autonomous Trials",
-  ];
+  const categories = useMemo(() => {
+    const cats = Array.from(new Set(GALLERY_ITEMS.map((item) => item.album || item.category)));
+    return ["All", ...cats];
+  }, []);
 
-  const filteredItems =
-    selectedCategory === "All"
-      ? GALLERY_ITEMS
-      : GALLERY_ITEMS.filter((item) => item.category === selectedCategory);
+  const filteredItems = useMemo(() => {
+    if (selectedCategory === "All") return GALLERY_ITEMS;
+    return GALLERY_ITEMS.filter(
+      (item) => item.album === selectedCategory || item.category === selectedCategory
+    );
+  }, [selectedCategory]);
 
   // Keyboard navigation for Lightbox
   useEffect(() => {
@@ -52,10 +52,14 @@ export default function GalleryPage() {
     window.addEventListener("keydown", handleKeyDown);
     if (activeItemIndex !== null) {
       document.body.style.overflow = "hidden";
+      document.body.classList.add("event-modal-open");
+      window.dispatchEvent(new CustomEvent("event-modal-change", { detail: { open: true } }));
     }
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "auto";
+      document.body.classList.remove("event-modal-open");
+      window.dispatchEvent(new CustomEvent("event-modal-change", { detail: { open: false } }));
     };
   }, [activeItemIndex, filteredItems.length]);
 
@@ -68,11 +72,11 @@ export default function GalleryPage() {
         <ScrollReveal direction="down" duration={0.65}>
           <div className="space-y-4 text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#141414] border border-[#ff6b00]/40 text-xs font-mono text-[#ff7a1a]">
-              <span>// RECONNAISSANCE ARCHIVE & LAB FOOTAGE</span>
+              <span>// ROST MEDIA ARCHIVE & ALBUMS</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-mono font-black uppercase text-[#fafafa]">
-              Lab & Tournament Gallery
+              Society Media & Photo Albums
             </h1>
 
             <p className="text-sm sm:text-base text-[#a3a3a3] font-sans leading-relaxed">
@@ -135,7 +139,7 @@ export default function GalleryPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-70" />
 
                   <div className="absolute top-3 left-3 text-[9px] font-mono px-2 py-0.5 rounded bg-[#080808]/90 text-[#ff6b00] border border-[#ff6b00]/30 font-semibold backdrop-blur-sm uppercase">
-                    {item.category}
+                    {item.album ? `ALBUM // ${item.album}` : item.category}
                   </div>
 
                   <div className="absolute top-3 right-3 p-1.5 rounded-lg bg-[#080808]/80 text-[#fafafa] opacity-0 group-hover:opacity-100 transition-opacity">
@@ -223,11 +227,22 @@ export default function GalleryPage() {
             {/* Telemetry Caption HUD */}
             <div className="w-full p-4 rounded-xl bg-[#141414] border border-[#262626] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono">
               <div className="space-y-1">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <span className="font-bold text-[#fafafa] text-sm">{activeItem.title}</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff6b00] border border-[#ff6b00]/30">
-                    {activeItem.category}
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff6b00] border border-[#ff6b00]/30 font-bold">
+                    {activeItem.album ? `ALBUM: ${activeItem.album}` : activeItem.category}
                   </span>
+                  {activeItem.collectionUrl && (
+                    <a
+                      href={activeItem.collectionUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#ff6b00] hover:bg-[#ffa040] text-[#080808] font-bold text-[10px] transition-colors"
+                    >
+                      <span>Open Cloudinary Album</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  )}
                 </div>
                 <p className="text-xs text-[#a3a3a3] font-sans">{activeItem.caption}</p>
               </div>

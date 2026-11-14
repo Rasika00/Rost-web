@@ -380,3 +380,10 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+
+/* Hide navigation bar when event or bot modal is open */
+body.event-modal-open header,
+body.event-modal-open [data-nav-header] {
+  display: none !important;
+}

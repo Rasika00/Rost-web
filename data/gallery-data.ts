@@ -1,16 +1,31 @@
 export interface GalleryItem {
   id: string;
   title: string;
-  category: "Tournament Matches" | "Lab Fabrication" | "Pit Crew & Arena" | "Autonomous Trials";
+  album?: string;
+  category: string;
   caption: string;
   telemetry: string;
   date: string;
   aspectRatio: "landscape" | "portrait" | "square";
   image: string;
   tags: string[];
+  collectionUrl?: string;
 }
 
 export const GALLERY_ITEMS: GalleryItem[] = [
+  {
+    id: "gal-rost-agm",
+    title: "ROST Annual General Meeting (AGM)",
+    album: "ROST AGM",
+    category: "ROST AGM",
+    caption: "Official proceedings, executive committee appointments, and strategic initiatives at the ROST Annual General Meeting, Faculty of Technology.",
+    telemetry: "ALBUM: ROST_AGM // VENUE: FACULTY_OF_TECHNOLOGY",
+    date: "2026",
+    aspectRatio: "landscape",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794658477/814779683_1099824349675869_5212132639773939324_n.jpg",
+    tags: ["ROST AGM", "Annual General Meeting", "Faculty of Technology", "Society Leadership"],
+    collectionUrl: "https://collection.cloudinary.com/pasongqn/96d14ae3de8f674d2a89ac1e8d3cb26c",
+  },
   {
     id: "gal-01",
     title: "VORTEX-X Final Championship Clash",

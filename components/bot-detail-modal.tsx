@@ -32,18 +32,24 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
     if (bot) {
       window.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
+      document.body.classList.add("event-modal-open");
+      window.dispatchEvent(new CustomEvent("event-modal-change", { detail: { open: true } }));
+      (window as unknown as { lenis?: { stop: () => void; start: () => void } }).lenis?.stop();
     }
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "auto";
+      document.body.classList.remove("event-modal-open");
+      window.dispatchEvent(new CustomEvent("event-modal-change", { detail: { open: false } }));
+      (window as unknown as { lenis?: { stop: () => void; start: () => void } }).lenis?.start();
     };
   }, [bot, onClose]);
 
   if (!bot) return null;
 
   return (
-    <div onClick={onClose} className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/90 backdrop-blur-xl animate-in fade-in duration-200 cursor-pointer">
-      <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-[#121212] border border-[#ff6b00]/40 rounded-2xl shadow-[0_0_50px_rgba(255,107,0,0.25)] overflow-hidden cursor-default">
+    <div onClick={onClose} data-lenis-prevent="true" className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/90 backdrop-blur-xl animate-in fade-in duration-200 cursor-pointer">
+      <div onClick={(e) => e.stopPropagation()} onWheel={(e) => e.stopPropagation()} onTouchMove={(e) => e.stopPropagation()} data-lenis-prevent="true" className="relative w-full max-w-4xl max-h-[90vh] flex flex-col bg-[#121212] border border-[#ff6b00]/40 rounded-2xl shadow-[0_0_50px_rgba(255,107,0,0.25)] overflow-hidden cursor-default overscroll-contain">
         {/* Modal Header HUD Bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-[#262626] bg-[#0d0d0d]">
           <div className="flex items-center gap-3">
@@ -79,7 +85,7 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="overflow-y-auto p-6 space-y-6">
+        <div data-lenis-prevent="true" className="overflow-y-auto flex-1 min-h-0 overscroll-contain p-6 space-y-6">
           {/* Main Visual & Overview Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             <div className="md:col-span-7 relative rounded-xl overflow-hidden border border-[#262626] bg-[#0d0d0d] aspect-video">

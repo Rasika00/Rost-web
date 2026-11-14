@@ -86,7 +86,7 @@ export default function HomePage() {
   ];
 
   const flagshipBots = BOT_FLEET.slice(0, 3);
-  const previewEvents = ARENA_EVENTS.slice(0, 3);
+  const previewEvents = ARENA_EVENTS;
   const previewGallery = GALLERY_ITEMS.slice(0, 4);
   const previewBoard = TEAM_MEMBERS.slice(0, 4);
 
@@ -135,10 +135,14 @@ export default function HomePage() {
     window.addEventListener("keydown", handleKeyDown);
     if (activeGalleryIndex !== null) {
       document.body.style.overflow = "hidden";
+      document.body.classList.add("event-modal-open");
+      window.dispatchEvent(new CustomEvent("event-modal-change", { detail: { open: true } }));
     }
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "auto";
+      document.body.classList.remove("event-modal-open");
+      window.dispatchEvent(new CustomEvent("event-modal-change", { detail: { open: false } }));
     };
   }, [activeGalleryIndex, previewGallery.length]);
 
@@ -279,8 +283,8 @@ export default function HomePage() {
             </div>
           </ScrollReveal>
 
-          {/* 3-Column Event Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Event Card Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {previewEvents.map((event, idx) => (
               <ScrollReveal
                 key={event.id}
@@ -523,13 +527,13 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                  // 05. VISUAL TELEMETRY ARCHIVES
+                  // 05. VISUAL ARCHIVES & ALBUMS
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
-                  Combat Footage & Prototyping Archives
+                  Society Media & Project Archives
                 </h2>
                 <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
-                  High-speed 240fps arena impact recordings, Haas 5-axis CNC titanium milling, and subterranean LiDAR test runs.
+                  Photographic archives from ROST annual general meetings, technical workshops, robotics prototyping, and engineering initiatives.
                 </p>
               </div>
 
@@ -569,7 +573,7 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-75" />
 
                     <div className="absolute top-2.5 left-2.5 text-[9px] font-mono px-2 py-0.5 rounded bg-[#080808]/90 text-[#ff6b00] border border-[#ff6b00]/30 font-semibold backdrop-blur-sm">
-                      {item.category}
+                      {item.album ? `ALBUM // ${item.album}` : item.category}
                     </div>
 
                     <div className="absolute bottom-2.5 right-2.5 p-1.5 rounded-lg bg-[#080808]/80 text-[#fafafa] border border-[#262626] opacity-0 group-hover:opacity-100 transition-opacity">
@@ -962,13 +966,23 @@ export default function HomePage() {
 
             <div className="w-full bg-[#121212] border border-[#262626] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
               <div className="space-y-1">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-[10px] px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff7a1a] border border-[#ff6b00]/30 font-bold uppercase">
-                    {previewGallery[activeGalleryIndex].category}
+                    {previewGallery[activeGalleryIndex].album ? `ALBUM // ${previewGallery[activeGalleryIndex].album}` : previewGallery[activeGalleryIndex].category}
                   </span>
                   <span className="font-bold text-[#fafafa]">
                     {previewGallery[activeGalleryIndex].title}
                   </span>
+                  {previewGallery[activeGalleryIndex].collectionUrl && (
+                    <a
+                      href={previewGallery[activeGalleryIndex].collectionUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[11px] font-mono text-[#ff7a1a] hover:text-[#ffa040] hover:underline"
+                    >
+                      <span>Open Cloudinary Album ↗</span>
+                    </a>
+                  )}
                 </div>
                 <p className="text-[11px] text-[#a3a3a3] font-sans">
                   {previewGallery[activeGalleryIndex].caption}
