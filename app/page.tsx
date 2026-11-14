@@ -32,6 +32,7 @@ import {
   Mail,
   ShieldCheck,
   Calendar,
+  Users,
 } from "lucide-react";
 import { toast } from "sonner";
 import { CanvasParticles } from "@/components/canvas-particles";
@@ -89,7 +90,8 @@ export default function HomePage() {
   const flagshipBots = BOT_FLEET.slice(0, 3);
   const previewEvents = ARENA_EVENTS;
   const previewAlbums = ROST_ALBUMS.slice(0, 4);
-  const previewBoard = TEAM_MEMBERS.slice(0, 4);
+  const [showAllBoard, setShowAllBoard] = useState(false);
+  const displayedBoard = showAllBoard ? TEAM_MEMBERS : TEAM_MEMBERS.slice(0, 4);
 
   const pillarIcons: Record<string, React.ReactNode> = {
     Shield: <Shield className="w-5 h-5 text-[#ff6b00]" />,
@@ -573,77 +575,73 @@ export default function HomePage() {
                   Executive Directorate & Squadron Leads
                 </h2>
                 <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
-                  Meet the student engineers, firmware architects, and faculty mentors directing ROST tournament campaigns.
+                  Meet the student engineers and executive leads directing ROST technical initiatives, workshops, and society operations.
                 </p>
               </div>
-
-              <Link
-                href="/board"
-                className="text-xs font-mono text-[#ff6b00] hover:underline flex items-center gap-1.5 self-start md:self-auto uppercase tracking-wider"
-              >
-                <span>Explore Full Executive Board & Governance Charter</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
             </div>
           </ScrollReveal>
 
-          {/* 4 Squadron Directors Grid */}
+          {/* Executive Board Leadership Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {previewBoard.map((member, idx) => (
+            {displayedBoard.map((member, idx) => (
               <ScrollReveal
                 key={member.id}
-                delay={idx * 120}
+                delay={(idx % 4) * 100}
                 direction="up"
-                duration={0.8}
-                distance={56}
+                duration={0.7}
+                distance={40}
                 className="h-full flex"
               >
                 <div
                   onClick={() => setActiveDossier(member)}
-                  className="w-full group rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all p-5 space-y-4 flex flex-col justify-between hover:shadow-[0_0_25px_rgba(255,107,0,0.25)] hover:-translate-y-1 cursor-pointer"
+                  className="w-full group rounded-2xl bg-[#141414]/80 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all p-5 flex flex-col justify-between hover:shadow-[0_0_25px_rgba(255,107,0,0.25)] hover:-translate-y-1 cursor-pointer"
                 >
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#0d0d0d] border border-[#222222]">
                       <Image
                         src={member.image}
                         alt={member.name}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 768px) 100vw, 280px"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-70" />
-
-                      <div className="absolute top-2 left-2 text-[9px] font-mono px-2 py-0.5 rounded bg-[#080808]/90 text-[#ff6b00] border border-[#ff6b00]/30 font-bold">
-                        {member.callsign}
-                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/80 via-transparent to-transparent opacity-60" />
                     </div>
 
-                    <div className="space-y-1">
+                    <div className="space-y-1.5 text-center sm:text-left">
                       <h3 className="font-mono text-base font-bold text-[#fafafa] group-hover:text-[#ff6b00] transition-colors line-clamp-1">
                         {member.name}
                       </h3>
-                      <div className="text-xs font-mono text-[#ff7a1a] font-semibold truncate">
+                      <div className="text-xs font-mono text-[#ff7a1a] font-semibold">
                         {member.role}
                       </div>
-                      <div className="text-[10px] font-mono text-[#737373]">
-                        {member.division}
-                      </div>
                     </div>
-
-                    <p className="text-xs text-[#a3a3a3] line-clamp-2 leading-relaxed">
-                      {member.bio}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-[#222222] flex items-center justify-between text-xs font-mono text-[#737373]">
-                    <span className="text-[10px] text-[#ff6b00] uppercase font-bold group-hover:underline">
-                      Inspect Dossier →
-                    </span>
-                    <span className="text-[10px] text-[#555555]">{member.term}</span>
                   </div>
                 </div>
               </ScrollReveal>
             ))}
+          </div>
+
+          {/* Action Button: FULL EXECUTIVE BOARD */}
+          <div className="flex justify-center pt-4">
+            {!showAllBoard ? (
+              <button
+                type="button"
+                onClick={() => setShowAllBoard(true)}
+                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#ff6b00] hover:bg-[#ffa040] text-[#080808] font-mono font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_25px_rgba(255,107,0,0.35)] hover:shadow-[0_0_35px_rgba(255,107,0,0.5)] cursor-pointer hover:scale-105 active:scale-95"
+              >
+                <Users className="w-4 h-4" />
+                <span>FULL EXECUTIVE BOARD</span>
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setShowAllBoard(false)}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#141414] hover:bg-[#1f1f1f] border border-[#ff6b00]/40 text-[#ff7a1a] hover:text-[#ffa040] font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer hover:scale-105 active:scale-95"
+              >
+                <span>SHOW TOP OFFICERS ONLY</span>
+              </button>
+            )}
           </div>
         </div>
       </section>
