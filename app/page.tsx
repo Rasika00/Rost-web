@@ -52,7 +52,6 @@ export default function HomePage() {
   const [selectedBot, setSelectedBot] = useState<Bot | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<ArenaEvent | null>(null);
   const [selectedAlbum, setSelectedAlbum] = useState<RostAlbum | null>(null);
-  const [activeDossier, setActiveDossier] = useState<TeamMember | null>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
 
   // Quick contact dispatch state
@@ -593,8 +592,7 @@ export default function HomePage() {
                 className="h-full flex"
               >
                 <div
-                  onClick={() => setActiveDossier(member)}
-                  className="w-full group rounded-2xl bg-[#141414]/80 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all p-5 flex flex-col justify-between hover:shadow-[0_0_25px_rgba(255,107,0,0.25)] hover:-translate-y-1 cursor-pointer"
+                  className="w-full group rounded-2xl bg-[#141414]/80 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all p-5 flex flex-col justify-between hover:shadow-[0_0_25px_rgba(255,107,0,0.25)] hover:-translate-y-1"
                 >
                   <div className="space-y-4">
                     <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#0d0d0d] border border-[#222222]">
@@ -874,121 +872,6 @@ export default function HomePage() {
 
       {/* Album Detail & Photo Collection Modal */}
       <AlbumDetailModal album={selectedAlbum} onClose={() => setSelectedAlbum(null)} />
-
-      {/* Board Director Dossier Modal */}
-      {activeDossier && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/90 backdrop-blur-xl animate-in fade-in duration-200"
-          onClick={() => setActiveDossier(null)}
-        >
-          <div
-            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-[#0f0f0f] border border-[#ff6b00]/40 p-6 sm:p-8 space-y-6 shadow-[0_0_50px_rgba(255,107,0,0.25)]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              type="button"
-              onClick={() => setActiveDossier(null)}
-              className="absolute top-4 right-4 p-2 rounded-lg bg-[#171717] border border-[#262626] text-[#a3a3a3] hover:text-[#fafafa] hover:border-[#ff6b00] transition-colors cursor-pointer"
-              aria-label="Close Dossier"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-[#0d0d0d] border border-[#262626] flex-shrink-0">
-                <Image
-                  src={activeDossier.image}
-                  alt={activeDossier.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="space-y-1.5 text-center sm:text-left">
-                <div className="inline-block text-[10px] font-mono px-2 py-0.5 rounded bg-[#171717] text-[#ff6b00] border border-[#ff6b00]/30 font-bold">
-                  CALLSIGN: {activeDossier.callsign}
-                </div>
-                <h3 className="text-xl sm:text-2xl font-mono font-bold text-[#fafafa]">
-                  {activeDossier.name}
-                </h3>
-                <div className="text-xs font-mono text-[#ff7a1a] font-semibold">
-                  {activeDossier.role}
-                </div>
-                <div className="text-[11px] font-mono text-[#737373]">
-                  DIVISION: {activeDossier.division} • {activeDossier.term}
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-[#737373]">
-                // BIOGRAPHY & CREDENTIALS
-              </h4>
-              <p className="text-xs sm:text-sm text-[#a3a3a3] font-sans leading-relaxed">
-                {activeDossier.bio}
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <h4 className="text-xs font-mono uppercase tracking-wider text-[#737373]">
-                // CORE TECHNICAL SPECIALTIES
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {activeDossier.specialties.map((spec, sIdx) => (
-                  <span
-                    key={sIdx}
-                    className="text-[11px] font-mono px-2.5 py-1 rounded bg-[#171717] border border-[#262626] text-[#fafafa]"
-                  >
-                    {spec}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-[#222222] flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                {activeDossier.socials.github && (
-                  <a
-                    href={activeDossier.socials.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-[#171717] hover:bg-[#ff6b00] text-[#a3a3a3] hover:text-[#080808] transition-colors"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                  </a>
-                )}
-                {activeDossier.socials.linkedin && (
-                  <a
-                    href={activeDossier.socials.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-[#171717] hover:bg-[#ff6b00] text-[#a3a3a3] hover:text-[#080808] transition-colors"
-                  >
-                    <LinkedinIcon className="w-4 h-4" />
-                  </a>
-                )}
-                {activeDossier.socials.email && (
-                  <a
-                    href={`mailto:${activeDossier.socials.email}`}
-                    className="p-2 rounded-lg bg-[#171717] hover:bg-[#ff6b00] text-[#a3a3a3] hover:text-[#080808] transition-colors"
-                  >
-                    <Mail className="w-4 h-4" />
-                  </a>
-                )}
-              </div>
-
-              <Link
-                href="/board"
-                onClick={() => setActiveDossier(null)}
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#ff6b00] hover:bg-[#ffa040] text-[#080808] text-xs font-mono font-bold uppercase transition-all shadow-[0_0_15px_rgba(255,107,0,0.3)] flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>View Full Directorate Roster</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

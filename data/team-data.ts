@@ -36,7 +36,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Ensures adherence to society constitution, ethics, and university safety protocols",
     ],
     officeHours: "Tuesdays & Thursdays 16:00 - 18:00 (ROST Lab)",
-    image: "/images/team/divantha-ambrose.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664099/0ec60a16-4799-47b7-a1c8-5983fcd23318.webp",
     socials: {
       email: "president@rost.tech",
     },
@@ -58,7 +58,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Maintains alignment between executive goals and project deliverables",
     ],
     officeHours: "Mondays & Wednesdays 14:00 - 16:30 (ROST Lab)",
-    image: "/images/team/siyath-weerasinghe.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664095/f5b109d3-aee2-4121-b46f-23ee5b5e074e.webp",
     socials: {
       email: "vicepresident@rost.tech",
     },
@@ -80,7 +80,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Coordinates executive notices, schedules, and assembly communiqués",
     ],
     officeHours: "Mondays & Fridays 11:00 - 13:00 (Secretariat)",
-    image: "/images/team/ushara-piumi.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664097/39d36b6f-371c-482e-a07f-1461bee08490.webp",
     socials: {
       email: "secretary@rost.tech",
     },
@@ -102,7 +102,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Supports cross-divisional document management and archive workflows",
     ],
     officeHours: "Tuesdays & Thursdays 13:00 - 15:00 (Secretariat)",
-    image: "/images/team/sachini-kulaperuma.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664069/eaba5db9-26c7-40f6-bbf7-b50eb39ee2c0.webp",
     socials: {
       email: "assistant.secretary@rost.tech",
     },
@@ -124,7 +124,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Collaborates with content leads to chronicle society engineering achievements",
     ],
     officeHours: "Wednesdays 14:00 - 17:00 (Editorial Suite)",
-    image: "/images/team/sahan-jayasooriya.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664071/a38aa3c7-3f53-4045-a0d5-459ece9120fb.webp",
     socials: {
       email: "editor@rost.tech",
     },
@@ -146,7 +146,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Curates academic highlights and student technology showcases",
     ],
     officeHours: "Thursdays 15:00 - 17:30 (Content Lab)",
-    image: "/images/team/wpd-fernando.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664115/Gemini_Generated_Image_jmx8dyjmx8dyjmx8_1.jpg",
     socials: {
       email: "content@rost.tech",
     },
@@ -168,7 +168,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Ensures strict compliance with university student society financial regulations",
     ],
     officeHours: "Wednesdays & Fridays 14:00 - 16:30 (Treasury Bay)",
-    image: "/images/team/madhawa-nawarathna.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664067/c8c24375-a8d7-4cf3-9fbf-aeaa4bd779e8.webp",
     socials: {
       email: "treasurer@rost.tech",
     },
@@ -190,7 +190,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Coordinates technical competitions, hackathons, and hardware exhibition booths",
     ],
     officeHours: "Mondays & Thursdays 15:00 - 18:00 (Hardware Lab)",
-    image: "/images/team/dulara-abishek.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664109/86fde931-2602-4817-9cb4-76fe605fc4e1.webp",
     socials: {
       email: "technical@rost.tech",
     },
@@ -212,7 +212,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Directs frontend visual aesthetics and society digital software standards",
     ],
     officeHours: "Tuesdays & Fridays 15:00 - 18:00 (Dev Lab)",
-    image: "/images/team/rasika-priyanath.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664066/ae3c0d8d-074d-44bd-90a2-b5fb1390a0b5.webp",
     socials: {
       email: "web@rost.tech",
     },
@@ -234,7 +234,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Collaborates with social media leads for engaging graphical announcements",
     ],
     officeHours: "Mondays 14:00 - 17:00 (Media Studio)",
-    image: "/images/team/pasindu-diwakara.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664115/Gemini_Generated_Image_jmx8dyjmx8dyjmx8_1.jpg",
     socials: {
       email: "design@rost.tech",
     },
@@ -256,7 +256,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Optimizes video formats for social channels, web embeds, and archive reels",
     ],
     officeHours: "Thursdays 16:00 - 19:00 (Media Studio)",
-    image: "/images/team/imash-aloka.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664020/a5d97830-e932-454f-81ea-15af36f7cfb6.webp",
     socials: {
       email: "video@rost.tech",
     },
@@ -278,7 +278,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Monitors outreach telemetry, audience engagement, and campaign analytics",
     ],
     officeHours: "Tuesdays 12:00 - 15:00 (Outreach Office)",
-    image: "/images/team/dinithi.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664013/d67f8088-f945-4956-b764-0a0e7d0da85a.webp",
     socials: {
       email: "publicity@rost.tech",
     },
@@ -300,7 +300,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Coordinates co-branded promotional activations and sponsor recognitions",
     ],
     officeHours: "Wednesdays 13:00 - 16:00 (Command Suite)",
-    image: "/images/team/lakini-wanigapura.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664015/8a154cfe-e914-4e54-bf29-17572fcd9503.webp",
     socials: {
       email: "marketing@rost.tech",
     },
@@ -322,7 +322,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Coordinates participant registration flow and post-event feedback surveys",
     ],
     officeHours: "Fridays 13:00 - 16:00 (Assembly Hall)",
-    image: "/images/team/lakshan-randeepa.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664013/45250415-82e8-4d3f-99f3-201f6e66e8c3.webp",
     socials: {
       email: "program@rost.tech",
     },
@@ -344,7 +344,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Manages food, refreshment, and operational supplies during day-long symposiums",
     ],
     officeHours: "Mondays & Wednesdays 15:00 - 18:00 (Logistics Depot)",
-    image: "/images/team/savindu.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664111/Gemini_Generated_Image_jmx8dyjmx8dyjmx8.jpg",
     socials: {
       email: "logistics@rost.tech",
     },
@@ -366,7 +366,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       "Implements fiscal control checks to optimize society expenditure",
     ],
     officeHours: "Tuesdays 14:00 - 17:00 (Finance Office)",
-    image: "/images/team/lakshan-harshanath.svg",
+    image: "https://res.cloudinary.com/pasongqn/image/upload/v1794664012/61fa73e3-db88-4cf2-9e2a-b25cf3fc1aef.webp",
     socials: {
       email: "finance@rost.tech",
     },
