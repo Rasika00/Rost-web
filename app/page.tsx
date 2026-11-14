@@ -20,7 +20,6 @@ import {
   Layers,
   Flame,
   Radio,
-  Clock,
   MapPin,
   Maximize2,
   X,
@@ -249,7 +248,7 @@ export default function HomePage() {
       <AboutSection />
 
       {/* =========================================================================
-          TOPIC 03: EVENTS (ARENA TOURNAMENTS & CHALLENGES)
+          TOPIC 03: EVENTS (ROST TECHNICAL EVENTS & WORKSHOPS)
           ========================================================================= */}
       <section
         id="events"
@@ -260,13 +259,13 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                  // 03. ARENA EVENTS & COMBAT SCHEDULE
+                  // 03. ROST EVENTS & PROGRAMMES
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
-                  Tournaments & Match Challenges
+                  Events & Technical Programmes
                 </h2>
                 <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
-                  ROST squads compete in national heavyweight cage battles and autonomous subterranean robotics trials.
+                  Hands-on robotics workshops, embedded systems bootcamps, hardware hackathons, and technology exhibitions conducted by ROST.
                 </p>
               </div>
 
@@ -274,13 +273,13 @@ export default function HomePage() {
                 href="/events"
                 className="text-xs font-mono text-[#ff6b00] hover:underline flex items-center gap-1.5 self-start md:self-auto uppercase tracking-wider"
               >
-                <span>Explore All Arena Events & Brackets</span>
+                <span>Explore All ROST Events</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </ScrollReveal>
 
-          {/* 3-Column Tournament Card Grid */}
+          {/* 3-Column Event Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {previewEvents.map((event, idx) => (
               <ScrollReveal
@@ -291,46 +290,27 @@ export default function HomePage() {
                 distance={56}
                 className="h-full flex"
               >
-                <div className="w-full p-6 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all flex flex-col justify-between space-y-6 hover:shadow-[0_0_25px_rgba(255,107,0,0.25)] hover:-translate-y-1">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff7a1a] border border-[#ff6b00]/30 font-bold uppercase">
-                        {event.category}
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#181818] text-[#22c55e] border border-[#22c55e]/30 font-bold">
-                        {event.status}
-                      </span>
-                    </div>
-
-                    <h3 className="font-mono text-base font-bold text-[#fafafa] leading-snug">
+                <div
+                  onClick={() => setSelectedEvent(event)}
+                  className="group cursor-pointer w-full rounded-2xl bg-[#141414]/85 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:shadow-[0_0_30px_rgba(255,107,0,0.25)] hover:-translate-y-1.5"
+                >
+                  {/* Event Name */}
+                  <div className="p-5 pb-4">
+                    <h3 className="font-mono text-base sm:text-lg font-bold text-[#fafafa] group-hover:text-[#ff7a1a] transition-colors leading-snug">
                       {event.title}
                     </h3>
-
-                    <p className="text-xs text-[#a3a3a3] line-clamp-3 leading-relaxed">
-                      {event.description}
-                    </p>
                   </div>
 
-                  <div className="space-y-3 pt-2 border-t border-[#222222] font-mono text-xs text-[#737373]">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-3.5 h-3.5 text-[#ff6b00]" />
-                      <span className="text-[#fafafa]">{event.date}</span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-3.5 h-3.5 text-[#a3a3a3]" />
-                      <span className="truncate">{event.venue}</span>
-                    </div>
-
-                    <button
-                      onClick={() => {
-                        setSelectedEvent(event);
-                      }}
-                      className="w-full mt-2 py-2.5 px-4 rounded-xl bg-[#ff6b00] hover:bg-[#ffa040] text-[#080808] font-bold text-xs uppercase flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(255,107,0,0.25)] cursor-pointer"
-                    >
-                      <span>Inspect Match & Register</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
+                  {/* Event Image */}
+                  <div className="relative w-full h-56 sm:h-64 overflow-hidden bg-[#0a0a0a]">
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/70 via-transparent to-transparent opacity-60" />
                   </div>
                 </div>
               </ScrollReveal>
@@ -726,7 +706,7 @@ export default function HomePage() {
                   Connect With ROST Command
                 </h2>
                 <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
-                  Apply for student engineering tryouts, propose hardware component sponsorships, or request arena testing cage access.
+                  Apply for student membership, propose technical collaborations, or partner on upcoming society workshops.
                 </p>
               </div>
 
@@ -813,7 +793,7 @@ export default function HomePage() {
                       >
                         <option value="Recruitment">Student Recruitment & Squadron Tryouts</option>
                         <option value="Sponsorship">Corporate Component / Hardware Sponsorship</option>
-                        <option value="Competition">Arena Tournament & Match Inquiry</option>
+                        <option value="Competition">Competitions, Hackathons & Workshops</option>
                         <option value="Research">Academic Mechatronics Research Collaboration</option>
                       </select>
                     </div>

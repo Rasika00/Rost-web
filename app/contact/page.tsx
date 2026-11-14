@@ -48,8 +48,8 @@ function ContactContent() {
       a: "Our machine shop and subterranean test lab is located in the Faculty of Technology, Advanced Autonomous Systems Complex, Sector 9.",
     },
     {
-      q: "Can high school or external teams use our combat test arena?",
-      a: "Yes! During designated open arena sparring days, external teams with certified safety qualifications can test weapon spin-ups inside our Lexan safety cage.",
+      q: "Can school or external teams participate in ROST workshops and events?",
+      a: "Yes! We regularly conduct open outreach workshops, hackathons, and technology exhibitions welcoming school students and external collegiate teams.",
     },
   ];
 
@@ -170,7 +170,7 @@ function ContactContent() {
                       >
                         <option value="Recruitment">Student Recruitment & Squad Tryouts</option>
                         <option value="Sponsorship">Corporate / Hardware Sponsorship</option>
-                        <option value="Competition Inquiry">Arena Tournament & Combat Challenge</option>
+                        <option value="Competition Inquiry">Competitions, Hackathons & Workshops</option>
                         <option value="Research Collaboration">Academic Research Collaboration</option>
                       </select>
                     </div>
