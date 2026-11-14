@@ -37,11 +37,11 @@ function ContactContent() {
   const faqs = [
     {
       q: "Who is eligible to join the ROST engineering team?",
-      a: "ROST recruits actively each semester across all disciplines: mechanical, electrical, computer science, software, robotics, and physics. No prior combat robotics experience is required—we run onboarding bootcamps covering CAD, SMD soldering, and FreeRTOS.",
+      a: "ROST recruits actively each semester across all disciplines: mechatronics, electrical, computer science, software, robotics, and physical sciences. No prior advanced robotics experience is required—we run onboarding bootcamps covering CAD, microcontroller programming, and circuit design.",
     },
     {
       q: "How can corporate sponsors partner with ROST?",
-      a: "Sponsors receive prominent branding on tournament combat robots (seen by millions on live broadcasts), access to our top graduating roboticist talent, and direct hardware stress validation on our test benches.",
+      a: "Sponsors receive prominent branding on our engineering platforms and society events, direct access to our top graduating technical talent, and opportunities for joint research and technology development.",
     },
     {
       q: "Where is the physical robotics prototyping lab located?",
@@ -236,7 +236,7 @@ function ContactContent() {
                   <ExternalLink className="w-3.5 h-3.5 text-[#737373]" />
                 </div>
                 <p className="text-xs text-[#a3a3a3]">
-                  Join 1,200+ roboticists discussing FreeRTOS, CNC machining, and tournament battle footage.
+                  Join 1,200+ roboticists discussing FreeRTOS, CNC machining, and robotics project showcases.
                 </p>
               </div>
             </a>
@@ -249,7 +249,7 @@ function ContactContent() {
                 </div>
                 <div>
                   <h3 className="font-mono text-sm font-bold text-[#fafafa]">
-                    Physical Facility & Testing Cage
+                    Physical Robotics & IoT Prototyping Lab
                   </h3>
                   <div className="text-[10px] font-mono text-[#ff7a1a]">
                     SECTOR 9 // ROOM 104-B

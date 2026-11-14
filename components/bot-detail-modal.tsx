@@ -5,17 +5,11 @@ import Image from "next/image";
 import {
   X,
   Cpu,
-  Shield,
-  Zap,
   Activity,
   GitBranch,
   ExternalLink,
   Award,
-  Terminal,
   Layers,
-  Thermometer,
-  Gauge,
-  Radio,
 } from "lucide-react";
 import { Bot } from "@/data/bot-data";
 
@@ -78,7 +72,7 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
               onClose();
             }}
             className="p-2 rounded-lg bg-[#171717] border border-[#262626] text-[#a3a3a3] hover:text-[#fafafa] hover:border-[#ff6b00] transition-colors"
-            aria-label="Close Inspection Modal"
+            aria-label="Close Project Details Modal"
           >
             <X className="w-5 h-5" />
           </button>
@@ -97,10 +91,9 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
                 sizes="(max-width: 768px) 100vw, 600px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-60" />
-              
-              {/* Corner crosshairs on image */}
+
               <div className="absolute top-2 left-2 text-[10px] font-mono text-[#ff6b00] bg-[#080808]/80 px-2 py-0.5 rounded border border-[#ff6b00]/30 backdrop-blur-sm">
-                LIVE_TELEMETRY // {bot.specs.weight}
+                HARDWARE_SPECS // {bot.specs.weight}
               </div>
 
               <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono text-[#fafafa] bg-[#0d0d0d]/85 p-2 rounded-lg border border-[#262626] backdrop-blur-md">
@@ -126,7 +119,7 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
                     <div className="text-[#ff7a1a] font-bold">{bot.telemetry.operatingCurrent}</div>
                   </div>
                   <div className="p-2 rounded bg-[#0d0d0d] border border-[#222222]">
-                    <div className="text-[10px] text-[#737373]">ESC TEMP</div>
+                    <div className="text-[10px] text-[#737373]">SYSTEM TEMP</div>
                     <div className="text-[#22c55e] font-bold">{bot.telemetry.escTemp}</div>
                   </div>
                   <div className="p-2 rounded bg-[#0d0d0d] border border-[#222222]">
@@ -136,21 +129,21 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
                 </div>
               </div>
 
-              {/* Battle Record / Championship Badges */}
-              {bot.battleRecord && (
+              {/* Project Milestones & Recognition */}
+              {bot.projectRecord && (
                 <div className="p-4 rounded-xl bg-[#141414] border border-[#262626] space-y-2">
                   <div className="flex items-center justify-between text-xs font-mono">
                     <span className="text-[#ff6b00] font-bold flex items-center gap-1.5">
                       <Award className="w-4 h-4" />
-                      <span>ARENA RECORD</span>
+                      <span>PROJECT MILESTONES</span>
                     </span>
                     <span className="text-[#fafafa] font-bold">
-                      {bot.battleRecord.wins}W - {bot.battleRecord.losses}L
+                      {bot.projectRecord.fieldTrials} Field Trials ({bot.projectRecord.successRate})
                     </span>
                   </div>
 
                   <div className="text-[11px] font-mono text-[#737373] space-y-1">
-                    {bot.battleRecord.titles.map((title, idx) => (
+                    {bot.projectRecord.titles.map((title, idx) => (
                       <div key={idx} className="flex items-center gap-1.5 text-[#ff7a1a]">
                         <span>★</span>
                         <span>{title}</span>
@@ -195,10 +188,10 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
                 <p className="text-[#fafafa] font-semibold">{bot.specs.driveTrain}</p>
               </div>
               <div className="p-3 rounded-lg bg-[#0d0d0d] border border-[#222222] space-y-1">
-                <span className="text-[10px] text-[#737373] uppercase">WEAPON / MANIPULATOR</span>
-                <p className="text-[#fafafa] font-semibold">{bot.specs.weaponOrActuator}</p>
-                {bot.specs.weaponRPM && (
-                  <p className="text-[11px] text-[#ff7a1a]">{bot.specs.weaponRPM}</p>
+                <span className="text-[10px] text-[#737373] uppercase">ACTUATOR / PAYLOAD</span>
+                <p className="text-[#fafafa] font-semibold">{bot.specs.payloadOrActuator}</p>
+                {bot.specs.operatingSpeed && (
+                  <p className="text-[11px] text-[#ff7a1a]">{bot.specs.operatingSpeed}</p>
                 )}
               </div>
               <div className="p-3 rounded-lg bg-[#0d0d0d] border border-[#222222] space-y-1">
@@ -241,7 +234,7 @@ export function BotDetailModal({ bot, onClose }: BotDetailModalProps) {
           <div className="p-4 rounded-xl bg-[#0e0e0e] border border-[#ff6b00]/20 space-y-1">
             <div className="flex items-center gap-2 text-xs font-mono text-[#ff7a1a]">
               <Layers className="w-4 h-4" />
-              <span>CAD BLUEPRINT SPECIFICATION</span>
+              <span>ENGINEERING ARCHITECTURE & DESIGN</span>
             </div>
             <p className="text-xs font-mono text-[#a3a3a3]">{bot.cadPreview}</p>
           </div>

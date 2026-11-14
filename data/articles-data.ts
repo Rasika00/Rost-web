@@ -9,7 +9,7 @@ export interface Article {
   title: string;
   slug: string;
   summary: string;
-  category: "Firmware & Embedded" | "Autonomous Robotics" | "Hardware & PCB Design" | "Combat Mechatronics";
+  category: "Firmware & Embedded" | "Autonomous Robotics" | "Hardware & PCB Design" | "Mechatronics Systems";
   readTime: string;
   publishedAt: string;
   author: {
@@ -25,16 +25,16 @@ export interface Article {
 export const ARTICLES_DATA: Article[] = [
   {
     id: "tuning-pid-high-rpm-brushless",
-    title: "Tuning Field-Oriented Control & PID Loops on 10,000 RPM Brushless Motors",
+    title: "Tuning Field-Oriented Control & PID Loops on High-RPM Brushless Motors",
     slug: "tuning-pid-high-rpm-brushless",
     summary:
-      "A deep dive into Clarke/Park transformations, dead-time compensation, and preventing current phase runaway under high-shock combat conditions.",
+      "A deep dive into Clarke/Park transformations, dead-time compensation, and high-frequency current regulation under dynamic loads.",
     category: "Firmware & Embedded",
     readTime: "8 min read",
     publishedAt: "JANUARY 18, 2026",
     author: {
-      name: "Kaito Takahashi",
-      role: "Chief Embedded Firmware Lead",
+      name: "Dulara Abishek",
+      role: "Technical Team Lead",
       avatar: "/images/team/kaito-takahashi.png",
     },
     tags: ["FOC", "STM32H7", "CAN-FD", "Brushless Motors", "C++ Embedded"],
@@ -67,14 +67,14 @@ void MotorController::ExecuteFocLoop(float i_alpha, float i_beta, float rotor_th
       },
     ],
     content: [
-      "In heavyweight combat robotics, spin-up times make or break a match. Driving a 65lb Hardox 500 asymmetrical flywheel to 10,200 RPM requires managing peak currents in excess of 200 Amperes without allowing the motor inverter to desynchronize during explosive weapon impacts.",
+      "In high-performance robotics, motor acceleration and efficiency determine platform performance. Driving high-speed brushless motors requires managing peak currents in excess of 50 Amperes without allowing the motor inverter to desynchronize during dynamic load shifts.",
       "Traditional trapezoidal six-step commutation generates severe torque ripple and acoustic harmonic distortion, which stresses motor bearings and overheats stator laminations. At ROST, we transitioned entirely to Field-Oriented Control (FOC) executed directly on an ARM Cortex-M7 running at 480MHz.",
-      "By maintaining magnetic flux strictly orthogonal to rotor magnets (d-axis current commanded to zero), we maximize torque efficiency per ampere and enable regenerative dynamic braking capable of decelerating a 10,000 RPM bar in under 3.5 seconds.",
+      "By maintaining magnetic flux strictly orthogonal to rotor magnets (d-axis current commanded to zero), we maximize torque efficiency per ampere and enable regenerative dynamic braking capable of decelerating a high-RPM rotor smoothly in fractions of a second.",
     ],
   },
   {
     id: "migrating-ros1-to-ros2-humble",
-    title: "Migrating Autonomous Heavy Robotics from ROS 1 to ROS 2 Humble",
+    title: "Migrating Autonomous Mobile Robotics from ROS 1 to ROS 2 Humble",
     slug: "migrating-ros1-to-ros2-humble",
     summary:
       "Lessons learned eliminating rosmaster single points of failure, configuring CycloneDDS for packet loss resilience, and porting Nav2 lifecycle nodes.",
@@ -82,8 +82,8 @@ void MotorController::ExecuteFocLoop(float i_alpha, float i_beta, float rotor_th
     readTime: "11 min read",
     publishedAt: "DECEMBER 14, 2025",
     author: {
-      name: "Dr. Marina Vargas",
-      role: "VP & Head of Autonomous Systems",
+      name: "Rasika Priyanath",
+      role: "Web & Software Lead",
       avatar: "/images/team/marina-vargas.png",
     },
     tags: ["ROS 2 Humble", "Nav2", "DDS", "LiDAR SLAM", "Linux RT-Preempt"],
@@ -109,9 +109,9 @@ void MotorController::ExecuteFocLoop(float i_alpha, float i_beta, float rotor_th
       },
     ],
     content: [
-      "For years, university robotics teams tolerated the legacy ROS 1 roscore master architecture. But in real-world disaster rescue scenarios and subterranean caverns, an intermittent Wi-Fi drop or transient kernel panic could freeze node discovery across the entire robot.",
-      "With ROS 2 Humble Hawksbill running atop RT-Preempt Linux on our NVIDIA Jetson AGX Orin, we achieved distributed node peer-to-peer discovery using Data Distribution Service (DDS).",
-      "Lifecycle nodes allow AEGIS-1 to safely boot sensors in strict deterministic phases: Unconfigured -> Inactive -> Active -> Finalized. If a LiDAR point-cloud stream drops below 10Hz, the lifecycle manager automatically invokes a state transition to safe hover without halting the whole system.",
+      "For years, university robotics teams tolerated the legacy ROS 1 roscore master architecture. But in real-world field operations and complex multi-sensor environments, an intermittent Wi-Fi drop or transient process crash could freeze node discovery across the entire robot.",
+      "With ROS 2 Humble Hawksbill running atop RT-Preempt Linux on our embedded computing hardware, we achieved distributed node peer-to-peer discovery using Data Distribution Service (DDS).",
+      "Lifecycle nodes allow AEGIS-1 to safely boot sensors in strict deterministic phases: Unconfigured -> Inactive -> Active -> Finalized. If a LiDAR point-cloud stream drops below 10Hz, the lifecycle manager automatically invokes a state transition to safe hold without halting the whole system.",
     ],
   },
   {
@@ -119,13 +119,13 @@ void MotorController::ExecuteFocLoop(float i_alpha, float i_beta, float rotor_th
     title: "Designing Custom 4-Layer Power Inverter PCBs in KiCAD 8",
     slug: "designing-custom-4-layer-pcb-kicad",
     summary:
-      "Stackup optimization, controlled impedance differential routing for CAN-FD, and copper pour thermal dissipation for 150A continuous currents.",
+      "Stackup optimization, controlled impedance differential routing for CAN-FD, and copper pour thermal dissipation for continuous currents.",
     category: "Hardware & PCB Design",
     readTime: "9 min read",
     publishedAt: "FEBRUARY 02, 2026",
     author: {
-      name: "Tariq Al-Mansoor",
-      role: "Power Electronics Lead",
+      name: "Divantha Ambrose",
+      role: "President",
       avatar: "/images/team/tariq-al-mansoor.png",
     },
     tags: ["KiCAD 8", "4-Layer PCB", "CAN-FD", "Thermal Design", "Hardware"],
@@ -143,14 +143,14 @@ Layer 4 (Bottom Signal):   1.0 oz Cu (Low-noise analog feedback & shunts)`,
       },
     ],
     content: [
-      "In high-density combat robotics where volume is severely constrained, commercial off-the-shelf ESCs consistently fail due to inadequate mechanical shock damping and poor thermal distribution.",
+      "In compact autonomous rovers where volume and thermal dissipation are severely constrained, standard commercial off-the-shelf ESCs often suffer from poor thermal efficiency and electrical noise.",
       "By engineering custom 4-layer boards in KiCAD with 2-ounce internal copper planes and filled microvias under high-side MOSFETs, we achieve thermal conductivities previously requiring massive extruded aluminum heat sinks.",
       "We routed differential CAN-FD traces with strictly matched 120-ohm differential impedance across the outer layer directly above an uninterrupted solid ground plane, effectively eliminating inductive motor spike noise.",
     ],
   },
   {
     id: "lidar-inertial-odometry-gps-denied",
-    title: "3D LiDAR-Inertial Odometry in GPS-Denied Subterranean Environments",
+    title: "3D LiDAR-Inertial Odometry in GPS-Denied Environments",
     slug: "lidar-inertial-odometry-gps-denied",
     summary:
       "Tightly-coupled factor graph optimization using Livox Mid-360 non-repetitive scanning and high-precision tactical IMU integration.",
@@ -158,8 +158,8 @@ Layer 4 (Bottom Signal):   1.0 oz Cu (Low-noise analog feedback & shunts)`,
     readTime: "12 min read",
     publishedAt: "JANUARY 29, 2026",
     author: {
-      name: "Dr. Marina Vargas",
-      role: "VP & Head of Autonomous Systems",
+      name: "Siyath Weerasinghe",
+      role: "Vice President",
       avatar: "/images/team/marina-vargas.png",
     },
     tags: ["LiDAR SLAM", "LIO-SAM", "GTSAM", "Point Cloud", "Jetson Orin"],
@@ -187,8 +187,8 @@ void LioEstimator::IntegrateImuMeasurement(const ImuData& imu) {
       },
     ],
     content: [
-      "When navigating collapsed mines or reinforced concrete tunnels, satellite GPS signals attenuate completely within three meters. The robot must rely purely on onboard perceptive sensors to avoid accumulating catastrophic drift.",
-      "By fusing high-frequency (200Hz) angular rates from a VectorNav IMU with non-repetitive 3D point clouds from the Livox Mid-360 LiDAR, our estimator maintains drift rates under 0.2% over two kilometers of travel.",
+      "When navigating indoors or within reinforced concrete facilities, satellite GPS signals attenuate completely. The robot must rely purely on onboard perceptive sensors to avoid accumulating catastrophic drift.",
+      "By fusing high-frequency (200Hz) angular rates from a tactical IMU with non-repetitive 3D point clouds from the Livox Mid-360 LiDAR, our estimator maintains drift rates under 0.2% over two kilometers of travel.",
       "The result is a real-time dense topological map transmitted via mesh relay back to the mission control station, enabling instantaneous autonomous path re-planning.",
     ],
   },

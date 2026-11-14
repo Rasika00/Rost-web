@@ -5,12 +5,7 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import {
   Search,
-  Crosshair,
-  GitBranch,
-  ExternalLink,
-  Shield,
-  Activity,
-  Cpu,
+  ArrowRight,
   Filter,
 } from "lucide-react";
 import { BOT_FLEET, Bot } from "@/data/bot-data";
@@ -34,10 +29,11 @@ function ProjectsContent() {
 
   const divisions = [
     "All",
-    "Combat Bots",
     "Autonomous Rovers",
+    "IoT & Smart Systems",
     "Robotic Arms",
-    "Bipeds & Humanoids",
+    "Autonomous Mobile Robots",
+    "Bio-Robotics",
     "Drones & UAVs",
   ];
 
@@ -69,21 +65,21 @@ function ProjectsContent() {
         <ScrollReveal direction="down" duration={0.65}>
           <div className="space-y-4 text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#141414] border border-[#ff6b00]/40 text-xs font-mono text-[#ff7a1a]">
-              <span>// FLEET ARSENAL & HARDWARE REPOSITORY</span>
+              <span>// SOCIETY ENGINEERING PROJECTS & INNOVATIONS</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-mono font-black uppercase text-[#fafafa]">
-              Active Bot Fleet & Mechatronics
+              Engineering & Robotics Projects
             </h1>
 
             <p className="text-sm sm:text-base text-[#a3a3a3] font-sans leading-relaxed">
-              Inspect our operational hardware fleet. Every platform is designed, CNC milled, and programmed in-house
-              with real-time telemetry, open-source firmware, and competitive combat records.
+              Explore innovative robotics, autonomous rovers, and embedded IoT systems engineered by ROST student teams
+              at the Faculty of Technology, Rajarata University of Sri Lanka.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Tactical Search & Filter Control Bar */}
+        {/* Search & Filter Control Bar */}
         <ScrollReveal direction="up" delay={100} duration={0.6}>
           <div className="space-y-4 p-4 sm:p-6 rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             {/* Search Input Bar */}
@@ -93,7 +89,7 @@ function ProjectsContent() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by bot callsign, microcontroller, sensor (e.g. LiDAR, Jetson, STM32, Hardox)..."
+                placeholder="Search by project name, microcontroller, sensor (e.g. LiDAR, ESP32, STM32, Jetson)..."
                 className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#0d0d0d] border border-[#262626] text-xs font-mono text-[#fafafa] placeholder:text-[#555555] focus:outline-none focus:border-[#ff6b00] focus:ring-1 focus:ring-[#ff6b00] transition-colors"
               />
             </div>
@@ -102,7 +98,7 @@ function ProjectsContent() {
             <div className="flex flex-wrap items-center gap-2 pt-2">
               <span className="text-[11px] font-mono text-[#737373] mr-2 flex items-center gap-1">
                 <Filter className="w-3 h-3 text-[#ff6b00]" />
-                <span>DIVISION:</span>
+                <span>CATEGORY:</span>
               </span>
 
               {divisions.map((div) => {
@@ -130,9 +126,9 @@ function ProjectsContent() {
         {/* Results Counter */}
         <div className="flex items-center justify-between text-xs font-mono text-[#737373] px-2">
           <span>
-            SHOWING <strong className="text-[#ff6b00]">{filteredBots.length}</strong> ACTIVE HARDWARE PLATFORMS
+            SHOWING <strong className="text-[#ff6b00]">{filteredBots.length}</strong> ENGINEERING PLATFORMS
           </span>
-          <span>ROST-FLEET-DB v2026.4</span>
+          <span>ROST-PROJECT-REGISTRY v2026.4</span>
         </div>
 
         {/* Bot Fleet Grid */}
@@ -186,13 +182,13 @@ function ProjectsContent() {
                   {/* Specs Highlights */}
                   <div className="p-3 rounded-xl bg-[#0d0d0d] border border-[#222222] space-y-1 font-mono text-xs">
                     <div className="flex justify-between text-[11px]">
-                      <span className="text-[#737373]">MICROCONTROLLER:</span>
+                      <span className="text-[#737373]">CONTROLLER:</span>
                       <span className="text-[#fafafa] truncate max-w-[160px]">
                         {bot.specs.microcontroller}
                       </span>
                     </div>
                     <div className="flex justify-between text-[11px]">
-                      <span className="text-[#737373]">BATTERY BUS:</span>
+                      <span className="text-[#737373]">POWER SUPPLY:</span>
                       <span className="text-[#ff7a1a]">
                         {bot.telemetry.batteryVoltage}
                       </span>
@@ -218,8 +214,8 @@ function ProjectsContent() {
                     }}
                     className="w-full py-2.5 px-3 rounded-xl bg-[#171717] hover:bg-[#ff6b00] text-[#fafafa] hover:text-[#080808] border border-[#262626] hover:border-[#ff6b00] text-xs font-mono font-bold tracking-wider uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                   >
-                    <span>Inspect Subsystems</span>
-                    <Crosshair className="w-3.5 h-3.5" />
+                    <span>Project Details</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
@@ -230,9 +226,9 @@ function ProjectsContent() {
         {/* Empty Search Result State */}
         {filteredBots.length === 0 && (
           <div className="p-12 text-center rounded-2xl bg-[#121212] border border-[#262626] space-y-3 font-mono">
-            <div className="text-[#ff6b00] text-xl font-bold">NO_HARDWARE_FOUND</div>
+            <div className="text-[#ff6b00] text-xl font-bold">NO_PROJECTS_FOUND</div>
             <p className="text-xs text-[#737373]">
-              No fleet platforms match query &ldquo;{searchQuery}&rdquo; under division &ldquo;{selectedDivision}&rdquo;.
+              No engineering projects match query &ldquo;{searchQuery}&rdquo; under category &ldquo;{selectedDivision}&rdquo;.
             </p>
             <button
               onClick={() => {
@@ -254,7 +250,7 @@ function ProjectsContent() {
 
 export default function ProjectsPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center font-mono text-[#ff6b00]">LOADING_FLEET_TELEMETRY...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center font-mono text-[#ff6b00]">LOADING_PROJECT_DATA...</div>}>
       <ProjectsContent />
     </Suspense>
   );

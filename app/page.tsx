@@ -52,7 +52,6 @@ export default function HomePage() {
   const [selectedBot, setSelectedBot] = useState<Bot | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<ArenaEvent | null>(null);
   const [selectedAlbum, setSelectedAlbum] = useState<RostAlbum | null>(null);
-  const [carouselIndex, setCarouselIndex] = useState(0);
 
   // Quick contact dispatch state
   const [contactName, setContactName] = useState("");
@@ -61,30 +60,6 @@ export default function HomePage() {
   const [contactMessage, setContactMessage] = useState("");
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const [contactSent, setContactSent] = useState(false);
-
-  const carouselItems = [
-    {
-      title: "VORTEX-X 250lb Heavyweight Kinetic Spinner",
-      subtitle: "Reigning National RoboWars Champion // 28.5 kJ Impact Energy",
-      image: "/images/bots/vortex-x.png",
-      tag: "COMBAT DIVISION",
-      metric: "10,200 RPM",
-    },
-    {
-      title: "AEGIS-1 Autonomous LiDAR SLAM Rover",
-      subtitle: "Subterranean Exploration Platform // Real-Time 3D Factor Graphs",
-      image: "/images/bots/aegis-1.png",
-      tag: "AUTONOMY DIVISION",
-      metric: "275 TOPS ORIN",
-    },
-    {
-      title: "SYNAPSE 6-DOF Micro-Manipulator",
-      subtitle: "Sub-Millimeter Harmonic Drive Arm with Eye-in-Hand Vision Servoing",
-      image: "/images/bots/synapse.png",
-      tag: "MANIPULATION LAB",
-      metric: "±0.02mm REPEATABILITY",
-    },
-  ];
 
   const flagshipBots = BOT_FLEET.slice(0, 3);
   const previewEvents = ARENA_EVENTS;
@@ -306,13 +281,13 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="text-xs font-mono text-[#ff6b00] tracking-widest uppercase">
-                  // 04. SQUADRON HARDWARE & FLEET
+                  // 04. ENGINEERING PROJECTS & INNOVATIONS
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-mono font-black uppercase text-[#fafafa] mt-1">
-                  Flagship Bot Fleet & Platforms
+                  Robotics & Technology Projects
                 </h2>
                 <p className="max-w-xl text-sm font-sans text-[#a3a3a3] leading-relaxed mt-2">
-                  Engineered from raw billet alloy to multi-kilowatt power inverters. Explore our active robotics systems.
+                  Applied robotics, IoT systems, autonomous rovers, and embedded firmware engineered by ROST student teams.
                 </p>
               </div>
 
@@ -320,92 +295,9 @@ export default function HomePage() {
                 href="/projects"
                 className="text-xs font-mono text-[#ff6b00] hover:underline flex items-center gap-1.5 self-start md:self-auto uppercase tracking-wider"
               >
-                <span>Explore All 6 Fleet Platforms & Repositories</span>
+                <span>Explore All Engineering Projects & Repositories</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
-            </div>
-          </ScrollReveal>
-
-          {/* 3D Interactive Carousel Showcase */}
-          <ScrollReveal direction="scale" delay={80} duration={0.8} distance={40}>
-            <div className="relative rounded-2xl border border-white/10 bg-[#141414]/75 backdrop-blur-xl overflow-hidden p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-              <div className="flex items-center justify-between pb-6 border-b border-[#222222] mb-6">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#ff6b00] animate-pulse" />
-                  <span className="text-xs font-mono text-[#fafafa] font-bold tracking-wider uppercase">
-                    // INTERACTIVE FLEET RECONNAISSANCE CAROUSEL
-                  </span>
-                </div>
-
-                {/* Navigation Indicators */}
-                <div className="flex items-center gap-2">
-                  {carouselItems.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setCarouselIndex(i)}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${carouselIndex === i
-                        ? "w-8 bg-[#ff6b00]"
-                        : "w-2 bg-[#262626] hover:bg-[#555555]"
-                        }`}
-                      aria-label={`Slide ${i + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Active Carousel Item */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div className="lg:col-span-7 relative aspect-video rounded-xl overflow-hidden border border-[#ff6b00]/30 shadow-[0_0_30px_rgba(255,107,0,0.15)]">
-                  <Image
-                    src={carouselItems[carouselIndex].image}
-                    alt={carouselItems[carouselIndex].title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 700px"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-60" />
-                  <div className="absolute top-3 left-3 text-[10px] font-mono px-2.5 py-1 rounded bg-[#080808]/80 text-[#ff6b00] border border-[#ff6b00]/40 backdrop-blur-sm">
-                    {carouselItems[carouselIndex].tag}
-                  </div>
-                </div>
-
-                <div className="lg:col-span-5 space-y-5">
-                  <div className="inline-block px-2.5 py-0.5 rounded bg-[#171717] border border-[#262626] text-[11px] font-mono text-[#ff7a1a]">
-                    BENCHMARK: {carouselItems[carouselIndex].metric}
-                  </div>
-
-                  <h3 className="text-xl sm:text-2xl font-mono font-bold text-[#fafafa]">
-                    {carouselItems[carouselIndex].title}
-                  </h3>
-
-                  <p className="text-sm text-[#a3a3a3] font-sans leading-relaxed">
-                    {carouselItems[carouselIndex].subtitle}
-                  </p>
-
-                  <div className="pt-2 flex items-center gap-3">
-                    <Link
-                      href="/projects"
-                      className="px-5 py-2.5 rounded-xl bg-[#ff6b00] hover:bg-[#ffa040] text-[#080808] font-mono font-bold text-xs uppercase flex items-center gap-1.5 transition-all shadow-[0_0_15px_rgba(255,107,0,0.3)] cursor-pointer"
-                    >
-                      <span>View Specifications</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-
-                    <button
-                      onClick={() => {
-                        const bot = BOT_FLEET.find((b) =>
-                          carouselItems[carouselIndex].title.includes(b.name)
-                        );
-                        if (bot) setSelectedBot(bot);
-                      }}
-                      className="px-4 py-2.5 rounded-xl bg-[#141414] hover:bg-[#1a1a1a] border border-[#262626] text-xs font-mono text-[#fafafa] transition-colors cursor-pointer"
-                    >
-                      Inspect Telemetry
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
           </ScrollReveal>
 
@@ -475,8 +367,8 @@ export default function HomePage() {
                       onClick={() => setSelectedBot(bot)}
                       className="w-full mt-2 py-2 px-3 rounded-xl bg-[#171717] hover:bg-[#ff6b00] text-[#fafafa] hover:text-[#080808] border border-[#262626] hover:border-[#ff6b00] text-xs font-mono font-bold tracking-wider uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                     >
-                      <span>Inspect Subsystems</span>
-                      <Crosshair className="w-3.5 h-3.5" />
+                      <span>Project Details</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
@@ -802,7 +694,7 @@ export default function HomePage() {
                       <ExternalLink className="w-3.5 h-3.5 text-[#737373]" />
                     </div>
                     <p className="text-xs text-[#a3a3a3]">
-                      Join 1,200+ roboticists discussing FreeRTOS, CNC machining, and tournament battle footage.
+                      Join 1,200+ roboticists discussing FreeRTOS, CNC machining, and robotics project showcases.
                     </p>
                   </div>
                 </a>
@@ -817,7 +709,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h4 className="font-mono text-sm font-bold text-[#fafafa]">
-                        Physical Testing Cage & Lab
+                        Robotics & Embedded Systems Lab
                       </h4>
                       <div className="text-[10px] font-mono text-[#ff7a1a]">
                         SECTOR 9 // ROOM 104-B

@@ -2,8 +2,8 @@ export interface BotSpec {
   weight: string;
   dimensions: string;
   driveTrain: string;
-  weaponOrActuator: string;
-  weaponRPM?: string;
+  payloadOrActuator: string;
+  operatingSpeed?: string;
   powerSource: string;
   microcontroller: string;
   computePlatform: string;
@@ -11,28 +11,34 @@ export interface BotSpec {
   sensors: string[];
 }
 
-export interface BattleRecord {
-  matches: number;
-  wins: number;
-  losses: number;
-  knockouts: number;
+export interface ProjectRecord {
+  fieldTrials: number;
+  successRate: string;
   titles: string[];
 }
+
+export type ProjectDivision =
+  | "Autonomous Rovers"
+  | "IoT & Smart Systems"
+  | "Robotic Arms"
+  | "Autonomous Mobile Robots"
+  | "Bio-Robotics"
+  | "Drones & UAVs";
 
 export interface Bot {
   id: string;
   name: string;
   codename: string;
   tagline: string;
-  division: "Combat Bots" | "Autonomous Rovers" | "Robotic Arms" | "Bipeds & Humanoids" | "Drones & UAVs";
+  division: ProjectDivision;
   weightClass: string;
-  status: "Combat Ready" | "Active Fleet" | "Prototyping" | "Championship Winner";
+  status: "Active Project" | "Completed" | "Prototyping" | "Competition Winner";
   statusColor: string;
   description: string;
   fullOverview: string;
   tags: string[];
   specs: BotSpec;
-  battleRecord?: BattleRecord;
+  projectRecord?: ProjectRecord;
   image: string;
   cadPreview: string;
   githubUrl: string;
@@ -47,266 +53,254 @@ export interface Bot {
 
 export const BOT_FLEET: Bot[] = [
   {
-    id: "vortex-x",
-    name: "VORTEX-X",
-    codename: "MK-IV DEVASTATOR",
-    tagline: "Heavyweight 250lb Kinetic Bar Spinner. Engineered to shatter armor.",
-    division: "Combat Bots",
-    weightClass: "250 lb Heavyweight",
-    status: "Championship Winner",
-    statusColor: "#FF6B00",
-    description:
-      "Our premier 250lb combat machine armed with a 65lb Hardox 500 asymmetrical kinetic spinner delivering 28.5 kilojoules of impact energy per strike.",
-    fullOverview:
-      "VORTEX-X is the reigning National RoboWars Heavyweight champion. Designed with a single-piece monolithic CNC aluminum 7075-T6 unibody chassis, VORTEX-X features twin brushless 12kW outrunners driving a single-tooth Hardox 500 asymmetrical flywheel at 10,200 RPM. Avionics are encased in aerospace-grade silicone shock cradles rated for 45G instant deceleration.",
-    tags: ["Hardox 500", "10,200 RPM", "12kW Brushless", "Dual CAN-FD", "Custom FOC Inverter"],
-    specs: {
-      weight: "249.4 lbs (113.1 kg)",
-      dimensions: "920mm × 840mm × 280mm",
-      driveTrain: "4WD Custom Titanium Hubs + Mag-Drive Urethane Wheels",
-      weaponOrActuator: "Asymmetrical 65lb Hardox 500 Kinetic Bar",
-      weaponRPM: "10,200 RPM (28.5 kJ Impact Energy)",
-      powerSource: "12S 44.4V 10,000mAh 120C Graphene LiPo",
-      microcontroller: "Dual Redundant STM32H753 Arm Cortex-M7 @ 480MHz",
-      computePlatform: "Custom ROST-Inverter FPGA Telemetry Monitor",
-      firmware: "ROST-FOC-RealTime v3.8.2 (50kHz commutation loop)",
-      sensors: ["Weapon Hall RPM", "4x Current Shunt Telemetry", "Tri-axis 200G Shock Accelerometer", "Thermal IR Sensors on ESCs"],
-    },
-    battleRecord: {
-      matches: 24,
-      wins: 22,
-      losses: 2,
-      knockouts: 19,
-      titles: ["National RoboWars Heavyweight Gold 2025", "Pacific Mechatronics Cup Champion 2024"],
-    },
-    image: "/images/bots/vortex-x.png",
-    cadPreview: "Monolithic 7075-T6 Unibody with 15mm AR400 Top Deck and shock-isolated battery tray.",
-    githubUrl: "https://github.com/rost-robotics/vortex-firmware",
-    telemetry: {
-      batteryVoltage: "49.8V (Nominal 12S)",
-      operatingCurrent: "185A Peak Burst",
-      escTemp: "41.2°C",
-      latencyMs: 1.8,
-      sensorHealth: "100% NOMINAL",
-    },
-  },
-  {
     id: "aegis-1",
     name: "AEGIS-1",
-    codename: "TERRAIN-TITAN",
-    tagline: "Autonomous LiDAR SLAM All-Terrain Exploration & Hazard Navigation Rover.",
+    codename: "TERRA-EXPLORER",
+    tagline: "Autonomous 3D LiDAR SLAM All-Terrain Exploration & Mapping Rover.",
     division: "Autonomous Rovers",
-    weightClass: "45 kg Exploration Class",
-    status: "Active Fleet",
+    weightClass: "Exploration Rover (18 kg)",
+    status: "Active Project",
     statusColor: "#22C55E",
     description:
-      "Equipped with 360-degree Livox 3D LiDAR, stereo computer vision, and RTK-GPS for millimeter-accurate autonomous navigation in GPS-denied tunnels and disaster zones.",
+      "Equipped with 360-degree LiDAR, stereo depth vision, and ROS 2 for real-time 3D mapping and autonomous obstacle avoidance in unstructured environments.",
     fullOverview:
-      "AEGIS-1 is ROST's autonomous research platform built for NASA Space Grant and IEEE Autonomous Rescue competitions. Powered by an onboard NVIDIA Jetson AGX Orin running real-time point-cloud SLAM and neural obstacle classification, AEGIS-1 maps unstructured subterranean cavern terrain at speeds up to 18 km/h.",
-    tags: ["ROS 2 Humble", "NVIDIA Jetson AGX", "Livox 3D LiDAR", "RTK GPS", "Independent Rocker-Bogie"],
+      "AEGIS-1 is ROST's autonomous research platform built for field robotics exploration and university competitions. Powered by an onboard NVIDIA Jetson running ROS 2 Humble, AEGIS-1 processes real-time point-cloud SLAM and neural obstacle classification to map campus terrain, navigate complex trails, and execute autonomous waypoint navigation.",
+    tags: ["ROS 2 Humble", "NVIDIA Jetson", "3D LiDAR", "Stereo Vision", "Rocker-Bogie"],
     specs: {
-      weight: "44.8 kg",
-      dimensions: "780mm × 650mm × 520mm",
+      weight: "18.4 kg",
+      dimensions: "720mm × 580mm × 420mm",
       driveTrain: "6WD Independent In-Wheel Brushless Hub Motors with Rocker-Bogie Suspension",
-      weaponOrActuator: "Autonomous 3-DOF Sensor Mast & Soil Penetrometer",
-      weaponRPM: "N/A (Drive Speed: 5.2 m/s max)",
-      powerSource: "48V 25Ah LiFePO4 Solid-State Managed Pack",
-      microcontroller: "Teensy 4.1 + STM32G4 Safety Coprocessor",
-      computePlatform: "NVIDIA Jetson AGX Orin 64GB (275 TOPS)",
+      payloadOrActuator: "Pan-Tilt Stereo Depth Camera Mast & Environmental Sensor Array",
+      operatingSpeed: "Max Cruise Speed: 2.2 m/s",
+      powerSource: "24V 20Ah LiFePO4 Solid-State Managed Battery Pack",
+      microcontroller: "Teensy 4.1 + STM32G4 Safety & Motor Coprocessor",
+      computePlatform: "NVIDIA Jetson Orin Nano 8GB (40 TOPS)",
       firmware: "ROS 2 Humble + Micro-ROS FreeRTOS HAL",
-      sensors: ["Livox Mid-360 3D LiDAR", "Intel RealSense D455 Stereo Depth Camera", "VectorNav VN-100 Rugged IMU", "Dual RTK-GNSS Antennas"],
+      sensors: ["Livox Mid-360 3D LiDAR", "Intel RealSense D435i Stereo Depth Camera", "BNO085 9-DOF Rugged IMU", "Dual RTK-GNSS Differential Antennas"],
     },
-    battleRecord: {
-      matches: 14,
-      wins: 13,
-      losses: 1,
-      knockouts: 0,
-      titles: ["IEEE Autonomous Challenge 1st Place 2025", "Autonomous Navigation Derby Grand Winner 2024"],
+    projectRecord: {
+      fieldTrials: 14,
+      successRate: "96.0%",
+      titles: ["National University Tech Challenge - Robotics 1st Place 2025", "IEEE Student Branch Innovation Award 2024"],
     },
     image: "/images/bots/aegis-1.png",
-    cadPreview: "Articulated Rocker-Bogie aluminum alloy suspension with carbon fiber avionics enclosure rated IP67.",
+    cadPreview: "Articulated Rocker-Bogie 6061 aluminum alloy suspension with weatherproof avionics enclosure rated IP65.",
     githubUrl: "https://github.com/rost-robotics/aegis-slam-stack",
     telemetry: {
-      batteryVoltage: "51.2V",
-      operatingCurrent: "18.4A Cruise",
+      batteryVoltage: "25.6V",
+      operatingCurrent: "6.4A Cruise",
       escTemp: "32.0°C",
-      latencyMs: 3.2,
+      latencyMs: 2.4,
       sensorHealth: "100% NOMINAL",
     },
   },
   {
     id: "synapse",
-    name: "SYNAPSE",
-    codename: "PRECISION-6X",
-    tagline: "6-DOF High-Precision Robotic Arm with Sub-Millimeter Vision-Guided Manipulation.",
+    name: "SYNAPSE-6X",
+    codename: "PRECISION-ARM",
+    tagline: "6-DOF High-Precision Articulated Robotic Arm with Vision-Guided Pick-and-Place.",
     division: "Robotic Arms",
-    weightClass: "18 kg Manipulator Class",
-    status: "Combat Ready",
+    weightClass: "Manipulator Class (12 kg)",
+    status: "Active Project",
     statusColor: "#FF6B00",
     description:
-      "High-torque harmonic drive articulated arm featuring eye-in-hand RGB-D visual servoing and millisecond reactive trajectory planning.",
+      "Articulated manipulator arm featuring closed-loop stepper actuators, eye-in-hand computer vision, and ROS 2 MoveIt motion planning for component sorting.",
     fullOverview:
-      "SYNAPSE bridges industrial precision and academic AI manipulation. Utilizing custom strain-wave harmonic gearboxes with 100:1 zero-backlash reduction, brushless frameless torque motors, and an eye-in-hand depth sensor, SYNAPSE performs high-speed component assembly, automated soldering, and dynamic object interception.",
-    tags: ["6-DOF", "Harmonic Drive", "Computer Vision", "MoveIt 2", "Zero Backlash"],
+      "SYNAPSE-6X bridges academic robotics research and industrial automation. Designed with custom reduction gearboxes, closed-loop magnetic encoders, and an eye-in-hand RGB-D sensor, SYNAPSE executes automated component sorting, electronic PCB pick-and-place, and trajectory planning with sub-millimeter repeatability.",
+    tags: ["6-DOF", "Inverse Kinematics", "MoveIt 2", "Computer Vision", "Closed-Loop Steppers"],
     specs: {
-      weight: "18.2 kg (Reach: 850mm)",
-      dimensions: "Base: 220mm dia, Max Extension: 920mm",
-      driveTrain: "Custom Frameless BLDC Motors + Harmonic Drive Reducers",
-      weaponOrActuator: "Pneumatic Micro-Gripper with Multi-Touch Tactile Array",
-      weaponRPM: "Angular Velocity: 180 deg/sec",
-      powerSource: "24V 30A Industrial Regulated DC / LiFePO4 Portable Rail",
-      microcontroller: "6x Custom STM32F405 CANopen Joint Actuator Nodes",
-      computePlatform: "NVIDIA Jetson Orin Nano + Host Workstation",
-      firmware: "Custom CANopen Node Protocol + MoveIt 2 Inverse Kinematics",
-      sensors: ["19-bit Absolute Magnetic Optical Encoders", "Wrist 6-Axis F/T Sensor", "Eye-in-Hand Luxonis OAK-D Pro", "Tactile Pressure Array"],
+      weight: "12.2 kg (Reach: 750mm)",
+      dimensions: "Base: 200mm dia, Max Reach: 750mm",
+      driveTrain: "High-Torque NEMA Stepper Motors with Planetary Gearboxes",
+      payloadOrActuator: "Pneumatic Suction Gripper & Adaptive Two-Finger Parallel Servo Gripper",
+      operatingSpeed: "Joint Velocity: Up to 120 deg/sec",
+      powerSource: "24V 15A Industrial Regulated DC Power Supply",
+      microcontroller: "STM32F407 Master Controller + CAN Bus Driver Nodes",
+      computePlatform: "NVIDIA Jetson Nano + Workstation MoveIt Bridge",
+      firmware: "FreeRTOS Multi-Axis Kinematics Engine + ROS 2 MoveIt Driver",
+      sensors: ["14-bit Absolute Magnetic Joint Encoders", "Luxonis OAK-D RGB-D Camera", "End-Effector Load Cell", "Optical Home Limit Switches"],
     },
-    battleRecord: {
-      matches: 8,
-      wins: 8,
-      losses: 0,
-      knockouts: 0,
-      titles: ["National Automation Olympiad Gold 2025", "RoboTech Industrial Manipulation Award 2024"],
+    projectRecord: {
+      fieldTrials: 10,
+      successRate: "99.0%",
+      titles: ["Faculty Engineering Exhibition Best Innovation 2025", "National Automation Project Merit Award 2024"],
     },
     image: "/images/bots/synapse.png",
-    cadPreview: "Aero-grade 6061-T6 machined links with internal through-joint cable harnesses and quick-change flange.",
+    cadPreview: "Precision CNC machined 6061 aluminum alloy linkages with internal cable routing and ISO flange mount.",
     githubUrl: "https://github.com/rost-robotics/synapse-manipulator",
     telemetry: {
       batteryVoltage: "24.1V",
-      operatingCurrent: "12.8A Active Load",
-      escTemp: "36.8°C",
+      operatingCurrent: "5.8A Active Load",
+      escTemp: "31.4°C",
       latencyMs: 1.2,
       sensorHealth: "98% CALIBRATED",
     },
   },
   {
-    id: "kinetic-strike",
-    name: "KINETIC-STRIKE",
-    codename: "STRIKE-30",
-    tagline: "30lb Featherweight Drum Spinner. High-RPM kinetic executioner.",
-    division: "Combat Bots",
-    weightClass: "30 lb Featherweight",
-    status: "Combat Ready",
-    statusColor: "#EF4444",
+    id: "vortex-x",
+    name: "VORTEX-ROVER",
+    codename: "VELOX-PID",
+    tagline: "High-Speed Autonomous Line-Following & Maze-Solving Mobile Robot.",
+    division: "Autonomous Mobile Robots",
+    weightClass: "Mobile Robot Class (1.2 kg)",
+    status: "Competition Winner",
+    statusColor: "#FF6B00",
     description:
-      "A ferociously compact drum spinner spinning a S7 tool-steel drum at 14,000 RPM, capable of catapulting 30lb opponents into the arena ceiling.",
+      "Engineered with high-speed DC coreless motors, dual magnetic encoders, and an optical reflectance sensor array tuned with closed-loop PID control.",
     fullOverview:
-      "Engineered for the fast-paced 30lb combat circuit, KINETIC-STRIKE pairs a high-torque Scorpion brushless motor with an S7 impact tool-steel drum. The frame features a solid UHMW bumper shell combined with Grade 5 Titanium front wedgelets designed to win ground-clearance battles.",
-    tags: ["S7 Tool Steel", "14,000 RPM", "Titanium Grade 5", "UHMW Bumper", "V-Belt Drive"],
+      "VORTEX-ROVER is ROST's award-winning autonomous line-follower and maze navigator. Built on a custom lightweight carbon-fiber PCB chassis, it utilizes an advanced 16-sensor phototransistor array and high-frequency PID trajectory tracking algorithm running on an STM32 ARM Cortex microcontroller, achieving speeds exceeding 3.5 m/s through tight hairpin turns.",
+    tags: ["STM32 ARM", "PID Control", "Infrared Sensor Array", "Coreless Motors", "Micro-Mouse"],
     specs: {
-      weight: "29.8 lbs (13.5 kg)",
-      dimensions: "440mm × 380mm × 160mm",
-      driveTrain: "2WD Direct Gear Drive Brushless with BaneBots Wheels",
-      weaponOrActuator: "Single-Tooth S7 Impact Tool Steel Drum",
-      weaponRPM: "14,000 RPM (7.8 kJ Impact Energy)",
-      powerSource: "6S 22.2V 3300mAh 100C LiPo",
-      microcontroller: "STM32F411 BlackPill",
-      computePlatform: "Custom Integrated FOC Driver Board",
-      firmware: "ROST-Combat-Drive v2.1",
-      sensors: ["Optical RPM Tachometer", "Battery Cell Monitor", "ESC Overcurrent Guard"],
+      weight: "1.25 kg",
+      dimensions: "220mm × 180mm × 95mm",
+      driveTrain: "Dual High-RPM Coreless DC Motors + Silicone Grip Tires",
+      payloadOrActuator: "16-Channel High-Speed Optical Reflectance Array",
+      operatingSpeed: "Max Velocity: 3.8 m/s (10kHz Loop Rate)",
+      powerSource: "3S 11.1V 1200mAh High-Discharge LiPo",
+      microcontroller: "STM32G474 Arm Cortex-M4 @ 170MHz",
+      computePlatform: "Onboard High-Speed ADC & Hardware PID Math Engine",
+      firmware: "ROST-Velocity-Control Real-Time FreeRTOS",
+      sensors: ["16x Vishay Reflective Optical Sensors", "Dual Magnetic Wheel Encoders", "MPU-6050 6-Axis Gyro/Acc", "Battery Voltage Sensor"],
     },
-    battleRecord: {
-      matches: 18,
-      wins: 16,
-      losses: 2,
-      knockouts: 14,
-      titles: ["Featherweight Brawl Champion 2025", "RoboDestruction Open 2nd Place 2024"],
+    projectRecord: {
+      fieldTrials: 18,
+      successRate: "98.5%",
+      titles: ["National University Robotics Challenge 1st Place 2025", "Inter-Faculty Autonomous Maze Solver Gold 2024"],
+    },
+    image: "/images/bots/vortex-x.png",
+    cadPreview: "Integrated PCB chassis with carbon fiber stiffeners and 3D printed precision motor mounts.",
+    githubUrl: "https://github.com/rost-robotics/vortex-line-follower",
+    telemetry: {
+      batteryVoltage: "12.4V (Nominal 3S)",
+      operatingCurrent: "4.2A Peak Burst",
+      escTemp: "34.5°C",
+      latencyMs: 0.8,
+      sensorHealth: "100% NOMINAL",
+    },
+  },
+  {
+    id: "kinetic-strike",
+    name: "AGRI-BOT",
+    codename: "PRECISION-AGRI",
+    tagline: "Autonomous Agricultural Soil Analysis & Precision Environmental Monitoring Rover.",
+    division: "IoT & Smart Systems",
+    weightClass: "Agri-Tech Class (7.5 kg)",
+    status: "Active Project",
+    statusColor: "#22C55E",
+    description:
+      "Autonomous field rover equipped with NPK soil nutrient probes, moisture sensors, and an ESP32 LoRaWAN gateway for precision agriculture monitoring.",
+    fullOverview:
+      "Developed in collaboration with Faculty of Technology researchers, AGRI-BOT is an autonomous agricultural rover designed to automate crop health monitoring. Traveling along crop rows, it deploys a motorized soil penetrometer to measure soil moisture, pH, electrical conductivity, and NPK nutrient levels, transmitting real-time geospatial data to farmers via LoRaWAN.",
+    tags: ["ESP32-S3", "LoRaWAN", "NPK Soil Probes", "Solar Telemetry", "GPS Field Mapping"],
+    specs: {
+      weight: "7.4 kg",
+      dimensions: "520mm × 440mm × 360mm",
+      driveTrain: "4WD High-Torque Planetary DC Geared Motors with All-Terrain Tires",
+      payloadOrActuator: "Motorized Linear Actuator with Integrated Soil NPK/pH Sensor Probe",
+      operatingSpeed: "Field Survey Speed: 0.8 m/s",
+      powerSource: "12V 14Ah LiFePO4 Battery with 40W Solar Charging System",
+      microcontroller: "Dual ESP32-S3 Microcontrollers (Edge AI + Sensor Node)",
+      computePlatform: "ESP32 Edge Processing + SX1262 LoRaWAN Gateway",
+      firmware: "ESP-IDF FreeRTOS + MQTT / LoRaWAN IoT Protocol Stack",
+      sensors: ["NPK Optical Soil Probe", "Soil Moisture & EC Sensor", "DHT22 Ambient Temp/Humidity", "Neo-M8N High-Precision GPS"],
+    },
+    projectRecord: {
+      fieldTrials: 16,
+      successRate: "95.5%",
+      titles: ["Agri-Tech Innovation Challenge Winner 2025", "Sustainable Technology Exhibition 1st Place 2024"],
     },
     image: "/images/bots/kinetic-strike.png",
-    cadPreview: "Machined billet weapon bulkheads with interlocking titanium tongue-and-groove joints.",
-    githubUrl: "https://github.com/rost-robotics/kinetic-strike-chassis",
+    cadPreview: "UV-stabilized weather-sealed chassis with solar mounting bracket and motorized soil testing probe mount.",
+    githubUrl: "https://github.com/rost-robotics/agri-bot-system",
     telemetry: {
-      batteryVoltage: "24.8V",
-      operatingCurrent: "120A Weapon Ramp",
-      escTemp: "38.5°C",
-      latencyMs: 1.5,
+      batteryVoltage: "13.2V (Solar Assisted)",
+      operatingCurrent: "2.1A Survey Mode",
+      escTemp: "28.2°C",
+      latencyMs: 12.0,
       sensorHealth: "100% NOMINAL",
     },
   },
   {
     id: "nexus-hex",
     name: "NEXUS-HEX",
-    codename: "HEX-WALKER",
-    tagline: "Bio-Inspired 18-DOF Hexapod with Dynamic Omnidirectional Terrain Adaptation.",
-    division: "Bipeds & Humanoids",
-    weightClass: "8.5 kg Bio-Robotic Class",
-    status: "Active Fleet",
+    codename: "BIO-WALKER",
+    tagline: "Bio-Inspired 18-DOF Hexapod Robot with Dynamic Omnidirectional Terrain Navigation.",
+    division: "Bio-Robotics",
+    weightClass: "Bio-Robotics Class (4.8 kg)",
+    status: "Active Project",
     statusColor: "#22C55E",
     description:
-      "18 titanium-geared smart servos coordinated by an inverse kinematics engine for climbing steep rock slopes and collapsed obstacles.",
+      "18 high-torque smart serial bus servos coordinated by a dynamic inverse kinematics gait engine for climbing uneven terrain and inspecting confined spaces.",
     fullOverview:
-      "NEXUS-HEX models hexapod biomechanics to conquer terrain impossible for wheeled rovers. Each leg incorporates 3 high-torque brushless smart actuators with force feedback. The dynamic wave-gait optimizer dynamically shifts center of gravity on 45-degree uneven inclines.",
-    tags: ["18-DOF", "Inverse Kinematics", "Smart Actuators", "Terrain Adaptation", "Force Sensing"],
+      "NEXUS-HEX models hexapod biomechanics to conquer terrain impossible for wheeled rovers. Each leg incorporates 3 high-torque smart actuators with position and force feedback. The dynamic wave-gait optimizer shifts the center of gravity smoothly across uneven ground, enabling navigation through debris and steep slopes.",
+    tags: ["18-DOF", "Inverse Kinematics", "Smart Servos", "Dynamic Gait", "Ultrasonic Sensing"],
     specs: {
-      weight: "8.5 kg",
-      dimensions: "620mm dia footprint, standing height 310mm",
-      driveTrain: "18x High-Torque Brushless Serial Bus Actuators (45 kg·cm)",
-      weaponOrActuator: "Ground Reaction Sensor Footpads with Nitrile Grips",
-      weaponRPM: "Walking Speed: 1.2 m/s",
-      powerSource: "4S 14.8V 8000mAh LiPo Pack",
-      microcontroller: "Dual Teensy 4.1 for Kinematic Math & Bus Management",
-      computePlatform: "Raspberry Pi 5 8GB / Coral Edge TPU",
-      firmware: "ROST-HexGait Engine v1.9",
-      sensors: ["6x 3-Axis Force Foot Sensors", "BMI088 IMU", "Ultrasonic Proximity Ring", "Downward Optical Flow Sensor"],
+      weight: "4.8 kg",
+      dimensions: "580mm diameter footprint, Standing Height: 260mm",
+      driveTrain: "18x High-Torque Serial Bus Servos (25 kg·cm) with Metal Gearing",
+      payloadOrActuator: "Ground Contact Tactile Switches & Front Stereo Camera Mount",
+      operatingSpeed: "Walking Velocity: 0.6 m/s",
+      powerSource: "2S 7.4V 6000mAh High-Current LiPo Pack",
+      microcontroller: "Teensy 4.1 ARM Cortex-M7 @ 600MHz",
+      computePlatform: "Raspberry Pi 4 Model B (Autonomy & Sensor Fusion)",
+      firmware: "ROST-HexGait Kinematics Engine (Wave & Tripod Gaits)",
+      sensors: ["6x Ground Reaction Micro-Switches", "MPU-6050 6-Axis IMU", "Ultrasonic Obstacle Ring", "Down-Facing Optical Flow"],
     },
-    battleRecord: {
-      matches: 6,
-      wins: 6,
-      losses: 0,
-      knockouts: 0,
-      titles: ["RoboClimb Biomimicry Invitational 1st Place 2025"],
+    projectRecord: {
+      fieldTrials: 8,
+      successRate: "94.0%",
+      titles: ["National Biomimicry Robotics Challenge 1st Place 2025"],
     },
     image: "/images/bots/nexus-hex.png",
-    cadPreview: "3mm 3K twill matte carbon fiber chassis plates with CNC Delrin joint bearings.",
+    cadPreview: "Lightweight 3mm matte carbon fiber frame with CNC Delrin joint bearings and shock-absorbing silicone feet.",
     githubUrl: "https://github.com/rost-robotics/nexus-hexapod",
     telemetry: {
-      batteryVoltage: "16.1V",
-      operatingCurrent: "14.2A Gait Cycle",
-      escTemp: "31.5°C",
-      latencyMs: 2.1,
+      batteryVoltage: "7.8V",
+      operatingCurrent: "5.4A Gait Cycle",
+      escTemp: "30.8°C",
+      latencyMs: 1.8,
       sensorHealth: "100% NOMINAL",
     },
   },
   {
     id: "aero-pulse",
     name: "AERO-PULSE",
-    codename: "STRIKER-UAV",
-    tagline: "Autonomous Optical-Flow Swarm Drone with Millisecond Collision Avoidance.",
+    codename: "AERO-SURVEYOR",
+    tagline: "Autonomous Aerial Inspection & Mapping Quadcopter with Optical Flow.",
     division: "Drones & UAVs",
-    weightClass: "1.8 kg Quad-Rotor",
-    status: "Combat Ready",
-    statusColor: "#FF6B00",
+    weightClass: "Aerial UAV Class (1.4 kg)",
+    status: "Active Project",
+    statusColor: "#22C55E",
     description:
-      "Carbon fiber unibody racing-scale drone capable of 140 km/h sprint velocity and autonomous indoor flight without GPS lock.",
+      "Lightweight carbon fiber quadcopter running PX4 Autopilot with optical flow and LiDAR altitude sensing for indoor and outdoor aerial survey missions.",
     fullOverview:
-      "AERO-PULSE is designed for high-speed autonomous air-racing and target tracking. Powered by custom Betaflight-adapted PX4 autonomy software and an onboard stereo vision system, it executes 8G high-speed turns through complex industrial pipe mazes.",
-    tags: ["PX4 Autonomy", "Optical Flow", "140 km/h", "Carbon Fiber Unibody", "Target Tracking"],
+      "AERO-PULSE is an autonomous quadcopter designed for aerial inspection and surveying. Operating with PX4 open-source autopilot software, the UAV maintains position hold both outdoors using GPS and indoors using optical flow and downward LiDAR sensors. Equipped with a stabilized gimbal camera, it streams live video telemetry to a ground station.",
+    tags: ["PX4 Autopilot", "Optical Flow", "LiDAR Rangefinder", "Carbon Fiber", "MAVLink"],
     specs: {
-      weight: "1.78 kg (All-Up Weight)",
-      dimensions: "280mm diagonal wheelbase",
-      driveTrain: "4x 2808 1500KV Brushless Motors with 7-inch Carbon Blades",
-      weaponOrActuator: "Down-Firing Laser Rangefinder & Precision Drop Payload",
-      weaponRPM: "Max Velocity: 142 km/h (88 mph)",
-      powerSource: "6S 22.2V 2200mAh 150C Graphene LiPo",
-      microcontroller: "Holybro Kakute H7 V2 Flight Controller",
-      computePlatform: "Radxa Zero 3W Companion Computer",
-      firmware: "PX4 Autonomy v1.14 + Custom VIO Bridge",
-      sensors: ["PMW3901 Optical Flow", "TFMini Plus LiDAR Altimeter", "ICM-42688-P Dual IMUs", "Stereo FPV Autonomy Cams"],
+      weight: "1.42 kg (All-Up Weight)",
+      dimensions: "280mm diagonal motor-to-motor wheelbase",
+      driveTrain: "4x 2306 1800KV Brushless Motors with 5-inch Low-Noise Carbon Propellers",
+      payloadOrActuator: "2-Axis Micro Gimbal with 1080p HD Video Camera",
+      operatingSpeed: "Cruise Speed: 12 m/s (Max 22 m/s)",
+      powerSource: "4S 14.8V 3300mAh LiPo Pack with Smart Power Module",
+      microcontroller: "Pixhawk 4 Mini / STM32F765 Autopilot",
+      computePlatform: "Raspberry Pi Zero 2W Companion Computer",
+      firmware: "PX4 Autopilot v1.14 + MAVLink Telemetry Bridge",
+      sensors: ["PMW3901 Optical Flow Sensor", "TFmini Plus LiDAR Altimeter", "ICM-20689 Redundant IMUs", "Holybro Micro M8N GPS"],
     },
-    battleRecord: {
-      matches: 12,
-      wins: 11,
-      losses: 1,
-      knockouts: 0,
-      titles: ["Autonomous Drone Racing Cup Champion 2025", "Collegiate Aerial Robotics Derby 1st Place 2024"],
+    projectRecord: {
+      fieldTrials: 12,
+      successRate: "97.5%",
+      titles: ["National Collegiate UAV Design Challenge Winner 2025", "Collegiate Aerial Robotics 1st Place 2024"],
     },
     image: "/images/bots/aero-pulse.png",
-    cadPreview: "Monocoque continuous carbon fiber arm architecture with quick-release battery pod.",
+    cadPreview: "Monocoque 3K carbon fiber unibody arms with vibration-isolated flight controller mount.",
     githubUrl: "https://github.com/rost-robotics/aero-pulse-px4",
     telemetry: {
-      batteryVoltage: "24.9V",
-      operatingCurrent: "48.0A Hovering",
-      escTemp: "35.2°C",
-      latencyMs: 0.9,
+      batteryVoltage: "15.2V",
+      operatingCurrent: "16.5A Hovering",
+      escTemp: "33.1°C",
+      latencyMs: 1.1,
       sensorHealth: "100% NOMINAL",
     },
   },

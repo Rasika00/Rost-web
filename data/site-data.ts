@@ -30,7 +30,7 @@ export const SITE_CONFIG = {
   status: {
     state: "SYS_ONLINE",
     season: "SEASON 2026",
-    combatReady: true,
+    systemStatus: "ACTIVE INNOVATION",
     focus: "IOT & ROBOTICS",
     hub: "FACULTY OF TECHNOLOGY",
     innovatorStatus: "OPEN FOR INNOVATORS",
@@ -49,9 +49,9 @@ export const SITE_CONFIG = {
     { name: "Home", href: "/", sectionId: "home", description: "Telemetry Hero & Status" },
     { name: "About", href: "/#about", sectionId: "about", description: "Origin & 4 Pillars" },
     { name: "Events", href: "/events", sectionId: "events", description: "Society Events & Workshops" },
-    { name: "Projects", href: "/projects", sectionId: "projects", description: "Flagship Bot Fleet" },
-    { name: "Gallery", href: "/gallery", sectionId: "gallery", description: "Combat Media Archives" },
-    { name: "Board", href: "/board", sectionId: "board", description: "Executive Squadron Leads" },
+    { name: "Projects", href: "/projects", sectionId: "projects", description: "Engineering & Robotics Projects" },
+    { name: "Gallery", href: "/gallery", sectionId: "gallery", description: "Society Event Media Archives" },
+    { name: "Board", href: "/board", sectionId: "board", description: "Executive Board Members" },
     { name: "Contact", href: "/contact", sectionId: "contact", description: "Transmission Beacon" },
   ] as NavItem[],
   metrics: [
@@ -59,13 +59,13 @@ export const SITE_CONFIG = {
       value: "45+",
       numericTarget: 45,
       label: "Autonomous Bots Built",
-      subtext: "From micro-mouse to 250lb combat weapons",
+      subtext: "From micro-mouse and rovers to IoT systems",
     },
     {
       value: "12",
       numericTarget: 12,
-      label: "Tournament Championships",
-      subtext: "Across National RoboWars & IEEE Autonomy Cups",
+      label: "Competitions & Exhibitions",
+      subtext: "Across National Robotics & Technology Challenges",
     },
     {
       value: "150+",
@@ -84,11 +84,11 @@ export const SITE_CONFIG = {
     {
       number: "01",
       title: "MECHANICAL PRECISION",
-      lead: "CNC-machined titanium, aerospace carbon fiber layups, and FEA topological stress analysis.",
+      lead: "CNC-machined alloys, aerospace carbon fiber layups, and FEA topological stress analysis.",
       details:
-        "Every chassis is engineered in SolidWorks and validated through rigorous ANSYS FEA impact simulations before CNC milling from 7075-T6 billet aluminum and Hardox 500 armor steel.",
+        "Every chassis is engineered in CAD software and validated through finite element stress analysis before CNC milling, composite layups, and precision 3D fabrication.",
       icon: "Shield",
-      stats: "7075-T6 / Hardox 500 / 0.02mm Tolerance",
+      stats: "6061-T6 / Carbon Fiber / 0.05mm Tolerance",
     },
     {
       number: "02",
@@ -110,12 +110,12 @@ export const SITE_CONFIG = {
     },
     {
       number: "04",
-      title: "COMBAT RESILIENCE",
-      lead: "Ruggedized electronics, potted wire harnesses, and shock-mounted armor engineered for 40G impacts.",
+      title: "APPLIED IOT & EMBEDDED SYSTEMS",
+      lead: "Weatherproof field enclosures, industrial sensor integration, and reliable telemetry for real-world deployments.",
       details:
-        "Designed to absorb devastating kinetic impacts in the combat cage, our weapon systems spin up to 10,000 RPM while custom silicone-damped avionics retain uninterrupted telemetry.",
-      icon: "Crosshair",
-      stats: "10,000 RPM / 40G Shock Rated / 12kW Peak",
+        "Designed for continuous operation in real environments, our systems integrate fail-safe power management, noise-isolated sensor buses, and robust wireless protocols including LoRaWAN, Wi-Fi, and BLE.",
+      icon: "Radio",
+      stats: "IP65 Enclosure / Industrial Sensors / LoRaWAN & MQTT",
     },
   ],
   sponsors: [
@@ -124,6 +124,6 @@ export const SITE_CONFIG = {
     { name: "Apex LiPo Systems", tier: "Gold Tier", perk: "High-Discharge Power Cells" },
     { name: "Vector Motor Inverters", tier: "Gold Tier", perk: "Brushless ESCs & Dyno Testing" },
     { name: "Quantum LiDAR Sensors", tier: "Silver Tier", perk: "Autonomous Perception Suite" },
-    { name: "Hardox Armor Tech", tier: "Silver Tier", perk: "Ballistic Cage Armor & Steel" },
+    { name: "RoboTech Components", tier: "Silver Tier", perk: "Sensors & Actuator Components" },
   ],
 };
