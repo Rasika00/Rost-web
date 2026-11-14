@@ -7,6 +7,7 @@ import {
   Search,
   ArrowRight,
   Filter,
+  Plus,
 } from "lucide-react";
 import { BOT_FLEET, Bot } from "@/data/bot-data";
 import { BotDetailModal } from "@/components/bot-detail-modal";
@@ -122,7 +123,15 @@ function ProjectsContent() {
         {/* Results Counter */}
         <div className="flex items-center justify-between text-xs font-mono text-[#737373] px-2">
           <span>
-            SHOWING <strong className="text-[#ff6b00]">{filteredBots.length}</strong> ENGINEERING PLATFORMS
+            {BOT_FLEET.length === 0 ? (
+              <>
+                PROJECT SLOTS: <strong className="text-[#ff6b00]">6 EMPTY SLOTS READY TO FILL</strong>
+              </>
+            ) : (
+              <>
+                SHOWING <strong className="text-[#ff6b00]">{filteredBots.length}</strong> ENGINEERING PLATFORMS
+              </>
+            )}
           </span>
           <span>ROST-PROJECT-REGISTRY v2026.4</span>
         </div>
@@ -217,10 +226,82 @@ function ProjectsContent() {
               </div>
             </ScrollReveal>
           ))}
+
+          {/* Empty slots when BOT_FLEET is empty */}
+          {BOT_FLEET.length === 0 &&
+            [1, 2, 3, 4, 5, 6].map((slot, idx) => (
+              <ScrollReveal
+                key={slot}
+                delay={idx * 60}
+                direction="up"
+                duration={0.6}
+                className="h-full flex"
+              >
+                <div className="w-full group relative rounded-2xl border-2 border-dashed border-white/15 bg-[#141414]/60 backdrop-blur-xl overflow-hidden flex flex-col justify-between hover:border-[#ff6b00]/40 transition-all duration-300">
+                  {/* Empty Image Placeholder */}
+                  <div className="relative aspect-video w-full bg-[#0d0d0d] flex flex-col items-center justify-center gap-2 border-b border-white/10 text-[#555555]">
+                    <div className="w-10 h-10 rounded-xl bg-[#171717] border border-white/10 flex items-center justify-center text-[#737373] group-hover:text-[#ff6b00] transition-colors">
+                      <Plus className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] font-mono text-[#737373] uppercase tracking-wider">
+                      Project Image / CAD
+                    </span>
+                  </div>
+
+                  {/* Empty Content Placeholder */}
+                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-mono text-xl font-bold text-[#a3a3a3]">
+                          Project Slot 0{slot}
+                        </h3>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff6b00] border border-[#ff6b00]/30 font-semibold">
+                          To Be Filled
+                        </span>
+                      </div>
+
+                      <p className="text-xs text-[#555555] font-sans leading-relaxed">
+                        Reserved for upcoming ROST robotics, IoT, or embedded systems project. Details will be populated here.
+                      </p>
+                    </div>
+
+                    {/* Specs Highlights Placeholder */}
+                    <div className="p-3 rounded-xl bg-[#0d0d0d] border border-dashed border-[#222222] space-y-1 font-mono text-xs">
+                      <div className="flex justify-between text-[11px]">
+                        <span className="text-[#555555]">CONTROLLER:</span>
+                        <span className="text-[#737373]">To be assigned</span>
+                      </div>
+                      <div className="flex justify-between text-[11px]">
+                        <span className="text-[#555555]">POWER SUPPLY:</span>
+                        <span className="text-[#737373]">To be assigned</span>
+                      </div>
+                    </div>
+
+                    {/* Placeholder Tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-[#171717] border border-dashed border-[#262626] text-[#555555]">
+                        + Hardware
+                      </span>
+                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-[#171717] border border-dashed border-[#262626] text-[#555555]">
+                        + Firmware
+                      </span>
+                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-[#171717] border border-dashed border-[#262626] text-[#555555]">
+                        + IoT
+                      </span>
+                    </div>
+
+                    {/* Action Slot */}
+                    <div className="w-full py-2.5 px-3 rounded-xl bg-[#171717]/60 border border-dashed border-white/10 text-center text-xs font-mono font-medium text-[#737373] tracking-wider uppercase">
+                      Slot Available
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
         </div>
 
-        {/* Empty Search Result State */}
-        {filteredBots.length === 0 && (
+        {/* Empty Search Result State (only when BOT_FLEET has items but filter finds 0) */}
+        {BOT_FLEET.length > 0 && filteredBots.length === 0 && (
           <div className="p-12 text-center rounded-2xl bg-[#121212] border border-[#262626] space-y-3 font-mono">
             <div className="text-[#ff6b00] text-xl font-bold">NO_PROJECTS_FOUND</div>
             <p className="text-xs text-[#737373]">

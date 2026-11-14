@@ -7,6 +7,7 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  Plus,
   Cpu,
   Bot as BotIcon,
   Zap,
@@ -297,77 +298,138 @@ export default function HomePage() {
 
           {/* 3-Column Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {flagshipBots.map((bot, idx) => (
-              <ScrollReveal
-                key={bot.id}
-                delay={idx * 130}
-                direction="up"
-                duration={0.8}
-                distance={56}
-                className="h-full flex"
-              >
-                <div className="w-full group relative rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all duration-300 flex flex-col overflow-hidden hover:shadow-[0_0_30px_rgba(255,107,0,0.25)] hover:-translate-y-1">
-                  {/* Bot Card Image */}
-                  <div className="relative aspect-video w-full overflow-hidden bg-[#0d0d0d]">
-                    <Image
-                      src={bot.image}
-                      alt={bot.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, 400px"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-80" />
+            {flagshipBots.length > 0 ? (
+              flagshipBots.map((bot, idx) => (
+                <ScrollReveal
+                  key={bot.id}
+                  delay={idx * 130}
+                  direction="up"
+                  duration={0.8}
+                  distance={56}
+                  className="h-full flex"
+                >
+                  <div className="w-full group relative rounded-2xl bg-[#141414]/75 backdrop-blur-xl border border-white/10 hover:border-[#ff6b00]/60 transition-all duration-300 flex flex-col overflow-hidden hover:shadow-[0_0_30px_rgba(255,107,0,0.25)] hover:-translate-y-1">
+                    {/* Bot Card Image */}
+                    <div className="relative aspect-video w-full overflow-hidden bg-[#0d0d0d]">
+                      <Image
+                        src={bot.image}
+                        alt={bot.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, 400px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-80" />
 
-                    <div className="absolute top-3 left-3 text-[10px] font-mono px-2 py-0.5 rounded bg-[#080808]/90 text-[#ff6b00] border border-[#ff6b00]/30 font-semibold backdrop-blur-sm">
-                      {bot.weightClass}
+                      <div className="absolute top-3 left-3 text-[10px] font-mono px-2 py-0.5 rounded bg-[#080808]/90 text-[#ff6b00] border border-[#ff6b00]/30 font-semibold backdrop-blur-sm">
+                        {bot.weightClass}
+                      </div>
+
+                      <div className="absolute top-3 right-3 text-[9px] font-mono px-2 py-0.5 rounded bg-[#1c1c1c]/90 text-[#22c55e] border border-[#22c55e]/30 font-bold">
+                        {bot.status}
+                      </div>
                     </div>
 
-                    <div className="absolute top-3 right-3 text-[9px] font-mono px-2 py-0.5 rounded bg-[#1c1c1c]/90 text-[#22c55e] border border-[#22c55e]/30 font-bold">
-                      {bot.status}
+                    {/* Card Content */}
+                    <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-mono text-xl font-bold text-[#fafafa] group-hover:text-[#ff6b00] transition-colors">
+                            {bot.name}
+                          </h3>
+                          <span className="text-[10px] font-mono text-[#737373]">
+                            {bot.codename}
+                          </span>
+                        </div>
+
+                        <p className="text-xs text-[#a3a3a3] line-clamp-2 leading-relaxed">
+                          {bot.description}
+                        </p>
+                      </div>
+
+                      {/* Component Tech Tags */}
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {bot.tags.slice(0, 3).map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#181818] border border-[#262626] text-[#737373]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Inspect CTA Trigger */}
+                      <button
+                        onClick={() => setSelectedBot(bot)}
+                        className="w-full mt-2 py-2 px-3 rounded-xl bg-[#171717] hover:bg-[#ff6b00] text-[#fafafa] hover:text-[#080808] border border-[#262626] hover:border-[#ff6b00] text-xs font-mono font-bold tracking-wider uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                      >
+                        <span>Project Details</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   </div>
+                </ScrollReveal>
+              ))
+            ) : (
+              [1, 2, 3].map((slot, idx) => (
+                <ScrollReveal
+                  key={slot}
+                  delay={idx * 130}
+                  direction="up"
+                  duration={0.8}
+                  distance={56}
+                  className="h-full flex"
+                >
+                  <div className="w-full group relative rounded-2xl border-2 border-dashed border-white/15 bg-[#141414]/60 backdrop-blur-xl overflow-hidden flex flex-col justify-between hover:border-[#ff6b00]/40 transition-all duration-300">
+                    {/* Empty Image Placeholder */}
+                    <div className="relative aspect-video w-full bg-[#0d0d0d] flex flex-col items-center justify-center gap-2 border-b border-white/10 text-[#555555]">
+                      <div className="w-10 h-10 rounded-xl bg-[#171717] border border-white/10 flex items-center justify-center text-[#737373] group-hover:text-[#ff6b00] transition-colors">
+                        <Plus className="w-5 h-5" />
+                      </div>
+                      <span className="text-[11px] font-mono text-[#737373] uppercase tracking-wider">
+                        Project Image / CAD
+                      </span>
+                    </div>
 
-                  {/* Card Content */}
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-mono text-xl font-bold text-[#fafafa] group-hover:text-[#ff6b00] transition-colors">
-                          {bot.name}
-                        </h3>
-                        <span className="text-[10px] font-mono text-[#737373]">
-                          {bot.codename}
+                    {/* Empty Content Placeholder */}
+                    <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-mono text-base sm:text-lg font-bold text-[#a3a3a3]">
+                            Project Slot 0{slot}
+                          </h3>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1c1c1c] text-[#ff6b00] border border-[#ff6b00]/30 font-semibold">
+                            To Be Filled
+                          </span>
+                        </div>
+
+                        <p className="text-xs text-[#555555] font-sans leading-relaxed">
+                          Reserved for upcoming ROST robotics, IoT, or embedded systems project. Details will be populated here.
+                        </p>
+                      </div>
+
+                      {/* Component Tech Tags */}
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#181818] border border-dashed border-white/10 text-[#555555]">
+                          + Hardware
+                        </span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#181818] border border-dashed border-white/10 text-[#555555]">
+                          + Firmware
+                        </span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#181818] border border-dashed border-white/10 text-[#555555]">
+                          + IoT
                         </span>
                       </div>
 
-                      <p className="text-xs text-[#a3a3a3] line-clamp-2 leading-relaxed">
-                        {bot.description}
-                      </p>
+                      {/* Inspect CTA Trigger */}
+                      <div className="w-full mt-2 py-2 px-3 rounded-xl bg-[#171717]/60 border border-dashed border-white/10 text-center text-xs font-mono font-medium text-[#737373] tracking-wider uppercase">
+                        Slot Available
+                      </div>
                     </div>
-
-                    {/* Component Tech Tags */}
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {bot.tags.slice(0, 3).map((tag, tIdx) => (
-                        <span
-                          key={tIdx}
-                          className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#181818] border border-[#262626] text-[#737373]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Inspect CTA Trigger */}
-                    <button
-                      onClick={() => setSelectedBot(bot)}
-                      className="w-full mt-2 py-2 px-3 rounded-xl bg-[#171717] hover:bg-[#ff6b00] text-[#fafafa] hover:text-[#080808] border border-[#262626] hover:border-[#ff6b00] text-xs font-mono font-bold tracking-wider uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-                    >
-                      <span>Project Details</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
                   </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              ))
+            )}
           </div>
         </div>
       </section>
